@@ -32,29 +32,26 @@
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* PAGE 1 : ACCUEIL */
+        /* ACCUEIL */
         .hero { background: var(--edf-blue); color: white; border-radius: 20px; padding: 5rem 2rem; text-align: center; margin-bottom: 3rem; }
         .hero h1 { font-family: 'Montserrat'; font-size: 3rem; margin-bottom: 1.5rem; }
-        .grid-presentation { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .info-card { background: white; padding: 3rem 2rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; border-bottom: 6px solid var(--edf-blue); }
-        .info-card h3 { color: var(--edf-blue); margin-bottom: 1.2rem; font-family: 'Montserrat'; font-size: 1.5rem; }
+        .info-card { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; border-bottom: 6px solid var(--edf-blue); }
 
-        /* PAGE 2 : BOUTIQUE */
+        /* BOUTIQUE */
         .shop-layout { display: grid; grid-template-columns: 2.5fr 1fr; gap: 2rem; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 2rem; }
-        .product-card { background: white; padding: 1.5rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; transition: 0.3s; border: 1px solid transparent; }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--edf-blue); }
-        .product-img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; background: #f9f9f9; border-radius: 10px; }
-        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.5rem; display: block; margin: 1rem 0; }
-        .btn-add { background: var(--edf-blue); color: white; border: none; padding: 0.9rem; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; transition: 0.3s; font-family: 'Montserrat'; }
+        .category-title { grid-column: 1 / -1; margin: 2rem 0 1rem; color: var(--edf-blue); font-family: 'Montserrat'; border-left: 5px solid var(--edf-orange); padding-left: 15px; font-size: 1.5rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+        .product-card { background: white; padding: 1.5rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.3rem; display: block; margin: 1rem 0; }
+        .btn-add { background: var(--edf-blue); color: white; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; transition: 0.3s; }
         .btn-add:hover { background: var(--edf-dark); }
+        
         .cart-panel { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow); border: 2px solid var(--edf-blue); height: fit-content; position: sticky; top: 100px; }
 
-        /* PAGE 3 : AVIS */
+        /* AVIS */
         .review-box { max-width: 700px; margin: 0 auto; background: white; padding: 3rem; border-radius: 20px; box-shadow: var(--shadow); }
-        textarea { width: 100%; padding: 1.2rem; border: 1px solid #ddd; border-radius: 10px; margin: 1rem 0; height: 150px; font-family: inherit; font-size: 1rem; }
-
-        .footer-contact { margin-top: 4rem; background: var(--edf-dark); color: white; padding: 4rem 2rem; border-radius: 20px; text-align: center; }
+        textarea { width: 100%; padding: 1.2rem; border: 1px solid #ddd; border-radius: 10px; margin: 1rem 0; height: 150px; }
 
         @media (max-width: 900px) { .shop-layout { grid-template-columns: 1fr; } }
     </style>
@@ -75,120 +72,90 @@
 <div id="accueil" class="page active">
     <div class="hero">
         <h1>Pourquoi choisir EDF ?</h1>
-        <p style="font-size: 1.2rem; opacity: 0.9;">L'expertise énergétique au service de votre sécurité et de votre sérénité au quotidien.</p>
+        <p>L'expertise au service de vos projets</p>
     </div>
     
-    <div class="grid-presentation">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
         <div class="info-card">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
             <h3>Fiabilité</h3>
-            <p>Des équipements de sécurité certifiés aux normes européennes les plus strictes pour une protection sans faille de votre foyer.</p>
+            <p>Des équipements certifiés aux normes européennes.</p>
         </div>
         <div class="info-card">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
             <h3>Expertise</h3>
-            <p>Un accompagnement personnalisé par nos conseillers experts pour tous vos projets de domotique et d'installation.</p>
+            <p>Un accompagnement personnalisé pour tous vos projets.</p>
         </div>
         <div class="info-card">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
             <h3>Durabilité</h3>
-            <p>Des solutions intelligentes conçues pour réduire durablement votre empreinte carbone tout en optimisant vos factures.</p>
+            <p>Des solutions conçues pour réduire votre empreinte carbone.</p>
         </div>
     </div>
 
-    <div class="footer-contact">
-        <h2 style="font-family: Montserrat; font-size: 2rem;">Contactez votre conseiller dès aujourd'hui !</h2>
-        <p style="margin: 1.5rem 0; opacity: 0.8; font-size: 1.2rem;">Rendez-vous en agence ou directement sur notre plateforme sécurisée.</p>
-        <button class="btn-add" style="background: var(--edf-orange); max-width: 300px; font-size: 1.1rem;">Prendre un rendez-vous</button>
+    <div style="text-align:center; margin-top:3rem; background:var(--edf-dark); color:white; padding:3rem; border-radius:20px;">
+        <h2>Contactez votre conseiller dès aujourd'hui !</h2>
+        <p>Rendez-vous en agence ou sur notre site internet.</p>
     </div>
 </div>
 
 <div id="boutique" class="page">
-    <h2 style="margin-bottom: 2.5rem; font-family: 'Montserrat'; font-size: 2.2rem; color: var(--edf-blue);">Solutions EDF Sécurité & Domotique</h2>
     <div class="shop-layout">
         <div class="products-grid">
             
-            <div class="product-card">
-                <img src="led.png" alt="Lampe LED" class="product-img">
-                <h4>Lampe LED Connectée</h4>
-                <p style="font-size:0.85rem; color:gray; margin-top:5px;">Ambiance et économies d'énergie.</p>
-                <span class="price-tag">229.99 €</span>
-                <button class="btn-add" onclick="addToCart('Lampe LED', 229.99)">Ajouter au panier</button>
-            </div>
+            <h2 class="category-title">Équipements Électriques et Sécurité</h2>
+            <div class="product-card"><h4>Armoire électrique</h4><span class="price-tag">1 499,00 €</span><button class="btn-add" onclick="addToCart('Armoire électrique', 1499)">Ajouter</button></div>
+            <div class="product-card"><h4>Caméra de sécurité</h4><span class="price-tag">599,00 €</span><button class="btn-add" onclick="addToCart('Caméra de sécurité', 599)">Ajouter</button></div>
+            <div class="product-card"><h4>Caméra 360°</h4><span class="price-tag">499,00 €</span><button class="btn-add" onclick="addToCart('Caméra 360°', 499)">Ajouter</button></div>
+            <div class="product-card"><h4>Tableau électrique</h4><span class="price-tag">349,00 €</span><button class="btn-add" onclick="addToCart('Tableau électrique', 349)">Ajouter</button></div>
+            <div class="product-card"><h4>Boitier électrique</h4><span class="price-tag">99,00 €</span><button class="btn-add" onclick="addToCart('Boitier électrique', 99)">Ajouter</button></div>
 
-            <div class="product-card">
-                <img src="camera360.png" alt="Caméra 360" class="product-img">
-                <h4>Caméra 360° Pro</h4>
-                <p style="font-size:0.85rem; color:gray; margin-top:5px;">Surveillance panoramique HD.</p>
-                <span class="price-tag">349.00 €</span>
-                <button class="btn-add" onclick="addToCart('Caméra 360°', 349.00)">Ajouter au panier</button>
-            </div>
+            <h2 class="category-title">Éclairage Intérieur et Extérieur</h2>
+            <div class="product-card"><h4>Lustre</h4><span class="price-tag">25 000,00 €</span><button class="btn-add" onclick="addToCart('Lustre', 25000)">Ajouter</button></div>
+            <div class="product-card"><h4>Petit lustre</h4><span class="price-tag">8 000,00 €</span><button class="btn-add" onclick="addToCart('Petit lustre', 8000)">Ajouter</button></div>
+            <div class="product-card"><h4>Lampadaire</h4><span class="price-tag">499,00 €</span><button class="btn-add" onclick="addToCart('Lampadaire', 499)">Ajouter</button></div>
+            <div class="product-card"><h4>Projecteur</h4><span class="price-tag">299,00 €</span><button class="btn-add" onclick="addToCart('Projecteur', 299)">Ajouter</button></div>
+            <div class="product-card"><h4>Néon (modèle large)</h4><span class="price-tag">299,00 €</span><button class="btn-add" onclick="addToCart('Néon large', 299)">Ajouter</button></div>
+            <div class="product-card"><h4>Lampe bleu</h4><span class="price-tag">159,00 €</span><button class="btn-add" onclick="addToCart('Lampe bleu', 159)">Ajouter</button></div>
+            <div class="product-card"><h4>Néons (standard)</h4><span class="price-tag">99,99 €</span><button class="btn-add" onclick="addToCart('Néons standard', 99.99)">Ajouter</button></div>
+            <div class="product-card"><h4>Lumière au sol</h4><span class="price-tag">99,00 €</span><button class="btn-add" onclick="addToCart('Lumière au sol', 99)">Ajouter</button></div>
+            <div class="product-card"><h4>Néon vertical</h4><span class="price-tag">99,00 €</span><button class="btn-add" onclick="addToCart('Néon vertical', 99)">Ajouter</button></div>
 
-            <div class="product-card">
-                <img src="camera_exterieur.png" alt="Caméra Normale" class="product-img">
-                <h4>Caméra Extérieure</h4>
-                <p style="font-size:0.85rem; color:gray; margin-top:5px;">Résistante et vision nocturne.</p>
-                <span class="price-tag">289.00 €</span>
-                <button class="btn-add" onclick="addToCart('Caméra Normale', 289.00)">Ajouter au panier</button>
-            </div>
-
-            <div class="product-card">
-                <img src="detecteur.png" alt="Détecteur" class="product-img">
-                <h4>Détecteur de fumée</h4>
-                <span class="price-tag">245.00 €</span>
-                <button class="btn-add" onclick="addToCart('Détecteur', 245.00)">Ajouter au panier</button>
-            </div>
+            <h2 class="category-title">Énergie Solaire</h2>
+            <div class="product-card"><h4>Panneau solaire (support)</h4><span class="price-tag">899,00 €</span><button class="btn-add" onclick="addToCart('Panneau solaire (support)', 899)">Ajouter</button></div>
+            <div class="product-card"><h4>Panneau solaire (à plat)</h4><span class="price-tag">799,00 €</span><button class="btn-add" onclick="addToCart('Panneau solaire (plat)', 799)">Ajouter</button></div>
+            <div class="product-card"><h4>Lampadaire solaire</h4><span class="price-tag">400,00 €</span><button class="btn-add" onclick="addToCart('Lampadaire solaire', 400)">Ajouter</button></div>
 
         </div>
 
         <div class="cart-panel">
-            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">🛒 Mon Panier</h3>
-            <div id="cart-items" style="font-size: 0.95rem; margin-bottom: 1rem; min-height: 80px;">
-                <p style="color: #999; text-align: center; margin-top: 20px;">Votre panier est vide.</p>
-            </div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
-            <div style="font-weight: 900; font-size: 1.3rem; display: flex; justify-content: space-between; color: var(--edf-blue);">
+            <h3>🛒 Mon Panier</h3>
+            <div id="cart-items" style="margin: 1.5rem 0; font-size: 0.9rem;">Votre panier est vide.</div>
+            <hr>
+            <div style="margin-top: 1rem; font-weight: 900; font-size: 1.3rem; display: flex; justify-content: space-between; color: var(--edf-blue);">
                 <span>TOTAL :</span>
-                <span id="total-price">0.00 €</span>
+                <span id="total-price">0,00 €</span>
             </div>
-            <button class="btn-add" style="background: var(--edf-orange); margin-top: 2rem; font-size: 1rem;" onclick="checkout()">VALIDER MA COMMANDE</button>
+            <button class="btn-add" style="background: var(--edf-orange); margin-top: 1.5rem;" onclick="checkout()">VALIDER LA COMMANDE</button>
         </div>
     </div>
 </div>
 
 <div id="avis" class="page">
     <div class="review-box">
-        <h2 style="text-align: center; color: var(--edf-blue); font-family: 'Montserrat'; margin-bottom: 1rem;">Donnez votre avis sur EDF</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 2.5rem;">Votre expérience nous aide à améliorer la qualité de nos services.</p>
-        
-        <label style="font-weight: 700;">Note globale :</label>
-        <select id="review-note" style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; margin: 0.5rem 0 1.5rem; font-size: 1rem;">
-            <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
-            <option value="4">⭐⭐⭐⭐ - Très Bien</option>
-            <option value="3">⭐⭐⭐ - Moyen</option>
-            <option value="2">⭐⭐ - Passable</option>
-            <option value="1">⭐ - Mécontent</option>
-        </select>
-
-        <label style="font-weight: 700;">Votre témoignage :</label>
-        <textarea id="review-text" placeholder="Comment s'est passé votre projet avec EDF ?"></textarea>
-        
-        <button class="btn-add" onclick="sendReview()">PUBLIER MON AVIS</button>
+        <h2 style="text-align: center; color: var(--edf-blue); font-family: 'Montserrat';">Donner votre avis sur l'entreprise</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Votre retour est précieux pour nous.</p>
+        <textarea id="review-text" placeholder="Écrivez votre avis ici..."></textarea>
+        <button class="btn-add" onclick="alert('Merci ! Votre avis a été publié.')">PUBLIER MON AVIS</button>
     </div>
 </div>
 
 <script>
-    // NAVIGATION
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-        
         document.getElementById(pageId).classList.add('active');
         document.getElementById('btn-' + pageId).classList.add('active');
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo(0,0);
     }
 
-    // PANIER
     let cart = [];
     let total = 0;
 
@@ -203,31 +170,22 @@
         const totalDiv = document.getElementById('total-price');
         
         if(cart.length === 0) {
-            cartDiv.innerHTML = '<p style="color: #999; text-align:center; margin-top:20px;">Votre panier est vide.</p>';
+            cartDiv.innerHTML = "Votre panier est vide.";
         } else {
-            cartDiv.innerHTML = cart.map((item, index) => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:12px; padding-bottom:8px; border-bottom:1px dashed #eee;">
+            cartDiv.innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid #eee; padding-bottom:4px;">
                     <span>${item.name}</span>
-                    <span style="font-weight:700;">${item.price.toFixed(2)} €</span>
+                    <b>${item.price.toLocaleString('fr-FR')} €</b>
                 </div>
             `).join('');
         }
-        totalDiv.innerText = total.toFixed(2) + " €";
+        totalDiv.innerText = total.toLocaleString('fr-FR', {minimumFractionDigits: 2}) + " €";
     }
 
     function checkout() {
         if(cart.length === 0) return alert("Votre panier est vide !");
-        alert("Demande de commande enregistrée ! Un conseiller EDF vous contactera pour finaliser le paiement.");
-        cart = [];
-        total = 0;
-        updateCart();
-    }
-
-    function sendReview() {
-        const text = document.getElementById('review-text').value;
-        if(!text) return alert("Veuillez rédiger un avis avant d'envoyer.");
-        alert("Merci ! Votre avis a été soumis avec succès.");
-        document.getElementById('review-text').value = "";
+        alert("Félicitations ! Votre commande a été transmise à un conseiller EDF.");
+        cart = []; total = 0; updateCart();
     }
 </script>
 
