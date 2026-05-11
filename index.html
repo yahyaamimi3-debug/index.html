@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDF – Énergie, Sécurité & Innovation</title>
+    <title>EDF – Énergie & Innovation</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -21,7 +21,6 @@
         * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
         body { font-family: 'Open Sans', sans-serif; background: var(--light); color: var(--edf-dark); overflow-x: hidden; }
 
-        /* NAVIGATION ULTRA-MODERNE */
         nav { 
             background: var(--glass); 
             backdrop-filter: blur(15px);
@@ -44,78 +43,46 @@
         }
         .nav-links button:hover { background: rgba(0, 91, 187, 0.05); color: var(--edf-blue); }
         .nav-links button.active { background: var(--edf-blue); color: white; box-shadow: 0 4px 20px rgba(0, 91, 187, 0.2); }
-        .btn-staff { border: 2px solid var(--edf-orange) !important; color: var(--edf-orange) !important; font-size: 0.8rem !important; }
+        .btn-staff { border: 2px solid var(--edf-orange) !important; color: var(--edf-orange) !important; }
 
-        /* HERO SECTION DYNAMIQUE AVEC IMAGE RÉALISTE */
         .hero { 
             position: relative;
-            background: linear-gradient(135deg, rgba(0, 91, 187, 0.9) 0%, rgba(10, 25, 47, 0.95) 100%), 
-                        url('https://images.unsplash.com/photo-1541873671989-12294e6c0c2a?auto=format&fit=crop&q=80&w=2000') no-repeat center center;
+            background: linear-gradient(135deg, rgba(0, 91, 187, 0.85) 0%, rgba(10, 25, 47, 0.95) 100%), 
+                        url('Capture d\'écran 2026-05-11 205214.png') no-repeat center center;
             background-size: cover;
             color: white; border-radius: 0 0 60px 60px; padding: 10rem 2rem; 
-            text-align: center; overflow: hidden; margin-bottom: 5rem;
+            text-align: center; margin-bottom: 5rem;
         }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
-        .hero h1 { font-family: 'Montserrat'; font-size: 4.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 1.5rem; line-height: 1.1; }
-        .hero p { font-size: 1.6rem; opacity: 0.95; margin-bottom: 3rem; font-weight: 300; }
-        
-        /* GRILLE DE CARTES MODERNE */
-        .section-title { text-align: center; font-family: 'Montserrat'; font-weight: 900; font-size: 2.8rem; margin-bottom: 4rem; color: var(--edf-blue); position: relative; }
-        .section-title::after { content:''; display:block; width:80px; height:5px; background:var(--edf-orange); margin: 15px auto 0; border-radius:5px; }
-        
-        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; padding: 0 2rem; max-width: 1400px; margin: 0 auto 6rem; }
-        .why-card { 
-            background: white; padding: 4rem 2.5rem; border-radius: 35px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); 
-            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1); text-align: center; position: relative; overflow: hidden;
-            border: 1px solid #f0f0f0;
-        }
-        .why-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-color: rgba(0, 91, 187, 0.1); }
-        .why-card h3 { font-family: 'Montserrat'; font-size: 1.6rem; margin: 1rem 0; color: var(--edf-blue); }
-        .why-card p { color: #555; font-size: 1rem; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 4.5rem; font-weight: 900; margin-bottom: 1.5rem; }
 
-        /* BOUTIQUE RÉALISTE AVEC GRILLE DYNAMIQUE */
-        .shop-container { max-width: 1500px; margin: 0 auto; padding: 2rem; }
-        .shop-layout { display: grid; grid-template-columns: 1fr 380px; gap: 4rem; }
+        .section-title { text-align: center; font-family: 'Montserrat'; font-weight: 900; font-size: 2.5rem; margin-bottom: 4rem; color: var(--edf-blue); }
         
-        .category-block { margin-bottom: 4rem; }
-        .category-title { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 900; color: var(--edf-blue); margin-bottom: 2rem; padding-bottom: 10px; border-bottom: 4px solid var(--edf-orange); display: inline-block; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto 6rem; padding: 0 2rem; }
+        .why-card { background: white; padding: 3rem; border-radius: 35px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); text-align: center; transition: 0.4s; border: 1px solid #eee; }
+        .why-card:hover { transform: translateY(-10px); border-color: var(--edf-blue); }
+
+        .shop-container { max-width: 1500px; margin: 0 auto; padding: 2rem; }
+        .shop-layout { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; }
+        
+        .category-title { font-family: 'Montserrat'; font-size: 2rem; font-weight: 900; color: var(--edf-blue); margin: 3rem 0 2rem; border-bottom: 4px solid var(--edf-orange); display: inline-block; }
         
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
-        .product-card { 
-            background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            transition: 0.4s; display: flex; flex-direction: column; border: 1px solid #eee;
-        }
-        .product-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.09); transform: scale(1.03); }
-        .product-img-wrapper { width: 100%; height: 220px; overflow: hidden; background: #fafafa; }
-        .product-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; transition: 0.5s; }
-        .product-card:hover .product-img { transform: scale(1.08); }
+        .product-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid #eee; }
+        .product-card:hover { transform: scale(1.03); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .product-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #eee; }
         
-        .product-info { padding: 2rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; border-top: 1px solid #f0f0f0; }
-        .product-info h4 { font-family: 'Montserrat'; margin-bottom: 15px; font-size: 1.1rem; min-height: 50px; line-height: 1.4; color: var(--edf-dark); }
-        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.5rem; margin-bottom: 1.5rem; font-family: 'Montserrat'; }
+        .product-info { padding: 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.4rem; margin: 1rem 0; font-family: 'Montserrat'; }
+
+        .cart-panel { background: var(--white); padding: 2.5rem; border-radius: 35px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); border: 2px solid var(--edf-blue); position: sticky; top: 120px; height: fit-content; }
+        .btn-main { background: var(--edf-blue); color: white; border: none; padding: 1rem 2rem; border-radius: 15px; cursor: pointer; font-weight: 700; font-family: 'Montserrat'; width: 100%; transition: 0.3s; }
+        .btn-main:hover { background: var(--edf-orange); }
+
+        .page { display: none; }
+        .page.active { display: block; animation: fadeInUp 0.6s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* PANIER FLOTTANT MODERNE */
-        .cart-panel { 
-            background: var(--white); padding: 2.5rem; border-radius: 35px; box-shadow: 0 15px 50px rgba(0,0,0,0.08); 
-            border: 2px solid var(--edf-blue); position: sticky; top: 120px; height: fit-content;
-        }
-        .cart-panel input[type="text"] { width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #ddd; margin-bottom: 1.5rem; font-size: 1rem; }
-
-        /* BOUTONS ET FORMULAIRES */
-        .btn-main { 
-            background: var(--edf-blue); color: white; border: none; padding: 1.1rem 2rem; border-radius: 18px; 
-            cursor: pointer; font-weight: 700; font-family: 'Montserrat'; transition: 0.3s; font-size: 1rem;
-        }
-        .btn-main:hover { background: var(--edf-orange); box-shadow: 0 8px 25px rgba(255, 121, 0, 0.3); }
-
-        .page { display: none; padding-bottom: 8rem; }
-        .page.active { display: block; animation: fadeInUp 0.7s cubic-bezier(0.2, 1, 0.3, 1); }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        .login-card { background: white; padding: 5rem 4rem; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 1px solid #eee; }
-        input[type="password"] { width: 100%; padding: 1.2rem; border-radius: 15px; border: 1px solid #ddd; font-size: 1.3rem; text-align: center; margin-bottom: 2rem; }
-
-        @media (max-width: 1100px) { .shop-layout { grid-template-columns: 1fr; } .cart-panel { position: static; margin-top: 3rem; } }
+        @media (max-width: 1100px) { .shop-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -127,38 +94,22 @@
             <button onclick="showPage('accueil')" id="btn-accueil" class="active">ACCUEIL</button>
             <button onclick="showPage('boutique')" id="btn-boutique">BOUTIQUE</button>
             <button onclick="showPage('avis')" id="btn-avis">AVIS</button>
-            <button onclick="checkStaffAccess()" id="btn-staff" class="btn-staff">ESPACE EMPLOYÉ</button>
+            <button onclick="checkStaffAccess()" id="btn-staff" class="btn-staff">EMPLOYÉ</button>
         </div>
     </div>
 </nav>
 
 <div id="accueil" class="page active">
     <div class="hero">
-        <div class="hero-content">
-            <h1 class="animate__animated animate__fadeInDown">Performance Énergétique</h1>
-            <p class="animate__animated animate__fadeInUp animate__delay-1s">Des infrastructures haute tension aux solutions solaires résidentielles. L'avenir est en marche.</p>
-            <button onclick="showPage('boutique')" class="btn-main" style="padding: 1.3rem 3.5rem; font-size: 1.1rem; border-radius: 50px;">Explorer le Catalogue</button>
-        </div>
+        <h1 class="animate__animated animate__fadeInDown">Expertise & Fiabilité</h1>
+        <p class="animate__animated animate__fadeInUp">Le futur de l'énergie pour votre ville.</p>
     </div>
-
     <div class="shop-container">
-        <h2 class="section-title">Pourquoi choisir l'Expertise EDF ?</h2>
+        <h2 class="section-title">Pourquoi choisir EDF ?</h2>
         <div class="why-grid">
-            <div class="why-card reveal">
-                <div style="font-size: 4.5rem; margin-bottom: 1rem;">🛡️</div>
-                <h3>Infrastructures Certifiées</h3>
-                <p>Armoires TGBT et tableaux divisionnaires testés selon les normes IEC les plus strictes.</p>
-            </div>
-            <div class="why-card reveal">
-                <div style="font-size: 4.5rem; margin-bottom: 1rem;">⚡</div>
-                <h3>Bureau d'Études Dédié</h3>
-                <p>Plans d'exécution exacts et schémas unifilaires pour tous vos chantiers tertiaires.</p>
-            </div>
-            <div class="why-card reveal">
-                <div style="font-size: 4.5rem; margin-bottom: 1rem;">🌱</div>
-                <h3>Solutions Bas Carbone</h3>
-                <p>Panneaux solaires monocristallins à haut rendement et éclairage LED intelligent.</p>
-            </div>
+            <div class="why-card reveal"><h3>🛡️ Fiabilité</h3><p>Équipements certifiés aux normes européennes.</p></div>
+            <div class="why-card reveal"><h3>💡 Expertise</h3><p>Accompagnement personnalisé pour vos projets.</p></div>
+            <div class="why-card reveal"><h3>🌱 Durabilité</h3><p>Solutions conçues pour réduire votre empreinte carbone.</p></div>
         </div>
     </div>
 </div>
@@ -168,200 +119,123 @@
         <div class="shop-layout">
             <div id="product-list">
                 </div>
-
             <div class="cart-panel">
-                <h3 style="font-family: 'Montserrat'; font-weight: 900; margin-bottom: 2rem; display: flex; align-items: center; gap: 12px; color: var(--edf-blue);">
-                    <span style="font-size: 1.8rem;">🛒</span> Votre Panier
-                </h3>
-                <input type="text" id="client-name" placeholder="Nom complet (Identité RP)">
-                <div id="cart-items" style="margin: 1.5rem 0; min-height: 80px; font-size: 0.95rem;">
-                    <p style="color: #888; text-align: center; padding: 20px 0;">Le panier est vide.</p>
+                <h3 style="font-family: 'Montserrat'; margin-bottom: 1rem;">🛒 Panier</h3>
+                <input type="text" id="client-name" placeholder="Nom RP du client" style="width:100%; padding:10px; margin-bottom:1rem; border-radius:10px; border:1px solid #ddd;">
+                <div id="cart-items" style="margin-bottom: 1.5rem;"></div>
+                <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.5rem; color: var(--edf-blue);">
+                    <span>TOTAL</span><span id="total-price">0,00 €</span>
                 </div>
-                <div style="border-top: 3px dashed #eee; padding-top: 2rem; margin-top: 2rem;">
-                    <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.6rem; color: var(--edf-blue); font-family: 'Montserrat';">
-                        <span>TOTAL</span>
-                        <span id="total-price">0,00 €</span>
-                    </div>
-                </div>
-                <button class="btn-main" style="width: 100%; margin-top: 2rem; background: var(--edf-orange); font-size: 1.1rem; padding: 1.3rem;" onclick="processOrder()">CONFIRMER LA COMMANDE</button>
+                <button class="btn-main" style="margin-top: 1.5rem; background: var(--edf-orange);" onclick="processOrder()">COMMANDER</button>
             </div>
-        </div>
-    </div>
-</div>
-
-<div id="avis" class="page">
-    <div class="shop-container" style="max-width: 700px; text-align: center;">
-        <h2 class="section-title">Avis de nos Partenaires</h2>
-        <div class="login-card">
-            <textarea id="review-text" style="width: 100%; height: 180px; padding: 1.5rem; border-radius: 20px; border: 1px solid #ddd; margin-bottom: 2rem; font-size: 1rem;" placeholder="Votre retour d'expérience..."></textarea>
-            <button class="btn-main" style="width: 100%;" onclick="alert('Merci !')">Soumettre mon témoignage</button>
         </div>
     </div>
 </div>
 
 <div id="staff-login" class="page">
-    <div class="shop-container" style="max-width: 500px; text-align: center;">
-        <div class="login-card">
-            <h2 style="font-family: 'Montserrat'; font-weight: 900; color: var(--edf-blue); margin-bottom: 2rem; font-size: 2rem;">Authentification Staff</h2>
-            <input type="password" id="staff-code" placeholder="Code unique (1981)">
-            <button class="btn-main" style="width: 100%;" onclick="verifyCode()">Accéder au Dashboard</button>
-        </div>
+    <div style="max-width: 400px; margin: 100px auto; text-align: center; background: white; padding: 3rem; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <h2 style="margin-bottom: 1.5rem;">Accès Staff</h2>
+        <input type="password" id="staff-code" placeholder="Code secret" style="width:100%; padding:10px; margin-bottom:1rem; text-align:center;">
+        <button class="btn-main" onclick="verifyCode()">Entrer</button>
     </div>
 </div>
 
 <div id="staff-dashboard" class="page">
     <div class="shop-container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
-            <h2 class="section-title" style="margin: 0;">Commandes Clients à Traiter</h2>
-            <button onclick="clearAllOrders()" style="background: #ff4757; color: white; border: none; padding: 1rem 2rem; border-radius: 15px; cursor: pointer; font-weight: 700; font-family: 'Montserrat';">Purger la Base</button>
-        </div>
+        <h2 class="section-title">Commandes à traiter</h2>
         <div id="orders-list"></div>
     </div>
 </div>
 
 <script>
-    // DONNÉES RÉALISTES DES PRODUITS AVEC IMAGES EXACTES
     const categories = [
         {
-            title: "Équipements Électriques et Sécurité PRO",
+            title: "Sécurité & Armoires",
             items: [
-                { name: "Armoire électrique TGBT (Tableau Général Basse Tension)", price: 1699, img: "image_0.png" }, // image réaliste d'une armoire TGBT
-                { name: "Caméra de sécurité dôme PTZ 360° Extérieure", price: 799, img: "image_2.png" }, // image réaliste caméra dôme
-                { name: "Tableau électrique Schneider Electric Resi9 équipé", price: 549, img: "image_4.png" }, // image réaliste tableauSchneider
-                { name: "Boitier divisionnaire encastré IP65", price: 299, img: "https://media.sonepar.fr/images/image/300/300/P_SCH_ENN05008.jpg" } // illustrative pro
+                { name: "Armoire électrique TGBT", price: 1699, img: "Capture d'écran 2026-05-11 211417.png" },
+                { name: "Caméra de sécurité dôme", price: 799, img: "Capture d'écran 2026-05-11 211435.png" },
+                { name: "Tableau Schneider Resi9", price: 549, img: "Capture d'écran 2026-05-11 211440.png" }
             ]
         },
         {
-            title: "Éclairage Architectural & Industriel",
+            title: "Éclairage & Design",
             items: [
-                { name: "Grand Lustre Cristal Luxe Moderne 24 Branches", price: 26000, img: "image_6.png" }, // image réaliste lustre luxe
-                { name: "Petit lustre design contemporain LED", price: 9000, img: "https://images.unsplash.com/photo-1543157145-f78c636d023d?auto=format&fit=crop&q=80&w=600" }, // illustrative pro
-                { name: "Lampadaire LED urbain haute puissance", price: 699, img: "image_10.png" }, // image réaliste lampadaire puissant
-                { name: "Projecteur LED extérieur Stade IP66 200W", price: 499, img: "image_11.png" }, // image réaliste projecteur
-                { name: "Néon flexible LED 50m (modèle large)", price: 499, img: "https://images.unsplash.com/photo-1563245372-f21724e3a26d?auto=format&fit=crop&q=80&w=600" }, // illustrative pro
-                { name: "Néon vertical LED Studio (standard)", price: 299.99, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600" } // illustrative pro
+                { name: "Grand Lustre Cristal Luxe", price: 26000, img: "Capture d'écran 2026-05-11 211509.png" },
+                { name: "Petit Lustre Contemporain", price: 9000, img: "Capture d'écran 2026-05-11 211523.png" },
+                { name: "Lampadaire Urbain LED", price: 699, img: "Capture d'écran 2026-05-11 211530.png" },
+                { name: "Projecteur LED Puissant", price: 499, img: "Capture d'écran 2026-05-11 211551.png" }
             ]
         },
         {
-            title: "Solutions Énergie Solaire",
+            title: "Énergie Solaire",
             items: [
-                { name: "Kit Panneau solaire Monocristallin 400W (avec support)", price: 1200, img: "image_8.png" }, // image réaliste panneaux monocristallins
-                { name: "Panneau solaire flexible ultra-plat (à plat)", price: 1000, img: "image_9.png" }, // image réaliste panneau flexible
-                { name: "Lampadaire Solaire autonome All-in-One", price: 700, img: "image_11.png" } // illustrative pro lampadaire solaire
+                { name: "Panneaux Solaires (Support)", price: 1200, img: "Capture d'écran 2026-05-11 211556.png" },
+                { name: "Panneaux Solaires (Plat)", price: 1000, img: "Capture d'écran 2026-05-11 211739.png" }
             ]
         }
     ];
 
-    // GÉNÉRATION DE LA BOUTIQUE AVEC DESIGN RÉALISTE
     function initShop() {
         const container = document.getElementById('product-list');
         container.innerHTML = categories.map(cat => `
-            <div class="category-block">
-                <h2 class="category-title">${cat.title}</h2>
-                <div class="products-grid">
-                    ${cat.items.map(p => `
-                        <div class="product-card">
-                            <div class="product-img-wrapper">
-                                <img src="${p.img}" class="product-img" alt="${p.name}">
-                            </div>
-                            <div class="product-info">
-                                <h4>${p.name}</h4>
-                                <span class="price-tag">${p.price.toLocaleString('fr-FR')} €</span>
-                                <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter au panier</button>
-                            </div>
+            <h2 class="category-title">${cat.title}</h2>
+            <div class="products-grid">
+                ${cat.items.map(p => `
+                    <div class="product-card">
+                        <img src="${p.img}" class="product-img">
+                        <div class="product-info">
+                            <h4 style="font-family:'Montserrat';">${p.name}</h4>
+                            <p class="price-tag">${p.price.toLocaleString()} €</p>
+                            <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter</button>
                         </div>
-                    `).join('')}
-                </div>
+                    </div>
+                `).join('')}
             </div>
         `).join('');
     }
 
-    // GESTION DES PAGES ET NAV
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        const btn = document.getElementById('btn-' + pageId);
-        if(btn) btn.classList.add('active');
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo(0,0);
     }
 
-    // PANIER
-    let cart = [];
-    let total = 0;
-
-    function addToCart(name, price) {
-        cart.push({name, price});
-        total += price;
-        updateCart();
-    }
-
+    let cart = []; let total = 0;
+    function addToCart(name, price) { cart.push({name, price}); total += price; updateCart(); }
     function updateCart() {
-        const cartDiv = document.getElementById('cart-items');
-        const totalDiv = document.getElementById('total-price');
-        if(cart.length === 0) {
-            cartDiv.innerHTML = '<p style="color: #888; text-align: center; padding: 20px 0;">Le panier est vide.</p>';
-        } else {
-            cartDiv.innerHTML = cart.map(item => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:12px; background:#f4f7fb; padding:15px; border-radius:15px; border:1px solid #eee;">
-                    <span>${item.name}</span>
-                    <b style="color:var(--edf-blue); font-family:'Montserrat';">${item.price.toLocaleString('fr-FR')} €</b>
-                </div>
-            `).join('');
-        }
-        totalDiv.innerText = total.toLocaleString('fr-FR', {minimumFractionDigits: 2}) + " €";
+        const div = document.getElementById('cart-items');
+        div.innerHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${i.name}</span><b>${i.price}€</b></div>`).join('');
+        document.getElementById('total-price').innerText = total.toLocaleString() + " €";
     }
 
     function processOrder() {
         const name = document.getElementById('client-name').value;
-        if(!name) return alert("Veuillez entrer le Nom RP du client !");
-        if(cart.length === 0) return alert("Le panier est vide !");
-
-        const order = { id: Date.now(), client: name, items: [...cart], total: total, date: new Date().toLocaleString('fr-FR') };
+        if(!name || cart.length === 0) return alert("Nom manquant ou panier vide !");
         let orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        orders.push(order);
+        orders.push({ client: name, items: cart, total: total, date: new Date().toLocaleString() });
         localStorage.setItem('edf_orders', JSON.stringify(orders));
-
-        alert("🚀 Commande transmise avec succès ! Merci " + name);
-        cart = []; total = 0; document.getElementById('client-name').value = ""; updateCart();
+        alert("Commande envoyée !"); cart = []; total = 0; updateCart();
     }
 
-    // STAFF
     function checkStaffAccess() { showPage('staff-login'); }
     function verifyCode() {
-        if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); } 
-        else { alert("Code secret invalide ! Accès refusé."); }
-        document.getElementById('staff-code').value = "";
+        if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); }
+        else alert("Code erroné !");
     }
 
     function loadOrders() {
-        const listDiv = document.getElementById('orders-list');
+        const div = document.getElementById('orders-list');
         const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        if(orders.length === 0) { listDiv.innerHTML = "<p style='text-align:center;'>Aucune commande en attente.</p>"; return; }
-        listDiv.innerHTML = orders.reverse().map(order => `
-            <div class="why-card" style="text-align:left; margin-bottom:25px; border-left:12px solid var(--edf-blue); padding:3rem; border-radius:25px;">
-                <div style="display:flex; justify-content:space-between; font-weight:900; font-family:'Montserrat';">
-                    <span style="color:var(--edf-blue); font-size:1.3rem;">Client RP : ${order.client}</span>
-                    <span style="opacity:0.6; font-weight:400;">${order.date}</span>
-                </div>
-                <div style="margin:20px 0; padding:15px; background:#f8fafc; border-radius:15px; border:1px solid #eee; font-size:0.95rem;">
-                    <strong>Articles :</strong> ${order.items.map(i => i.name).join(', ')}
-                </div>
-                <div style="font-weight:900; color:var(--edf-orange); font-size:1.8rem; font-family:'Montserrat';">MONTANT TOTAL : ${order.total.toLocaleString('fr-FR')} €</div>
+        div.innerHTML = orders.reverse().map(o => `
+            <div class="why-card" style="text-align:left; margin-bottom:1rem;">
+                <b>${o.client}</b> (${o.date})<br>
+                ${o.items.map(i => i.name).join(', ')}<br>
+                <span style="color:var(--edf-orange); font-weight:900;">Total: ${o.total}€</span>
             </div>
         `).join('');
     }
 
-    function clearAllOrders() {
-        if(confirm("Confirmer la purge complète de l'historique des commandes ?")) { localStorage.removeItem('edf_orders'); loadOrders(); }
-    }
-
-    // INITIALISATION DES ANIMATIONS ET BOUTIQUE AU CHARGEMENT
-    window.onload = () => {
-        initShop();
-        ScrollReveal().reveal('.reveal', { delay: 150, distance: '60px', interval: 120, origin: 'bottom', cubicBezier: '0.2, 1, 0.3, 1' });
-    };
+    window.onload = () => { initShop(); ScrollReveal().reveal('.reveal', { delay: 200, distance: '50px' }); };
 </script>
-
 </body>
 </html>
