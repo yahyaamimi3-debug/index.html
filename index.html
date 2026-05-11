@@ -40,7 +40,7 @@
         .nav-links button.active { background: var(--edf-blue); color: white; }
         .btn-staff { border: 2px solid var(--edf-orange) !important; color: var(--edf-orange) !important; margin-left: 10px; }
 
-        /* HERO ACCUEIL */
+        /* MODERN HERO ACCUEIL */
         .hero { 
             position: relative;
             background: linear-gradient(135deg, var(--edf-blue) 0%, #003a7a 100%);
@@ -48,25 +48,37 @@
             text-align: center; overflow: hidden; margin-bottom: 4rem;
         }
         .hero-content { position: relative; z-index: 2; }
-        .hero h1 { font-family: 'Montserrat'; font-size: 4rem; font-weight: 900; margin-bottom: 1rem; }
-        .hero p { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 3.8rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero p { font-size: 1.4rem; opacity: 0.9; max-width: 800px; margin: 0 auto 2rem; line-height: 1.6; }
         
-        .circle { position: absolute; background: rgba(255,255,255,0.1); border-radius: 50%; animation: float 10s infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .circle { position: absolute; background: rgba(255,255,255,0.08); border-radius: 50%; animation: float 12s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.1); } }
 
-        /* BOUTIQUE - SANS PHOTOS */
+        /* SECTION POURQUOI CHOISIR EDF */
+        .features-container { max-width: 1200px; margin: 0 auto 5rem; padding: 0 2rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        
+        .feature-card { 
+            background: white; border-radius: 25px; padding: 2.5rem; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; border: 1px solid #f0f0f0;
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--edf-orange); }
+        .feature-card h3 { font-family: 'Montserrat'; color: var(--edf-blue); margin-bottom: 1rem; font-size: 1.5rem; }
+        .feature-card p { font-size: 1rem; color: #555; line-height: 1.5; }
+
+        /* BOUTIQUE - SANS PHOTOS / TEXTE CENTRÉ */
         .shop-container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
         .shop-layout { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; }
-        .category-title { grid-column: 1 / -1; margin: 3rem 0 1.5rem; font-family: 'Montserrat'; font-size: 1.8rem; border-bottom: 3px solid var(--edf-orange); padding-bottom: 5px; }
+        .category-title { grid-column: 1 / -1; margin: 3rem 0 1.5rem; font-family: 'Montserrat'; font-size: 1.8rem; border-left: 6px solid var(--edf-orange); padding-left: 15px; }
         
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
         .product-card { 
-            background: white; border-radius: 25px; padding: 3rem 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: white; border-radius: 20px; padding: 3rem 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.04);
             transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #eee; text-align: center;
         }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .product-card h4 { font-family: 'Montserrat'; margin-bottom: 15px; font-size: 1.3rem; color: var(--edf-dark); }
-        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.7rem; margin-bottom: 1.5rem; }
+        .product-card:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .product-card h4 { font-family: 'Montserrat'; margin-bottom: 10px; font-size: 1.3rem; min-height: 50px; display: flex; align-items: center; }
+        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.8rem; margin-bottom: 1.5rem; }
         
         /* PANIER */
         .cart-panel { 
@@ -75,14 +87,14 @@
         }
 
         .btn-main { 
-            background: var(--edf-blue); color: white; border: none; padding: 1rem; border-radius: 15px; 
+            background: var(--edf-blue); color: white; border: none; padding: 1.1rem; border-radius: 15px; 
             cursor: pointer; font-weight: 700; font-family: 'Montserrat'; transition: 0.3s; width: 100%;
         }
-        .btn-main:hover { background: var(--edf-orange); }
+        .btn-main:hover { background: var(--edf-orange); transform: translateY(-2px); }
 
         .page { display: none; }
-        .page.active { display: block; animation: fadeInUp 0.6s ease-out; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .page.active { display: block; animation: fadeIn 0.8s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 1000px) { .shop-layout { grid-template-columns: 1fr; } .hero h1 { font-size: 2.5rem; } }
     </style>
@@ -103,21 +115,30 @@
 
 <div id="accueil" class="page active">
     <div class="hero">
-        <div class="circle" style="width:200px; height:200px; top:-50px; left:-50px;"></div>
-        <div class="circle" style="width:150px; height:150px; bottom:20px; right:50px; animation-delay: 2s;"></div>
+        <div class="circle" style="width:300px; height:300px; top:-100px; left:-50px;"></div>
+        <div class="circle" style="width:200px; height:200px; bottom:-50px; right:10%; animation-delay: 3s;"></div>
         <div class="hero-content">
-            <h1>L'Innovation Électrique</h1>
-            <p>Le futur de votre confort commence ici avec des solutions haute performance.</p>
-            <button onclick="showPage('boutique')" class="btn-main" style="width:auto; padding: 1.2rem 3rem; border-radius: 50px;">Découvrir la Boutique</button>
+            <h1 class="animate__animated animate__fadeInDown">Innovation Électrique</h1>
+            <p class="animate__animated animate__fadeInUp">Contactez votre conseiller dès aujourd'hui ! <br>Rendez-vous en agence ou sur notre site internet.</p>
+            <button onclick="showPage('boutique')" class="btn-main" style="width:auto; padding: 1.2rem 3.5rem; border-radius: 50px; font-size: 1.1rem;">Accéder à la boutique</button>
         </div>
     </div>
 
-    <div class="shop-container">
-        <h2 style="text-align:center; font-family:'Montserrat'; margin-bottom:3rem;">Pourquoi nous choisir ?</h2>
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:2rem;">
-            <div class="product-card"><h3>🛡️ Fiabilité</h3><p>Équipements certifiés aux normes.</p></div>
-            <div class="product-card"><h3>⚡ Expertise</h3><p>Accompagnement sur mesure.</p></div>
-            <div class="product-card"><h3>🌱 Durabilité</h3><p>Solutions d'avenir.</p></div>
+    <div class="features-container">
+        <h2 style="text-align:center; font-family:'Montserrat'; font-size: 2.2rem; font-weight: 900;">Pourquoi choisir EDF ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🛡️ Fiabilité</h3>
+                <p>Des équipements certifiés aux normes européennes pour une sécurité totale de vos installations.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Expertise</h3>
+                <p>Un accompagnement personnalisé pour tous vos projets, de l'étude à la mise en service.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌱 Durabilité</h3>
+                <p>Des solutions conçues pour réduire votre empreinte carbone et optimiser votre consommation.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -127,36 +148,36 @@
         <div class="shop-layout">
             <div id="product-list"></div>
             <div class="cart-panel">
-                <h3 style="font-family: 'Montserrat'; margin-bottom: 1.5rem;">🛒 Panier</h3>
-                <input type="text" id="client-name" placeholder="Nom complet (RP)" style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:1rem;">
-                <div id="cart-items" style="margin: 1rem 0; min-height: 50px;">
-                    <p style="color: #999; text-align: center;">Vide.</p>
+                <h3 style="font-family: 'Montserrat'; margin-bottom: 1.5rem; color: var(--edf-blue);">🛒 Votre Commande</h3>
+                <input type="text" id="client-name" placeholder="Nom complet (RP)" style="width:100%; padding:14px; border-radius:12px; border:1px solid #ddd; margin-bottom:1rem; outline: none;">
+                <div id="cart-items" style="margin: 1.5rem 0; min-height: 60px;">
+                    <p style="color: #999; text-align: center;">Votre panier est vide.</p>
                 </div>
-                <div style="border-top: 2px dashed #eee; padding-top: 1.5rem; display: flex; justify-content: space-between; font-weight: 900; font-size: 1.4rem;">
+                <div style="border-top: 2px dashed #eee; padding-top: 1.5rem; display: flex; justify-content: space-between; font-weight: 900; font-size: 1.5rem;">
                     <span>TOTAL</span>
                     <span id="total-price" style="color: var(--edf-blue);">0 €</span>
                 </div>
-                <button class="btn-main" style="margin-top: 1.5rem; background: var(--edf-orange);" onclick="processOrder()">VALIDER</button>
+                <button class="btn-main" style="margin-top: 1.5rem; background: var(--edf-orange);" onclick="processOrder()">VALIDER LE DEVIS</button>
             </div>
         </div>
     </div>
 </div>
 
 <div id="avis" class="page">
-    <div class="shop-container" style="max-width: 600px; text-align: center;">
-        <h2 style="margin-bottom:2rem;">Avis Clients</h2>
-        <div class="product-card">
-            <textarea id="review-text" style="width: 100%; height: 100px; padding: 1rem; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 1rem;" placeholder="Votre message..."></textarea>
-            <button class="btn-main" onclick="alert('Merci !')">Envoyer</button>
+    <div class="shop-container" style="max-width: 600px; text-align: center; padding-top: 5rem;">
+        <h2 style="font-family:'Montserrat'; margin-bottom:2rem;">Laissez un avis</h2>
+        <div class="feature-card">
+            <textarea id="review-text" style="width: 100%; height: 120px; padding: 1rem; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 1rem; font-family: inherit;" placeholder="Partagez votre expérience..."></textarea>
+            <button class="btn-main" onclick="alert('Merci pour votre retour !')">Envoyer l'avis</button>
         </div>
     </div>
 </div>
 
 <div id="staff-login" class="page">
-    <div class="shop-container" style="max-width: 400px; text-align: center;">
-        <div class="product-card">
-            <h2 style="margin-bottom:1.5rem;">Espace Staff</h2>
-            <input type="password" id="staff-code" placeholder="Code secret" style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:1rem; text-align:center;">
+    <div class="shop-container" style="max-width: 400px; text-align: center; padding-top: 5rem;">
+        <div class="feature-card">
+            <h2 style="margin-bottom:1.5rem; font-family:'Montserrat';">Espace Staff</h2>
+            <input type="password" id="staff-code" placeholder="Code d'accès" style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:1.5rem; text-align:center;">
             <button class="btn-main" onclick="verifyCode()">Connexion</button>
         </div>
     </div>
@@ -164,9 +185,9 @@
 
 <div id="staff-dashboard" class="page">
     <div class="shop-container">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
-            <h2>Commandes reçues</h2>
-            <button onclick="clearAllOrders()" style="background:#ff4757; color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer;">Vider</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3rem;">
+            <h2 style="font-family:'Montserrat';">Tableau des Commandes</h2>
+            <button onclick="clearAllOrders()" style="background:#ff4757; color:white; border:none; padding:12px 25px; border-radius:12px; cursor:pointer; font-weight:700;">Effacer tout</button>
         </div>
         <div id="orders-list"></div>
     </div>
@@ -185,14 +206,14 @@
             ]
         },
         {
-            title: "Éclairage",
+            title: "Éclairage Design",
             items: [
                 { name: "Lustre Royal", price: 26000 },
                 { name: "Petit lustre", price: 9000 },
                 { name: "Lampadaire", price: 699 },
                 { name: "Projecteur", price: 499 },
                 { name: "Néon large", price: 499 },
-                { name: "Lampe bleue", price: 359 },
+                { name: "Lampe design bleue", price: 359 },
                 { name: "Néons standards", price: 299.99 },
                 { name: "Lumière au sol", price: 299 },
                 { name: "Néon vertical", price: 299 }
@@ -217,7 +238,7 @@
                     <div class="product-card">
                         <h4>${p.name}</h4>
                         <span class="price-tag">${p.price.toLocaleString()} €</span>
-                        <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter au panier</button>
+                        <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter</button>
                     </div>
                 `).join('')}
             </div>
@@ -228,7 +249,7 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        const btn = document.getElementById('btn-' + pageId);
+        const btn = document.getElementById('btn-' + (pageId === 'staff-login' || pageId === 'staff-dashboard' ? 'staff' : pageId));
         if(btn) btn.classList.add('active');
         window.scrollTo(0,0);
     }
@@ -240,41 +261,44 @@
 
     function updateCart() {
         const cartDiv = document.getElementById('cart-items');
-        if(cart.length === 0) cartDiv.innerHTML = '<p style="color:#999; text-align:center;">Vide.</p>';
-        else cartDiv.innerHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom:5px; background:#f9f9f9; padding:8px; border-radius:8px;"><span>${i.name}</span><b>${i.price.toLocaleString()} €</b></div>`).join('');
+        if(cart.length === 0) cartDiv.innerHTML = '<p style="color:#999; text-align:center;">Panier vide.</p>';
+        else cartDiv.innerHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom:8px; background:#f8f9fa; padding:12px; border-radius:10px; border:1px solid #eee;"><span>${i.name}</span><b style="color:var(--edf-blue)">${i.price.toLocaleString()} €</b></div>`).join('');
         document.getElementById('total-price').innerText = total.toLocaleString() + " €";
     }
 
     function processOrder() {
         const name = document.getElementById('client-name').value;
-        if(!name || cart.length === 0) return alert("Nom ou panier manquant !");
-        const order = { client: name, items: [...cart], total: total, date: new Date().toLocaleString() };
+        if(!name || cart.length === 0) return alert("Veuillez remplir votre nom et votre panier.");
+        const order = { client: name, items: [...cart], total: total, date: new Date().toLocaleString('fr-FR') };
         let orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
         orders.push(order);
         localStorage.setItem('edf_orders', JSON.stringify(orders));
-        alert("Commande envoyée !");
+        alert("Demande envoyée avec succès !");
         cart = []; total = 0; document.getElementById('client-name').value = ""; updateCart();
     }
 
     function checkStaffAccess() { showPage('staff-login'); }
     function verifyCode() {
         if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); } 
-        else alert("Code erroné.");
+        else alert("Accès refusé.");
     }
 
     function loadOrders() {
         const listDiv = document.getElementById('orders-list');
         const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
         listDiv.innerHTML = orders.reverse().map(o => `
-            <div class="product-card" style="text-align:left; margin-bottom:1rem; align-items:flex-start; padding:1.5rem; border-left:8px solid var(--edf-blue);">
-                <strong>${o.client}</strong> <small>${o.date}</small>
-                <p style="margin:5px 0;">${o.items.map(i => i.name).join(', ')}</p>
-                <b style="color:var(--edf-orange);">${o.total.toLocaleString()} €</b>
+            <div class="feature-card" style="text-align:left; margin-bottom:1.5rem; border-left:10px solid var(--edf-blue);">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:10px;">
+                    <strong>Client : ${o.client}</strong>
+                    <small>${o.date}</small>
+                </div>
+                <p style="margin-bottom:10px; color:#666;">Détails : ${o.items.map(i => i.name).join(', ')}</p>
+                <div style="font-size:1.4rem; font-weight:900; color:var(--edf-orange);">Total : ${o.total.toLocaleString()} €</div>
             </div>
         `).join('');
     }
 
-    function clearAllOrders() { if(confirm("Vider l'historique ?")) { localStorage.removeItem('edf_orders'); loadOrders(); } }
+    function clearAllOrders() { if(confirm("Supprimer l'historique ?")) { localStorage.removeItem('edf_orders'); loadOrders(); } }
 
     window.onload = initShop;
 </script>
