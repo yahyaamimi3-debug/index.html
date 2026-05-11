@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDF – Énergie & Innovation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --edf-blue: #005BBB;
+            --edf-orange: #FF7900;
+            --edf-dark: #0a192f;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--light); color: var(--edf-dark); overflow-x: hidden; }
+
+        /* NAVIGATION */
+        nav { 
+            background: var(--glass); 
+            backdrop-filter: blur(10px);
+            height: 80px; 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
+            position: sticky; top: 0; z-index: 1000; 
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: 'Montserrat'; font-weight: 900; font-size: 2.2rem; color: var(--edf-blue); text-decoration: none; }
+        .logo span { color: var(--edf-orange); }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links button { 
+            background: none; border: none; font-family: 'Montserrat'; font-weight: 700; font-size: 0.8rem; 
+            cursor: pointer; color: var(--edf-dark); transition: 0.3s; padding: 0.8rem 1.2rem; border-radius: 50px; 
+        }
+        .nav-links button.active { background: var(--edf-blue); color: white; box-shadow: 0 4px 15px rgba(0, 91, 187, 0.3); }
+        .btn-staff { border: 2px solid var(--edf-orange) !important; color: var(--edf-orange) !important; margin-left: 10px; }
+
+        /* HERO */
+        .hero { 
+            background: linear-gradient(135deg, var(--edf-blue) 0%, #003a7a 100%);
+            color: white; border-radius: 0 0 50px 50px; padding: 6rem 2rem; 
+            text-align: center; margin-bottom: 3rem;
+        }
+        .hero h1 { font-family: 'Montserrat'; font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; }
+        
+        /* BOUTIQUE - SANS IMAGES */
+        .shop-container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
+        .shop-layout { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; }
+        .category-title { grid-column: 1 / -1; margin: 2rem 0 1.5rem; font-family: 'Montserrat'; font-size: 1.8rem; border-bottom: 3px solid var(--edf-orange); padding-bottom: 5px; color: var(--edf-blue); }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        
+        /* Style des cartes revu pour l'absence de photo */
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 2rem; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            border: 1px solid #eee; 
+            text-align: center;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+        .product-card h4 { font-family: 'Montserrat'; margin-bottom: 1rem; font-size: 1.2rem; color: var(--edf-dark); }
+        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.5rem; margin-bottom: 1.5rem; display: block; }
+        
+        /* PANIER */
+        .cart-panel { 
+            background: var(--white); padding: 2rem; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); 
+            border: 1px solid #eee; position: sticky; top: 110px; height: fit-content;
+        }
+
+        .btn-main { 
+            background: var(--edf-blue); color: white; border: none; padding: 1rem; border-radius: 12px; 
+            cursor: pointer; font-weight: 700; font-family: 'Montserrat'; transition: 0.3s; width: 100%;
+        }
+        .btn-main:hover { background: var(--edf-orange); }
+
+        .page { display: none; padding-bottom: 5rem; }
+        .page.active { display: block; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 1000px) { .shop-layout { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo" onclick="showPage('accueil')">EDF<span>.</span></a>
+        <div class="nav-links">
+            <button onclick="showPage('accueil')" id="btn-accueil" class="active">ACCUEIL</button>
+            <button onclick="showPage('boutique')" id="btn-boutique">BOUTIQUE</button>
+            <button onclick="showPage('avis')" id="btn-avis">AVIS</button>
+            <button onclick="checkStaffAccess()" id="btn-staff" class="btn-staff">ESPACE EMPLOYÉ</button>
+        </div>
+    </div>
+</nav>
+
+<div id="accueil" class="page active">
+    <div class="hero">
+        <h1>Innovation Électrique</h1>
+        <p>Le futur commence ici avec nos solutions certifiées.</p>
+        <button onclick="showPage('boutique')" class="btn-main" style="width:auto; padding: 1rem 2.5rem; border-radius: 50px; margin-top: 1rem;">Accéder au catalogue</button>
+    </div>
+    <div class="shop-container" style="text-align:center;">
+        <h2 style="margin-bottom:3rem; font-family:'Montserrat';">Nos Engagements</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:2rem;">
+            <div class="product-card"><h3>🛡️ Norme EU</h3><p>Qualité garantie.</p></div>
+            <div class="product-card"><h3>⚡ Rapidité</h3><p>Installation express.</p></div>
+            <div class="product-card"><h3>🌱 Éco</h3><p>Énergie durable.</p></div>
+        </div>
+    </div>
+</div>
+
+<div id="boutique" class="page">
+    <div class="shop-container">
+        <div class="shop-layout">
+            <div id="product-list">
+                </div>
+            
+            <div class="cart-panel">
+                <h3 style="font-family: 'Montserrat'; margin-bottom: 1.5rem; color:var(--edf-blue);">🛒 Panier de commande</h3>
+                <input type="text" id="client-name" placeholder="Nom complet (RP)" style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:1rem;">
+                <div id="cart-items" style="margin-bottom: 1.5rem;">
+                    <p style="color: #999; text-align: center;">Le panier est vide.</p>
+                </div>
+                <div style="border-top: 2px dashed #eee; padding-top: 1rem; display: flex; justify-content: space-between; font-weight: 900; font-size: 1.4rem;">
+                    <span>TOTAL</span>
+                    <span id="total-price" style="color:var(--edf-blue)">0,00 €</span>
+                </div>
+                <button class="btn-main" style="margin-top: 1.5rem; background: var(--edf-orange);" onclick="processOrder()">VALIDER LA COMMANDE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="avis" class="page">
+    <div class="shop-container" style="max-width: 600px; text-align: center;">
+        <h2 class="category-title" style="text-align:center; border:none;">Laisser un avis</h2>
+        <div class="product-card">
+            <textarea id="review-text" style="width: 100%; height: 100px; padding: 1rem; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 1rem;" placeholder="Partagez votre expérience..."></textarea>
+            <button class="btn-main" onclick="alert('Merci pour votre avis !')">Publier</button>
+        </div>
+    </div>
+</div>
+
+<div id="staff-login" class="page">
+    <div class="shop-container" style="max-width: 400px; text-align: center;">
+        <div class="product-card">
+            <h2 style="margin-bottom:1.5rem;">Accès Staff</h2>
+            <input type="password" id="staff-code" placeholder="Code secret" style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:1rem; text-align:center;">
+            <button class="btn-main" onclick="verifyCode()">Se connecter</button>
+        </div>
+    </div>
+</div>
+
+<div id="staff-dashboard" class="page">
+    <div class="shop-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+            <h2>Journal des commandes</h2>
+            <button onclick="clearAllOrders()" style="background:#ff4757; color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:700;">Vider l'historique</button>
+        </div>
+        <div id="orders-list"></div>
+    </div>
+</div>
+
+<script>
+    const categories = [
+        {
+            title: "Équipements Électriques et Sécurité",
+            items: [
+                { name: "Armoire électrique", price: 1699 },
+                { name: "Caméra de sécurité", price: 799 },
+                { name: "Caméra 360°", price: 699 },
+                { name: "Tableau électrique", price: 549 },
+                { name: "Boitier électrique", price: 299 }
+            ]
+        },
+        {
+            title: "Éclairage et Déco",
+            items: [
+                { name: "Lustre Royal", price: 26000 },
+                { name: "Petit lustre", price: 9000 },
+                { name: "Lampadaire", price: 699 },
+                { name: "Projecteur extérieur", price: 499 },
+                { name: "Néon large", price: 499 },
+                { name: "Lampe design bleue", price: 359 },
+                { name: "Néons standards", price: 299.99 },
+                { name: "Lumière encastrée sol", price: 299 },
+                { name: "Néon vertical", price: 299 }
+            ]
+        },
+        {
+            title: "Énergie Solaire",
+            items: [
+                { name: "Panneau solaire (support)", price: 1200 },
+                { name: "Panneau solaire (plat)", price: 1000 },
+                { name: "Lampadaire solaire", price: 700 }
+            ]
+        }
+    ];
+
+    function initShop() {
+        const container = document.getElementById('product-list');
+        container.innerHTML = categories.map(cat => `
+            <h2 class="category-title">${cat.title}</h2>
+            <div class="products-grid">
+                ${cat.items.map(p => `
+                    <div class="product-card">
+                        <h4>${p.name}</h4>
+                        <span class="price-tag">${p.price.toLocaleString()} €</span>
+                        <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter au panier</button>
+                    </div>
+                `).join('')}
+            </div>
+        `).join('');
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        const btn = document.getElementById('btn-' + pageId);
+        if(btn) btn.classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    let cart = []; let total = 0;
+    function addToCart(name, price) {
+        cart.push({name, price}); total += price; updateCart();
+    }
+
+    function updateCart() {
+        const cartDiv = document.getElementById('cart-items');
+        if(cart.length === 0) cartDiv.innerHTML = '<p style="color:#999; text-align:center;">Le panier est vide.</p>';
+        else cartDiv.innerHTML = cart.map((item, idx) => `
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; background:#f9f9f9; padding:10px; border-radius:10px; font-size:0.85rem;">
+                <span>${item.name}</span>
+                <b>${item.price.toLocaleString()} €</b>
+            </div>
+        `).join('');
+        document.getElementById('total-price').innerText = total.toLocaleString('fr-FR', {minimumFractionDigits: 2}) + " €";
+    }
+
+    function processOrder() {
+        const name = document.getElementById('client-name').value;
+        if(!name || cart.length === 0) return alert("Veuillez entrer votre nom RP et ajouter des articles !");
+        const order = { client: name, items: [...cart], total: total, date: new Date().toLocaleString('fr-FR') };
+        let orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
+        orders.push(order);
+        localStorage.setItem('edf_orders', JSON.stringify(orders));
+        alert("🚀 Commande validée !");
+        cart = []; total = 0; document.getElementById('client-name').value = ""; updateCart();
+    }
+
+    function checkStaffAccess() { showPage('staff-login'); }
+    function verifyCode() {
+        if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); } 
+        else alert("Accès refusé.");
+    }
+
+    function loadOrders() {
+        const listDiv = document.getElementById('orders-list');
+        const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
+        if(orders.length === 0) listDiv.innerHTML = "<p>Aucune commande.</p>";
+        else listDiv.innerHTML = orders.reverse().map(o => `
+            <div class="product-card" style="text-align:left; margin-bottom:1rem; border-left:8px solid var(--edf-blue);">
+                <strong>Client : ${o.client}</strong> - <small>${o.date}</small><br>
+                <p style="margin:8px 0; color:#555;">${o.items.map(i => i.name).join(', ')}</p>
+                <b style="color:var(--edf-orange);">Total : ${o.total.toLocaleString()} €</b>
+            </div>
+        `).join('');
+    }
+
+    function clearAllOrders() { if(confirm("Supprimer l'historique ?")) { localStorage.removeItem('edf_orders'); loadOrders(); } }
+
+    window.onload = initShop;
+</script>
+
+</body>
+</html>
