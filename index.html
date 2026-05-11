@@ -15,62 +15,94 @@
             --edf-dark: #0a192f;
             --light: #f8fafc;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.95);
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
         * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
         body { font-family: 'Open Sans', sans-serif; background: var(--light); color: var(--edf-dark); overflow-x: hidden; }
 
-        /* NAVIGATION */
+        /* NAVIGATION MODERNE */
         nav { 
             background: var(--glass); 
-            backdrop-filter: blur(15px);
-            height: 85px; 
+            backdrop-filter: blur(10px);
+            height: 80px; 
             display: flex; 
             align-items: center; 
-            box-shadow: 0 4px 30px rgba(0,0,0,0.03); 
-            position: sticky; top: 0; z-index: 1000; 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
         }
-        .nav-inner { max-width: 1400px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
-        .logo { font-family: 'Montserrat'; font-weight: 900; font-size: 2.4rem; color: var(--edf-blue); text-decoration: none; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: 'Montserrat'; font-weight: 900; font-size: 2.2rem; color: var(--edf-blue); text-decoration: none; transition: 0.3s; }
         .logo span { color: var(--edf-orange); }
-        .nav-links { display: flex; gap: 0.8rem; }
+        .nav-links { display: flex; gap: 1rem; }
         .nav-links button { 
-            background: none; border: none; font-family: 'Montserrat'; font-weight: 700; font-size: 0.85rem; 
-            cursor: pointer; color: var(--edf-dark); transition: 0.3s; padding: 0.8rem 1.4rem; border-radius: 50px; 
+            background: none; border: none; font-family: 'Montserrat'; font-weight: 700; font-size: 0.8rem; 
+            cursor: pointer; color: var(--edf-dark); transition: 0.3s; padding: 0.8rem 1.2rem; border-radius: 50px; 
         }
-        .nav-links button.active { background: var(--edf-blue); color: white; }
-        .btn-staff { border: 2px solid var(--edf-orange) !important; color: var(--edf-orange) !important; }
+        .nav-links button:hover { background: rgba(0, 91, 187, 0.1); color: var(--edf-blue); }
+        .nav-links button.active { background: var(--edf-blue); color: white; box-shadow: 0 4px 15px rgba(0, 91, 187, 0.3); }
+        .btn-staff { border: 2px solid var(--edf-orange) !important; color: var(--edf-orange) !important; margin-left: 10px; }
 
-        /* HERO */
+        /* HERO SECTION DYNAMIQUE */
         .hero { 
-            background: linear-gradient(135deg, var(--edf-blue) 0%, var(--edf-dark) 100%);
-            color: white; border-radius: 0 0 60px 60px; padding: 8rem 2rem; text-align: center; margin-bottom: 4rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--edf-blue) 0%, #003a7a 100%);
+            color: white; border-radius: 0 0 50px 50px; padding: 8rem 2rem; 
+            text-align: center; overflow: hidden; margin-bottom: 4rem;
         }
-        .hero h1 { font-family: 'Montserrat'; font-size: 4rem; font-weight: 900; margin-bottom: 1rem; }
-
-        /* BOUTIQUE */
-        .shop-container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        .shop-layout { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; }
-        .category-title { font-family: 'Montserrat'; font-size: 1.8rem; font-weight: 900; color: var(--edf-blue); margin: 3rem 0 1.5rem; border-bottom: 3px solid var(--edf-orange); display: inline-block; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 4rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1rem; }
+        .hero p { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem; }
         
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-        .product-card { 
-            background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
-            transition: 0.3s; text-align: center; border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between;
+        /* CERCLES ANIMÉS EN ARRIÈRE-PLAN */
+        .circle { position: absolute; background: rgba(255,255,255,0.1); border-radius: 50%; animation: float 10s infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* GRILLE DE CARTES MODERNE */
+        .section-title { text-align: center; font-family: 'Montserrat'; font-weight: 900; font-size: 2.5rem; margin-bottom: 3rem; color: var(--edf-blue); }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 0 2rem; max-width: 1200px; margin: 0 auto 5rem; }
+        .why-card { 
+            background: white; padding: 3rem 2rem; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            transition: 0.4s; text-align: center; position: relative; overflow: hidden;
         }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.5rem; margin: 1rem 0; }
+        .why-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .why-card i { font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+        .why-card h3 { font-family: 'Montserrat'; font-size: 1.5rem; margin-bottom: 1rem; }
 
-        /* PANIER */
-        .cart-panel { background: var(--white); padding: 2rem; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 2px solid var(--edf-blue); position: sticky; top: 120px; height: fit-content; }
-        .btn-main { background: var(--edf-blue); color: white; border: none; padding: 1rem; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; transition: 0.3s; }
-        .btn-main:hover { background: var(--edf-orange); }
+        /* BOUTIQUE DESIGN */
+        .shop-container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
+        .shop-layout { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; }
+        .category-title { grid-column: 1 / -1; margin: 3rem 0 1.5rem; font-family: 'Montserrat'; font-size: 1.8rem; border-bottom: 3px solid var(--edf-orange); display: inline-block; padding-bottom: 5px; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; }
+        .product-card { 
+            background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s; display: flex; flex-direction: column; border: 1px solid #eee;
+        }
+        .product-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .product-img { width: 100%; height: 180px; background: #eee; object-fit: cover; }
+        .product-info { padding: 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-info h4 { font-family: 'Montserrat'; margin-bottom: 10px; font-size: 1rem; min-height: 45px; }
+        .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.3rem; margin-bottom: 1rem; }
+        
+        /* PANIER FLOTTANT */
+        .cart-panel { 
+            background: var(--white); padding: 2rem; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
+            border: 1px solid var(--edf-blue); position: sticky; top: 110px; height: fit-content;
+        }
 
-        .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* BOUTONS */
+        .btn-main { 
+            background: var(--edf-blue); color: white; border: none; padding: 1rem; border-radius: 15px; 
+            cursor: pointer; font-weight: 700; font-family: 'Montserrat'; transition: 0.3s;
+        }
+        .btn-main:hover { background: var(--edf-orange); transform: scale(1.02); }
+
+        .page { display: none; padding-bottom: 5rem; }
+        .page.active { display: block; animation: fadeInUp 0.6s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 1000px) { .shop-layout { grid-template-columns: 1fr; } }
     </style>
@@ -84,133 +116,253 @@
             <button onclick="showPage('accueil')" id="btn-accueil" class="active">ACCUEIL</button>
             <button onclick="showPage('boutique')" id="btn-boutique">BOUTIQUE</button>
             <button onclick="showPage('avis')" id="btn-avis">AVIS</button>
-            <button onclick="checkStaffAccess()" id="btn-staff" class="btn-staff">STAFF</button>
+            <button onclick="checkStaffAccess()" id="btn-staff" class="btn-staff">ESPACE EMPLOYÉ</button>
         </div>
     </div>
 </nav>
 
 <div id="accueil" class="page active">
     <div class="hero">
-        <h1>Énergie & Innovation</h1>
-        <p>Le partenaire officiel de vos projets électriques.</p>
+        <div class="circle" style="width:200px; height:200px; top:-50px; left:-50px;"></div>
+        <div class="circle" style="width:150px; height:150px; bottom:20px; right:50px; animation-delay: 2s;"></div>
+        
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">L'Innovation Électrique</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Le futur de votre confort commence ici avec des solutions haute performance.</p>
+            <button onclick="showPage('boutique')" class="btn-main" style="padding: 1.2rem 3rem; font-size: 1.1rem; border-radius: 50px;">Découvrir la Boutique</button>
+        </div>
     </div>
-    <div class="shop-container" style="text-align: center;">
-        <h2 class="category-title">Expertise Garantie</h2>
-        <p>Fiabilité, Sécurité et Durabilité pour toutes vos installations.</p>
+
+    <div class="shop-container">
+        <h2 class="section-title">Pourquoi nous choisir ?</h2>
+        <div class="why-grid">
+            <div class="why-card reveal">
+                <div style="font-size: 4rem;">🛡️</div>
+                <h3>Fiabilité</h3>
+                <p>Équipements certifiés aux normes européennes. La sécurité avant tout.</p>
+            </div>
+            <div class="why-card reveal">
+                <div style="font-size: 4rem;">⚡</div>
+                <h3>Expertise</h3>
+                <p>Un accompagnement sur mesure pour tous vos chantiers et installations.</p>
+            </div>
+            <div class="why-card reveal">
+                <div style="font-size: 4rem;">🌱</div>
+                <h3>Durabilité</h3>
+                <p>Des solutions pensées pour l'écologie et l'avenir de la planète.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="shop-container" style="background: var(--edf-dark); border-radius: 50px; padding: 5rem; color: white; text-align: center; margin-top: 5rem;">
+        <h2 style="font-family: 'Montserrat'; font-size: 2.5rem; margin-bottom: 1.5rem;">Prêt à lancer votre projet ?</h2>
+        <p style="opacity: 0.8; font-size: 1.2rem; margin-bottom: 2.5rem;">Contactez votre conseiller dès aujourd'hui ou explorez notre catalogue complet.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <button onclick="showPage('boutique')" class="btn-main" style="background: var(--edf-orange);">Commander maintenant</button>
+            <button class="btn-main" style="background: transparent; border: 2px solid white;">Nous contacter</button>
+        </div>
     </div>
 </div>
 
 <div id="boutique" class="page">
     <div class="shop-container">
         <div class="shop-layout">
-            <div id="product-list"></div>
-            <div class="cart-panel">
-                <h3 style="margin-bottom: 1rem;">🛒 Votre Panier</h3>
-                <input type="text" id="client-name" placeholder="Nom Prénom RP" style="width: 100%; padding: 12px; margin-bottom: 1rem; border-radius: 10px; border: 1px solid #ddd;">
-                <div id="cart-items" style="margin-bottom: 1.5rem;"></div>
-                <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.5rem; color: var(--edf-blue);">
-                    <span>TOTAL</span><span id="total-price">0 €</span>
+            <div id="product-list">
                 </div>
-                <button class="btn-main" style="margin-top: 1.5rem; background: var(--edf-orange);" onclick="processOrder()">VALIDER</button>
+
+            <div class="cart-panel">
+                <h3 style="font-family: 'Montserrat'; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    🛒 Votre Panier
+                </h3>
+                <input type="text" id="client-name" placeholder="Nom complet (RP)">
+                <div id="cart-items" style="margin: 1.5rem 0; min-height: 50px; font-size: 0.9rem;">
+                    <p style="color: #999; text-align: center;">Le panier est vide.</p>
+                </div>
+                <div style="border-top: 2px dashed #eee; padding-top: 1.5rem; margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.4rem; color: var(--edf-blue);">
+                        <span>TOTAL</span>
+                        <span id="total-price">0,00 €</span>
+                    </div>
+                </div>
+                <button class="btn-main" style="width: 100%; margin-top: 1.5rem; background: var(--edf-orange); font-size: 1rem;" onclick="processOrder()">VALIDER LA COMMANDE</button>
             </div>
         </div>
     </div>
 </div>
 
+<div id="avis" class="page">
+    <div class="shop-container" style="max-width: 600px; text-align: center;">
+        <h2 class="section-title">Avis Clients</h2>
+        <div style="background: white; padding: 3rem; border-radius: 30px; box-shadow: var(--shadow);">
+            <textarea id="review-text" style="width: 100%; height: 150px; padding: 1.5rem; border-radius: 20px; border: 1px solid #ddd; margin-bottom: 1.5rem;" placeholder="Votre expérience..."></textarea>
+            <button class="btn-main" style="width: 100%;" onclick="alert('Merci !')">Publier mon avis</button>
+        </div>
+    </div>
+</div>
+
 <div id="staff-login" class="page">
-    <div style="max-width: 400px; margin: 100px auto; background: white; padding: 3rem; border-radius: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        <h2>Accès Staff</h2>
-        <input type="password" id="staff-code" placeholder="Code secret" style="width: 100%; padding: 10px; margin: 1rem 0; text-align: center;">
-        <button class="btn-main" onclick="verifyCode()">Entrer</button>
+    <div class="shop-container" style="max-width: 450px; text-align: center;">
+        <div style="background: white; padding: 4rem 3rem; border-radius: 40px; box-shadow: var(--shadow);">
+            <h2 style="font-family: 'Montserrat'; color: var(--edf-blue); margin-bottom: 1.5rem;">Espace Staff</h2>
+            <input type="password" id="staff-code" placeholder="Code (1981)" style="text-align: center; font-size: 1.2rem; margin-bottom: 1.5rem;">
+            <button class="btn-main" style="width: 100%;" onclick="verifyCode()">Connexion</button>
+        </div>
     </div>
 </div>
 
 <div id="staff-dashboard" class="page">
     <div class="shop-container">
-        <h2>Commandes à traiter</h2>
-        <div id="orders-list" style="margin-top: 2rem;"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <h2 class="section-title" style="margin: 0;">Commandes en cours</h2>
+            <button onclick="clearAllOrders()" style="background: #ff4757; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 15px; cursor: pointer; font-weight: 700;">Vider la base</button>
+        </div>
+        <div id="orders-list"></div>
     </div>
 </div>
 
 <script>
-    const products = [
-        { cat: "Sécurité & Technique", items: [
-            { name: "Armoire électrique TGBT", price: 1699 },
-            { name: "Caméra de sécurité dôme", price: 799 },
-            { name: "Tableau Électrique Schneider", price: 549 }
-        ]},
-        { cat: "Luminaires", items: [
-            { name: "Lustre Cristal Royal", price: 26000 },
-            { name: "Lustre Contemporain", price: 9000 },
-            { name: "Lampadaire de Rue LED", price: 699 }
-        ]},
-        { cat: "Solaire", items: [
-            { name: "Panneau Solaire (Incliné)", price: 1200 },
-            { name: "Panneau Solaire (Plat)", price: 1000 }
-        ]}
+    // DONNÉES DES PRODUITS
+    const categories = [
+        {
+            title: "Équipements Électriques et Sécurité",
+            items: [
+                { name: "Armoire électrique", price: 1699, img: "https://images.unsplash.com/photo-1558444479-c8f010b49864?auto=format&fit=crop&q=80&w=400" },
+                { name: "Caméra de sécurité", price: 799, img: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=400" },
+                { name: "Caméra 360°", price: 699, img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=400" },
+                { name: "Tableau électrique", price: 549, img: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=400" },
+                { name: "Boitier électrique", price: 299, img: "https://images.unsplash.com/photo-1590336754126-6dd95f4ad422?auto=format&fit=crop&q=80&w=400" }
+            ]
+        },
+        {
+            title: "Éclairage Intérieur et Extérieur",
+            items: [
+                { name: "Lustre", price: 26000, img: "https://images.unsplash.com/photo-1543157145-f78c636d023d?auto=format&fit=crop&q=80&w=400" },
+                { name: "Petit lustre", price: 9000, img: "https://images.unsplash.com/photo-1513506494266-1030d932c15f?auto=format&fit=crop&q=80&w=400" },
+                { name: "Lampadaire", price: 699, img: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&q=80&w=400" },
+                { name: "Projecteur", price: 499, img: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=400" },
+                { name: "Néon (large)", price: 499, img: "https://images.unsplash.com/photo-1563245372-f21724e3a26d?auto=format&fit=crop&q=80&w=400" },
+                { name: "Lampe bleu", price: 359, img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=400" },
+                { name: "Néons (standard)", price: 299.99, img: "https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&q=80&w=400" },
+                { name: "Lumière au sol", price: 299, img: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&q=80&w=400" },
+                { name: "Néon vertical", price: 299, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=400" }
+            ]
+        },
+        {
+            title: "Énergie Solaire",
+            items: [
+                { name: "Panneau solaire (support)", price: 1200, img: "https://images.unsplash.com/photo-1509391366360-fe5bb58583bb?auto=format&fit=crop&q=80&w=400" },
+                { name: "Panneau solaire (plat)", price: 1000, img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=400" },
+                { name: "Lampadaire solaire", price: 700, img: "https://images.unsplash.com/photo-1542310503-62506e938992?auto=format&fit=crop&q=80&w=400" }
+            ]
+        }
     ];
 
+    // GÉNÉRATION DE LA BOUTIQUE
     function initShop() {
         const container = document.getElementById('product-list');
-        container.innerHTML = products.map(category => `
-            <h2 class="category-title">${category.cat}</h2>
+        container.innerHTML = categories.map(cat => `
+            <h2 class="category-title">${cat.title}</h2>
             <div class="products-grid">
-                ${category.items.map(p => `
+                ${cat.items.map(p => `
                     <div class="product-card">
-                        <h4 style="font-family:'Montserrat';">${p.name}</h4>
-                        <div class="price-tag">${p.price.toLocaleString()} €</div>
-                        <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter</button>
+                        <img src="${p.img}" class="product-img" alt="${p.name}">
+                        <div class="product-info">
+                            <h4>${p.name}</h4>
+                            <span class="price-tag">${p.price.toLocaleString()} €</span>
+                            <button class="btn-main" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter au panier</button>
+                        </div>
                     </div>
                 `).join('')}
             </div>
         `).join('');
     }
 
-    let cart = []; let total = 0;
+    // GESTION DES PAGES
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        const btn = document.getElementById('btn-' + pageId);
+        if(btn) btn.classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    // PANIER
+    let cart = [];
+    let total = 0;
+
     function addToCart(name, price) {
-        cart.push({name, price}); total += price; updateCart();
+        cart.push({name, price});
+        total += price;
+        updateCart();
     }
 
     function updateCart() {
-        const list = document.getElementById('cart-items');
-        list.innerHTML = cart.map(item => `<div style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:5px;"><span>${item.name}</span><b>${item.price} €</b></div>`).join('');
-        document.getElementById('total-price').innerText = total.toLocaleString() + " €";
+        const cartDiv = document.getElementById('cart-items');
+        const totalDiv = document.getElementById('total-price');
+        if(cart.length === 0) {
+            cartDiv.innerHTML = '<p style="color: #999; text-align: center;">Le panier est vide.</p>';
+        } else {
+            cartDiv.innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; background:#f9f9f9; padding:10px; border-radius:10px;">
+                    <span>${item.name}</span>
+                    <b style="color:var(--edf-blue)">${item.price.toLocaleString()} €</b>
+                </div>
+            `).join('');
+        }
+        totalDiv.innerText = total.toLocaleString('fr-FR', {minimumFractionDigits: 2}) + " €";
     }
 
     function processOrder() {
         const name = document.getElementById('client-name').value;
-        if(!name || cart.length === 0) return alert("Nom ou panier vide !");
+        if(!name) return alert("Veuillez entrer votre nom RP !");
+        if(cart.length === 0) return alert("Votre panier est vide !");
+
+        const order = { id: Date.now(), client: name, items: [...cart], total: total, date: new Date().toLocaleString('fr-FR') };
         let orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        orders.push({ client: name, items: cart, total: total, date: new Date().toLocaleString() });
+        orders.push(order);
         localStorage.setItem('edf_orders', JSON.stringify(orders));
-        alert("Commande transmise !"); cart = []; total = 0; updateCart();
+
+        alert("🚀 Commande envoyée !");
+        cart = []; total = 0; document.getElementById('client-name').value = ""; updateCart();
     }
 
-    function showPage(id) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.scrollTo(0,0);
-    }
-
+    // STAFF
     function checkStaffAccess() { showPage('staff-login'); }
     function verifyCode() {
-        if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); }
-        else alert("Code erroné.");
+        if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); } 
+        else { alert("Code secret erroné !"); }
+        document.getElementById('staff-code').value = "";
     }
 
     function loadOrders() {
-        const div = document.getElementById('orders-list');
+        const listDiv = document.getElementById('orders-list');
         const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        div.innerHTML = orders.reverse().map(o => `
-            <div style="background:white; padding:1.5rem; border-radius:15px; margin-bottom:1rem; border-left:5px solid var(--edf-blue);">
-                <strong>${o.client}</strong> - ${o.date}<br>
-                <small>${o.items.map(i => i.name).join(', ')}</small><br>
-                <b style="color:var(--edf-orange)">Total : ${o.total} €</b>
+        if(orders.length === 0) { listDiv.innerHTML = "<p style='text-align:center;'>Aucune commande.</p>"; return; }
+        listDiv.innerHTML = orders.reverse().map(order => `
+            <div class="why-card" style="text-align:left; margin-bottom:20px; border-left:10px solid var(--edf-blue); padding:2rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:900;">
+                    <span style="color:var(--edf-blue); font-size:1.2rem;">Client : ${order.client}</span>
+                    <span style="opacity:0.5;">${order.date}</span>
+                </div>
+                <div style="margin:15px 0; padding:10px; background:#f4f7fb; border-radius:10px;">
+                    ${order.items.map(i => i.name).join(', ')}
+                </div>
+                <div style="font-weight:900; color:var(--edf-orange); font-size:1.5rem;">Total : ${order.total.toLocaleString()} €</div>
             </div>
         `).join('');
     }
 
-    window.onload = initShop;
+    function clearAllOrders() {
+        if(confirm("Supprimer tout l'historique ?")) { localStorage.removeItem('edf_orders'); loadOrders(); }
+    }
+
+    // INITIALISATION DES ANIMATIONS ET BOUTIQUE
+    window.onload = () => {
+        initShop();
+        ScrollReveal().reveal('.reveal', { delay: 200, distance: '50px', interval: 100, origin: 'bottom' });
+    };
 </script>
+
 </body>
 </html>
