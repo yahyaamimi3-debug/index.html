@@ -33,9 +33,10 @@
 
         .shop-layout { display: grid; grid-template-columns: 2.5fr 1fr; gap: 2rem; }
         .category-title { grid-column: 1 / -1; margin: 2rem 0 1rem; color: var(--edf-blue); font-family: 'Montserrat'; border-left: 5px solid var(--edf-orange); padding-left: 15px; font-size: 1.5rem; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-        .product-card { background: white; padding: 1.2rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; border: 1px solid transparent; transition: 0.3s; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.5rem; }
+        .product-card { background: white; padding: 1.2rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; border: 1px solid transparent; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .product-card:hover { border-color: var(--edf-blue); transform: translateY(-5px); }
+        .product-card h4 { font-size: 0.95rem; height: 40px; display: flex; align-items: center; justify-content: center; }
         .price-tag { color: var(--edf-orange); font-weight: 900; font-size: 1.1rem; display: block; margin: 0.8rem 0; }
         .btn-add { background: var(--edf-blue); color: white; border: none; padding: 0.7rem; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; font-family: 'Montserrat'; font-size: 0.8rem; }
         
@@ -92,21 +93,29 @@
             <div class="product-card"><h4>Néon vertical</h4><span class="price-tag">299,00 €</span><button class="btn-add" onclick="addToCart('Néon vertical', 299)">Ajouter</button></div>
 
             <h2 class="category-title">Énergie Solaire</h2>
-            <div class="product-card"><h4>Panneau solaire (support)</h4><span class="price-tag">1 200,00 €</span><button class="btn-add" onclick="addToCart('Panneau solaire (support)', 1200)">Ajouter</button></div>
+            <div class="product-card"><h4>Panneau solaire (avec support)</h4><span class="price-tag">1 200,00 €</span><button class="btn-add" onclick="addToCart('Panneau solaire (support)', 1200)">Ajouter</button></div>
             <div class="product-card"><h4>Panneau solaire (à plat)</h4><span class="price-tag">1 000,00 €</span><button class="btn-add" onclick="addToCart('Panneau solaire (plat)', 1000)">Ajouter</button></div>
             <div class="product-card"><h4>Lampadaire solaire</h4><span class="price-tag">700,00 €</span><button class="btn-add" onclick="addToCart('Lampadaire solaire', 700)">Ajouter</button></div>
         </div>
 
         <div class="cart-panel">
             <h3>🛒 Panier</h3>
-            <input type="text" id="client-name" placeholder="Votre Nom (RP)">
+            <input type="text" id="client-name" placeholder="Nom Prénom (RP)">
             <div id="cart-items" style="margin: 1rem 0; font-size: 0.85rem;">Vide.</div>
             <hr>
             <div style="margin-top: 1rem; font-weight: 900; font-size: 1.2rem; display: flex; justify-content: space-between; color: var(--edf-blue);">
                 <span>TOTAL :</span><span id="total-price">0,00 €</span>
             </div>
-            <button class="btn-add" style="background: var(--edf-orange); margin-top: 1.5rem;" onclick="processOrder()">COMMANDER</button>
+            <button class="btn-add" style="background: var(--edf-orange); margin-top: 1.5rem;" onclick="processOrder()">VALIDER LA COMMANDE</button>
         </div>
+    </div>
+</div>
+
+<div id="avis" class="page">
+    <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+        <h2 style="text-align:center;">Avis Clients</h2>
+        <textarea id="review-text" style="width:100%; height:100px; margin:1rem 0; padding:10px; border-radius:10px; border:1px solid #ddd;" placeholder="Laissez un avis sur nos services..."></textarea>
+        <button class="btn-add" onclick="alert('Merci pour votre avis !')">Envoyer</button>
     </div>
 </div>
 
@@ -120,7 +129,7 @@
 
 <div id="staff-dashboard" class="page">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
-        <h2 style="color: var(--edf-blue);">Commandes Reçues</h2>
+        <h2 style="color: var(--edf-blue);">Commandes à traiter</h2>
         <button onclick="clearAllOrders()" style="background:red; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">Tout vider</button>
     </div>
     <div id="orders-list"></div>
@@ -151,22 +160,22 @@
         if(cart.length === 0) {
             cartDiv.innerHTML = "Votre panier est vide.";
         } else {
-            cartDiv.innerHTML = cart.map(item => `<div style="display:flex; justify-content:space-between;"><span>${item.name}</span><b>${item.price.toLocaleString()} €</b></div>`).join('');
+            cartDiv.innerHTML = cart.map(item => `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${item.name}</span><b>${item.price.toLocaleString()} €</b></div>`).join('');
         }
-        totalDiv.innerText = total.toLocaleString() + " €";
+        totalDiv.innerText = total.toLocaleString('fr-FR', {minimumFractionDigits: 2}) + " €";
     }
 
     function processOrder() {
         const name = document.getElementById('client-name').value;
-        if(!name) return alert("Entrez votre nom !");
-        if(cart.length === 0) return alert("Panier vide !");
+        if(!name) return alert("Veuillez entrer votre nom !");
+        if(cart.length === 0) return alert("Votre panier est vide !");
 
         const order = { id: Date.now(), client: name, items: [...cart], total: total, date: new Date().toLocaleString('fr-FR') };
         let orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
         orders.push(order);
         localStorage.setItem('edf_orders', JSON.stringify(orders));
 
-        alert("Commande envoyée !");
+        alert("Merci " + name + ", votre commande a été transmise à EDF !");
         cart = []; total = 0; document.getElementById('client-name').value = ""; updateCart();
     }
 
@@ -175,25 +184,25 @@
     function verifyCode() {
         const code = document.getElementById('staff-code').value;
         if(code === "1981") { showPage('staff-dashboard'); loadOrders(); } 
-        else { alert("Code incorrect !"); }
+        else { alert("Code secret incorrect !"); }
         document.getElementById('staff-code').value = "";
     }
 
     function loadOrders() {
         const listDiv = document.getElementById('orders-list');
         const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        if(orders.length === 0) { listDiv.innerHTML = "<p>Aucune commande reçue.</p>"; return; }
+        if(orders.length === 0) { listDiv.innerHTML = "<p style='text-align:center;'>Aucune commande reçue.</p>"; return; }
         listDiv.innerHTML = orders.reverse().map(order => `
             <div class="order-card">
-                <div class="order-header"><span>${order.client}</span><span>${order.date}</span></div>
-                <div style="font-size:0.8rem;">${order.items.map(i => i.name).join(', ')}</div>
-                <div style="font-weight:bold; color:var(--edf-orange); margin-top:5px;">TOTAL : ${order.total.toLocaleString()} €</div>
+                <div class="order-header"><span>Client : ${order.client}</span><span>${order.date}</span></div>
+                <div style="font-size:0.85rem; color:#666;">Articles : ${order.items.map(i => i.name).join(', ')}</div>
+                <div style="font-weight:bold; color:var(--edf-orange); margin-top:8px; font-size:1.1rem;">MONTANT TOTAL : ${order.total.toLocaleString()} €</div>
             </div>
         `).join('');
     }
 
     function clearAllOrders() {
-        if(confirm("Tout supprimer ?")) { localStorage.removeItem('edf_orders'); loadOrders(); }
+        if(confirm("Voulez-vous supprimer l'historique des commandes ?")) { localStorage.removeItem('edf_orders'); loadOrders(); }
     }
 </script>
 
