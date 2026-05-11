@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDF | Future Energy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --primary: #0066FF;
+            --accent: #FF7900;
+            --bg: #020617;
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; outline: none; border: none; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* LUMIÈRE DYNAMIQUE EN ARRIÈRE-PLAN */
+        .glow {
+            position: fixed; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.07) 0%, transparent 70%);
+            top: -10%; right: -5%; z-index: -1; pointer-events: none;
+        }
+
+        /* NAVIGATION FLOTTANTE */
+        nav { 
+            position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 800px; height: 60px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border) !important;
+            border-radius: 100px; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between; padding: 0 1.2rem;
+        }
+        .logo { font-weight: 800; font-size: 1.3rem; text-decoration: none; color: #fff; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+        .nav-links button { 
+            background: transparent; color: var(--text-dim); font-weight: 600; font-size: 0.8rem;
+            padding: 8px 18px; border-radius: 100px; cursor: pointer; transition: 0.4s; font-family: inherit;
+        }
+        .nav-links button.active { background: var(--primary); color: white; box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3); }
+
+        /* HERO SECTION */
+        .hero { 
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 0 1.5rem;
+        }
+        .hero h1 { font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 800; letter-spacing: -3px; margin-bottom: 25px; line-height: 0.95; }
+        .hero h1 span { background: linear-gradient(90deg, #0066FF, #00D1FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 650px; margin-bottom: 45px; line-height: 1.6; font-weight: 300; }
+
+        /* BENTO GRID */
+        .bento-container { max-width: 1100px; margin: 0 auto 120px; padding: 0 2rem; }
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { 
+            background: var(--card); border: 1px solid var(--border) !important; 
+            padding: 35px; border-radius: 28px; transition: 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+        .bento-card:hover { transform: translateY(-8px); border-color: var(--primary) !important; background: rgba(255,255,255,0.06); }
+        .bento-card h3 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; color: #fff; }
+        .bento-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.5; }
+
+        /* BOUTIQUE DESIGN SANS PHOTO */
+        .shop-layout { display: grid; grid-template-columns: 1fr 380px; gap: 50px; max-width: 1300px; margin: 0 auto; padding: 140px 2rem; }
+        .category-title { font-size: 2rem; font-weight: 800; margin: 50px 0 25px; border-left: 4px solid var(--accent); padding-left: 20px; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .product-card { 
+            background: var(--card); border: 1px solid var(--border) !important; border-radius: 24px; padding: 50px 25px;
+            display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.4s;
+        }
+        .product-card:hover { border-color: var(--primary) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .product-card h4 { font-size: 1.2rem; margin-bottom: 15px; font-weight: 600; min-height: 45px; }
+        .price-tag { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 25px; }
+
+        /* BOUTONS ACTIONS */
+        .btn-action { 
+            background: #fff; color: #000; padding: 14px 30px; border-radius: 14px; 
+            font-weight: 800; cursor: pointer; transition: 0.3s; width: 100%; font-family: inherit; font-size: 0.9rem;
+        }
+        .btn-action:hover { background: var(--primary); color: white; transform: scale(1.02); }
+
+        /* PANIER MODERNE */
+        .cart-panel { 
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(30px); border: 1px solid var(--primary) !important;
+            padding: 35px; border-radius: 30px; position: sticky; top: 110px; height: fit-content;
+        }
+        .cart-item { display: flex; justify-content: space-between; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 12px; margin-bottom: 10px; font-size: 0.9rem; border: 1px solid var(--border) !important; }
+
+        input, textarea {
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border) !important;
+            border-radius: 15px; padding: 16px; color: white; margin-bottom: 15px; font-family: inherit; transition: 0.3s;
+        }
+        input:focus { border-color: var(--primary) !important; background: rgba(255,255,255,0.08); }
+
+        /* PAGES & ANIMATIONS */
+        .page { display: none; }
+        .page.active { display: block; animation: pageIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        @keyframes pageIn {
+            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @media (max-width: 1000px) { .shop-layout { grid-template-columns: 1fr; } .bento-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+    <a href="#" class="logo" onclick="showPage('accueil')">EDF<span>.</span></a>
+    <div class="nav-links">
+        <button onclick="showPage('accueil')" id="btn-accueil" class="active">Vision</button>
+        <button onclick="showPage('boutique')" id="btn-boutique">Catalogue</button>
+        <button onclick="showPage('avis')" id="btn-avis">Feedback</button>
+        <button onclick="checkStaffAccess()" id="btn-staff">Portal</button>
+    </div>
+</nav>
+
+<div id="accueil" class="page active">
+    <div class="hero">
+        <h1 class="animate__animated animate__fadeInDown">L'Innovation<br><span>Électrique</span>.</h1>
+        <p>Pourquoi choisir EDF ? Des équipements certifiés, une expertise unique et des solutions durables pour chaque citoyen. Contactez-nous dès maintenant.</p>
+        <button onclick="showPage('boutique')" class="btn-action" style="width: auto; padding: 18px 50px; border-radius: 100px; font-size: 1rem;">Ouvrir la Boutique</button>
+    </div>
+
+    <div class="bento-container">
+        <div class="bento-grid">
+            <div class="bento-card">
+                <h3>🛡️ Fiabilité</h3>
+                <p>Équipements rigoureusement testés et certifiés aux normes européennes.</p>
+            </div>
+            <div class="bento-card" style="border-color: var(--accent) !important;">
+                <h3>⚡ Expertise</h3>
+                <p>Un accompagnement technique sur mesure pour tous vos déploiements.</p>
+            </div>
+            <div class="bento-card">
+                <h3>🌱 Durabilité</h3>
+                <p>Solutions d'avenir conçues pour une efficacité énergétique maximale.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 60px; color: var(--text-dim); font-size: 0.9rem;">
+            Rendez-vous en agence ou sur notre plateforme digitale.
+        </div>
+    </div>
+</div>
+
+<div id="boutique" class="page">
+    <div class="shop-layout">
+        <div id="product-list">
+            </div>
+        
+        <div class="cart-panel">
+            <h3 style="margin-bottom: 25px; font-weight: 800; font-size: 1.4rem;">🧺 Votre Sélection</h3>
+            <input type="text" id="client-name" placeholder="Nom RP Complet">
+            <div id="cart-items" style="margin-bottom: 25px; min-height: 80px;">
+                <p style="text-align: center; color: var(--text-dim); margin-top: 20px; font-size: 0.85rem;">Aucun article sélectionné.</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.8rem; font-weight: 800; border-top: 1px solid var(--border) !important; pt: 20px; margin-top: 10px;">
+                <span style="font-size: 1rem; color: var(--text-dim); align-self: center;">TOTAL</span>
+                <span id="total-price" style="color: var(--accent);">0 €</span>
+            </div>
+            <button class="btn-action" style="margin-top: 25px; background: var(--accent); color: white;" onclick="processOrder()">TRANSMETTRE LA COMMANDE</button>
+        </div>
+    </div>
+</div>
+
+<div id="avis" class="page">
+    <div class="hero" style="min-height: 60vh;">
+        <h2>Votre retour d'expérience</h2>
+        <div style="max-width: 500px; width: 100%; margin-top: 30px;">
+            <textarea id="review-text" rows="5" placeholder="Votre message pour nos techniciens..."></textarea>
+            <button class="btn-action" onclick="alert('Merci pour votre message !')">Envoyer l'avis</button>
+        </div>
+    </div>
+</div>
+
+<div id="staff-login" class="page">
+    <div class="hero" style="min-height: 60vh;">
+        <div class="bento-card" style="width: 100%; max-width: 380px; text-align: center;">
+            <h2 style="margin-bottom: 25px;">Identification Staff</h2>
+            <input type="password" id="staff-code" placeholder="Code secret" style="text-align: center;">
+            <button class="btn-action" onclick="verifyCode()">Accéder au Terminal</button>
+        </div>
+    </div>
+</div>
+
+<div id="staff-dashboard" class="page">
+    <div class="shop-layout" style="display: block; max-width: 900px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <h2 class="category-title" style="margin:0;">Terminal de Commandes</h2>
+            <button onclick="clearAllOrders()" style="color: #ff4757; background: transparent; cursor: pointer; font-weight: 600;">Réinitialiser Tout</button>
+        </div>
+        <div id="orders-list"></div>
+    </div>
+</div>
+
+<script>
+    const categories = [
+        {
+            title: "Sécurité & Infrastructure",
+            items: [
+                { name: "Armoire Électrique Renforcée", price: 1699 },
+                { name: "Caméra Dôme 360° AI", price: 799 },
+                { name: "Tableau Divisionnaire Pro", price: 549 },
+                { name: "Boîtier de Dérivation", price: 299 }
+            ]
+        },
+        {
+            title: "Luminaires Premium",
+            items: [
+                { name: "Lustre Royal Crystal", price: 26000 },
+                { name: "Lustre Minimaliste", price: 9000 },
+                { name: "Lampadaire Urbain", price: 699 },
+                { name: "Projecteur Industriel", price: 499 },
+                { name: "Néon Design Bleu", price: 359 },
+                { name: "Pack Néons Standards", price: 299.99 }
+            ]
+        },
+        {
+            title: "Énergies Vertes",
+            items: [
+                { name: "Panneau Solaire 500W", price: 1200 },
+                { name: "Kit Solaire Plat", price: 1000 },
+                { name: "Borne Solaire Autonome", price: 700 }
+            ]
+        }
+    ];
+
+    function initShop() {
+        const container = document.getElementById('product-list');
+        container.innerHTML = categories.map(cat => `
+            <h2 class="category-title">${cat.title}</h2>
+            <div class="products-grid">
+                ${cat.items.map(p => `
+                    <div class="product-card">
+                        <h4>${p.name}</h4>
+                        <span class="price-tag">${p.price.toLocaleString()} €</span>
+                        <button class="btn-action" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">Ajouter</button>
+                    </div>
+                `).join('')}
+            </div>
+        `).join('');
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        const btnId = (pageId.includes('staff')) ? 'btn-staff' : 'btn-' + pageId;
+        const btn = document.getElementById(btnId);
+        if(btn) btn.classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    let cart = []; let total = 0;
+    function addToCart(name, price) {
+        cart.push({name, price}); total += price; updateCart();
+    }
+
+    function updateCart() {
+        const cartDiv = document.getElementById('cart-items');
+        if(cart.length === 0) cartDiv.innerHTML = '<p style="text-align:center; color:var(--text-dim); margin-top:20px;">Vide.</p>';
+        else cartDiv.innerHTML = cart.map(i => `<div class="cart-item"><span>${i.name}</span><b>${i.price.toLocaleString()} €</b></div>`).join('');
+        document.getElementById('total-price').innerText = total.toLocaleString() + " €";
+    }
+
+    function processOrder() {
+        const name = document.getElementById('client-name').value;
+        if(!name || cart.length === 0) return alert("Nom manquant ou panier vide.");
+        const order = { client: name, items: [...cart], total: total, date: new Date().toLocaleString('fr-FR') };
+        let orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
+        orders.push(order);
+        localStorage.setItem('edf_orders', JSON.stringify(orders));
+        alert("🚀 Commande transmise avec succès !");
+        cart = []; total = 0; document.getElementById('client-name').value = ""; updateCart();
+    }
+
+    function checkStaffAccess() { showPage('staff-login'); }
+    function verifyCode() {
+        if(document.getElementById('staff-code').value === "1981") { showPage('staff-dashboard'); loadOrders(); } 
+        else alert("Identifiant incorrect.");
+    }
+
+    function loadOrders() {
+        const listDiv = document.getElementById('orders-list');
+        const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
+        listDiv.innerHTML = orders.reverse().map(o => `
+            <div class="bento-card" style="margin-bottom: 15px; text-align: left;">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border) !important; pb: 10px;">
+                    <strong>${o.client}</strong>
+                    <small style="color:var(--text-dim);">${o.date}</small>
+                </div>
+                <p style="margin-bottom: 10px;">${o.items.map(i => i.name).join(', ')}</p>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">${o.total.toLocaleString()} €</div>
+            </div>
+        `).join('');
+    }
+
+    function clearAllOrders() { if(confirm("Vider l'historique ?")) { localStorage.removeItem('edf_orders'); loadOrders(); } }
+
+    window.onload = initShop;
+</script>
+
+</body>
+</html>
