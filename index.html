@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset<!DOCTYPE html>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDF | Système de Gestion</title>
+    <title>EDF | Système de Gestion Énergétique</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -57,79 +60,103 @@
         section.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* HERO ACCUEIL */
-        .hero { text-align: center; padding-top: 10vh; }
-        .hero h1 { font-family: 'Orbitron'; font-size: 4rem; color: #fff; margin-bottom: 10px; }
-        .hero p { color: var(--primary); font-family: 'Orbitron'; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
+        /* PAGE D'ACCUEIL */
+        .hero { text-align: center; max-width: 900px; margin: 0 auto; }
+        .hero h1 { font-family: 'Orbitron'; font-size: 3.5rem; color: #fff; margin-bottom: 20px; }
+        .hero p.tagline { color: var(--primary); font-family: 'Orbitron'; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
+        
+        .usp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+        .usp-card { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 10px; }
+        .usp-card h3 { color: var(--primary); font-family: 'Orbitron'; font-size: 0.9rem; margin-bottom: 10px; }
+        .usp-card p { font-size: 0.85rem; color: #94a3b8; }
 
-        /* BOUTIQUE GRID */
+        /* BOUTIQUE */
         .shop-container { display: grid; grid-template-columns: 1fr 350px; gap: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        .category-title { font-family: 'Orbitron'; color: var(--primary); font-size: 0.8rem; letter-spacing: 2px; margin: 30px 0 15px; border-left: 3px solid var(--primary); padding-left: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
 
         .card { 
             background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-            padding: 25px; transition: 0.3s; position: relative;
+            padding: 20px; transition: 0.3s; position: relative;
         }
         .card:hover { border-color: var(--primary); background: rgba(0, 242, 255, 0.05); }
-        .card h3 { font-family: 'Orbitron'; font-size: 0.9rem; color: #fff; margin-bottom: 15px; height: 45px; }
-        .card .price { color: var(--primary); font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; display: block; }
+        .card h3 { font-family: 'Orbitron'; font-size: 0.8rem; color: #fff; margin-bottom: 10px; height: 35px; overflow: hidden; }
+        .card .price { color: var(--primary); font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; display: block; }
 
         /* CONTROLES */
         .qty-box { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 5px; margin-bottom: 15px; width: fit-content; }
-        .qty-box button { background: none; border: none; color: var(--primary); padding: 5px 15px; cursor: pointer; font-size: 1.2rem; }
-        .qty-box span { width: 40px; text-align: center; font-family: 'Orbitron'; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+        .qty-box button { background: none; border: none; color: var(--primary); padding: 5px 12px; cursor: pointer; }
+        .qty-box span { width: 35px; text-align: center; font-family: 'Orbitron'; border-left: 1px solid var(--border); border-right: 1px solid var(--border); font-size: 0.9rem; }
 
         .btn-cyber { 
             width: 100%; padding: 12px; background: transparent; border: 1px solid var(--primary);
-            color: var(--primary); font-family: 'Orbitron'; font-size: 0.75rem; cursor: pointer;
-            transition: 0.3s; clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%);
+            color: var(--primary); font-family: 'Orbitron'; font-size: 0.7rem; cursor: pointer;
+            transition: 0.3s; clip-path: polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%);
         }
-        .btn-cyber:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
+        .btn-cyber:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
 
-        /* SIDEBAR PANIER */
         .sidebar { background: rgba(0,0,0,0.4); border: 1px solid var(--primary); padding: 25px; border-radius: 15px; height: fit-content; position: sticky; top: 110px; }
-        .sidebar h2 { font-family: 'Orbitron'; font-size: 1rem; color: var(--primary); margin-bottom: 20px; }
-        .cart-item { font-size: 0.8rem; display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .cart-item { font-size: 0.8rem; display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        /* LOGS & TABLES */
-        .console { background: #000; border: 1px solid var(--primary); padding: 20px; border-radius: 5px; font-family: monospace; height: 500px; overflow-y: auto; color: #00f2ff; line-height: 1.5; }
+        .console { background: #000; border: 1px solid var(--primary); padding: 20px; border-radius: 5px; font-family: monospace; height: 500px; overflow-y: auto; color: #00f2ff; font-size: 0.8rem; }
         input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 5px; margin-bottom: 15px; }
 
         table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 12px; color: var(--primary); font-family: 'Orbitron'; font-size: 0.7rem; border-bottom: 1px solid var(--primary); }
+        th { text-align: left; padding: 12px; color: var(--primary); font-family: 'Orbitron'; font-size: 0.65rem; border-bottom: 1px solid var(--primary); }
         td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">EDF<span>_</span>CORE</div>
+    <div class="logo">EDF<span>_</span>SYSTEM</div>
     <div class="nav-links">
         <a onclick="go('home')" id="l-home" class="active">Accueil</a>
         <a onclick="go('shop')" id="l-shop">Boutique</a>
-        <a onclick="go('avis')" id="l-avis">Expertise</a>
+        <a onclick="go('avis')" id="l-avis">Rapport</a>
         <a onclick="go('portal')" id="l-portal">Accès_Staff</a>
     </div>
 </nav>
 
 <section id="home" class="active">
     <div class="hero">
-        <h1>EDF<span>_</span>SYSTEM</h1>
-        <p>Fournisseur d'énergie et d'équipements électriques</p>
-        <button class="btn-cyber" style="width: auto; padding: 15px 50px;" onclick="go('shop')">Accéder aux Articles</button>
+        <h1>POURQUOI CHOISIR EDF ?</h1>
+        <p class="tagline">Expertise & Innovation Énergétique</p>
+        
+        <div class="usp-grid">
+            <div class="usp-card">
+                <h3>Fiabilité</h3>
+                <p>Des équipements certifiés aux normes européennes pour une sécurité maximale.</p>
+            </div>
+            <div class="usp-card">
+                <h3>Expertise</h3>
+                <p>Un accompagnement personnalisé pour tous vos projets d'infrastructure.</p>
+            </div>
+            <div class="usp-card">
+                <h3>Durabilité</h3>
+                <p>Des solutions conçues pour réduire durablement votre empreinte carbone.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; border: 1px solid var(--primary); padding: 20px; border-radius: 10px; background: rgba(0, 242, 255, 0.05);">
+            <p style="font-family: 'Orbitron'; font-size: 0.8rem; color: #fff; margin-bottom: 15px;">Contactez votre conseiller dès aujourd'hui !</p>
+            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px;">Rendez-vous en agence ou explorez notre catalogue en ligne.</p>
+            <button class="btn-cyber" style="width: auto; padding: 12px 40px;" onclick="go('shop')">Explorer le Catalogue</button>
+        </div>
     </div>
 </section>
 
 <section id="shop">
     <div class="shop-container">
-        <div class="grid" id="grid"></div>
+        <div id="catalog">
+            </div>
         <div class="sidebar">
-            <h2>Bon_de_Commande</h2>
+            <h2 style="font-family: 'Orbitron'; font-size: 0.9rem; color: var(--primary); margin-bottom: 20px;">BON_DE_COMMANDE</h2>
             <input type="text" id="client-rp" placeholder="NOM_DU_CLIENT">
             <div id="cart-content" style="margin-bottom: 20px; min-height: 50px;"></div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <span style="font-family: 'Orbitron'; font-size: 0.7rem;">TOTAL_HT :</span>
-                <span id="total-price" style="font-family: 'Orbitron'; color: var(--primary); font-size: 1.5rem;">0 €</span>
+                <span style="font-family: 'Orbitron'; font-size: 0.6rem;">TOTAL_HT :</span>
+                <span id="total-price" style="font-family: 'Orbitron'; color: var(--primary); font-size: 1.4rem;">0 €</span>
             </div>
             <button class="btn-cyber" onclick="validerVente()">Finaliser_Vente</button>
         </div>
@@ -138,63 +165,81 @@
 
 <section id="avis">
     <div style="max-width: 700px; margin: 0 auto;">
-        <h2 style="font-family: 'Orbitron'; margin-bottom: 20px;">Rapport_Client</h2>
-        <textarea rows="8" placeholder="Entrez vos retours ou observations..."></textarea>
+        <h2 style="font-family: 'Orbitron'; margin-bottom: 20px;">Rapport_Expertise</h2>
+        <textarea rows="8" placeholder="Commentaires sur l'installation ou retour d'expérience..."></textarea>
         <button class="btn-cyber" style="width: auto; padding: 10px 40px;">Envoyer_Rapport</button>
     </div>
 </section>
 
 <section id="portal">
     <div style="max-width: 400px; margin: 100px auto; text-align: center; border: 1px solid var(--primary); padding: 40px; border-radius: 10px;">
-        <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Authentification</h2>
+        <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Security_Pass</h2>
         <input type="password" id="pass" placeholder="PIN_CODE" style="text-align: center; font-size: 1.5rem; letter-spacing: 10px;">
         <button class="btn-cyber" onclick="auth()">Décrypter</button>
     </div>
 </section>
 
 <section id="logs-1981">
-    <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Archives_Ventes_1981</h2>
+    <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Archive_Database_1981</h2>
     <table>
         <thead>
-            <tr><th>TIMESTAMP</th><th>CLIENT</th><th>ARTICLES</th><th>TOTAL</th></tr>
+            <tr><th>DATE</th><th>CLIENT</th><th>DÉTAILS</th><th>TOTAL</th></tr>
         </thead>
         <tbody id="table-logs"></tbody>
     </table>
 </section>
 
 <section id="logs-2009">
-    <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Console_Monitoring_2009</h2>
+    <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Console_Flux_2009</h2>
     <div class="console" id="terminal"></div>
 </section>
 
 <script>
-    // Liste des articles avec leurs noms de base
-    const db = [
-        { id: 1, name: "Armoire Électrique", price: 1699 },
-        { id: 2, name: "Caméra", price: 799 },
-        { id: 3, name: "Tableau Divisionnaire", price: 549 },
-        { id: 4, name: "Néon", price: 359 },
-        { id: 5, name: "Panneau Solaire", price: 1200 },
-        { id: 6, name: "Lustre Royal Crystal", price: 26000 },
-        { id: 7, name: "Lampadaire Solaire", price: 850 },
-        { id: 8, name: "Compteur Linky", price: 480 },
-        { id: 9, name: "Projecteur LED", price: 215 },
-        { id: 10, name: "Borne de Recharge", price: 1450 }
+    const inventory = [
+        { cat: "Équipements Électriques et Sécurité", items: [
+            { id: 1, name: "Armoire électrique", price: 1699 },
+            { id: 2, name: "Caméra de sécurité", price: 799 },
+            { id: 3, name: "Caméra 360°", price: 699 },
+            { id: 4, name: "Tableau électrique", price: 549 },
+            { id: 5, name: "Boitier électrique", price: 299 }
+        ]},
+        { cat: "Éclairage Intérieur et Extérieur", items: [
+            { id: 6, name: "Lustre", price: 26000 },
+            { id: 7, name: "Petit lustre", price: 9000 },
+            { id: 8, name: "Lampadaire", price: 699 },
+            { id: 9, name: "Projecteur", price: 499 },
+            { id: 10, name: "Néon (modèle large)", price: 499 },
+            { id: 11, name: "Lampe bleu", price: 359 },
+            { id: 12, name: "Néons (modèle standard)", price: 299.99 },
+            { id: 13, name: "Lumière au sol", price: 299 },
+            { id: 14, name: "Néon vertical", price: 299 }
+        ]},
+        { cat: "Énergie Solaire", items: [
+            { id: 15, name: "Panneau solaire (avec support)", price: 1200 },
+            { id: 16, name: "Panneau solaire (à plat)", price: 1000 },
+            { id: 17, name: "Lampadaire solaire", price: 700 }
+        ]}
     ];
 
     let panier = [];
 
     function init() {
-        document.getElementById('grid').innerHTML = db.map(item => `
-            <div class="card">
-                <h3>${item.name}</h3>
-                <span class="price">${item.price.toLocaleString()} €</span>
-                <div class="qty-box">
-                    <button onclick="qty(${item.id}, -1)">-</button>
-                    <span id="q-${item.id}">1</span>
-                    <button onclick="qty(${item.id}, 1)">+</button>
-                </div>
-                <button class="btn-cyber" onclick="add(${item.id})">Ajouter_Article</button>
+        const catalog = document.getElementById('catalog');
+        catalog.innerHTML = inventory.map(section => `
+            <div class="category-title">${section.cat}</div>
+            <div class="grid">
+                ${section.items.map(i => `
+                    <div class="card">
+                        <h3>${i.name}</h3>
+                        <span class="price">${i.price.toLocaleString('fr-FR')} €</span>
+                        <div class="qty-box">
+                            <button onclick="qty(${i.id}, -1)">-</button>
+                            <span id="q-${i.id}">1</span>
+                            <button onclick="qty(${i.id}, 1)">+</button>
+                        </div>
+                        <button class="btn-cyber" onclick="add(${i.id}, '${i.name}', ${i.price})">Ajouter</button>
+                    </div>
+                `).join('')}
             </div>
         `).join('');
     }
@@ -205,11 +250,10 @@
         if(v >= 1) el.innerText = v;
     }
 
-    function add(id) {
-        const item = db.find(i => i.id === id);
+    function add(id, name, price) {
         const q = parseInt(document.getElementById(`q-${id}`).innerText);
         const exists = panier.find(p => p.id === id);
-        if(exists) exists.q += q; else panier.push({...item, q});
+        if(exists) exists.q += q; else panier.push({id, name, price, q});
         renderCart();
     }
 
@@ -217,9 +261,9 @@
         let total = 0;
         document.getElementById('cart-content').innerHTML = panier.map(i => {
             total += (i.price * i.q);
-            return `<div class="cart-item"><span>${i.q}x ${i.name}</span><span>${(i.price * i.q).toLocaleString()}€</span></div>`;
-        }).join('') || "<p style='opacity:0.3; font-size:0.7rem;'>[ AUCUN ARTICLE ]</p>";
-        document.getElementById('total-price').innerText = total.toLocaleString() + " €";
+            return `<div class="cart-item"><span>${i.q}x ${i.name}</span><span>${(i.price * i.q).toLocaleString('fr-FR')}€</span></div>`;
+        }).join('') || "<p style='opacity:0.3; font-size:0.7rem;'>[ VIDE ]</p>";
+        document.getElementById('total-price').innerText = total.toLocaleString('fr-FR') + " €";
     }
 
     function validerVente() {
@@ -227,10 +271,10 @@
         if(!client || panier.length === 0) return alert("ERREUR: NOM CLIENT OU PANIER VIDE");
         const total = panier.reduce((s, i) => s + (i.price * i.q), 0);
         const data = { client, total, info: panier.map(p => `${p.q}x ${p.name}`).join(', '), date: new Date().toLocaleString() };
-        let history = JSON.parse(localStorage.getItem('edf_db_final')) || [];
+        let history = JSON.parse(localStorage.getItem('edf_db_secure')) || [];
         history.push(data);
-        localStorage.setItem('edf_db_final', JSON.stringify(history));
-        alert("VENTE VALIDÉE DANS LE SYSTÈME EDF.");
+        localStorage.setItem('edf_db_secure', JSON.stringify(history));
+        alert("COMMANDE ENREGISTRÉE DANS LE RÉSEAU EDF.");
         panier = []; document.getElementById('client-rp').value = ""; renderCart();
     }
 
@@ -238,8 +282,8 @@
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-        const l = document.getElementById('l-' + id.split('-')[0]);
-        if(l) l.classList.add('active');
+        const link = document.getElementById('l-' + id.split('-')[0]);
+        if(link) link.classList.add('active');
         if(id === 'logs-1981') renderTable();
         if(id === 'logs-2009') renderTerminal();
     }
@@ -248,22 +292,22 @@
         const p = document.getElementById('pass').value;
         if(p === "1981") go('logs-1981');
         else if(p === "2009") go('logs-2009');
-        else alert("CODE INCORRECT");
+        else alert("ACCESS_DENIED");
         document.getElementById('pass').value = "";
     }
 
     function renderTable() {
-        const history = JSON.parse(localStorage.getItem('edf_db_final')) || [];
+        const history = JSON.parse(localStorage.getItem('edf_db_secure')) || [];
         document.getElementById('table-logs').innerHTML = history.reverse().map(h => `
-            <tr><td>${h.date}</td><td><b>${h.client}</b></td><td>${h.info}</td><td style="color:var(--primary); font-weight:bold;">${h.total.toLocaleString()}€</td></tr>
+            <tr><td>${h.date}</td><td><b>${h.client}</b></td><td style="font-size:0.7rem; color:#94a3b8;">${h.info}</td><td style="color:var(--primary); font-weight:bold;">${h.total.toLocaleString()}€</td></tr>
         `).join('');
     }
 
     function renderTerminal() {
-        const history = JSON.parse(localStorage.getItem('edf_db_final')) || [];
+        const history = JSON.parse(localStorage.getItem('edf_db_secure')) || [];
         document.getElementById('terminal').innerHTML = history.map(h => `
-            <div>[${h.date}] >> EDF_SALE_CONFIRMED | CLIENT:${h.client} | TOTAL:${h.total}€ | ITEMS:[${h.info}]</div>
-        `).join('') + "<div>>_ SCANNING_NETWORK...</div>";
+            <div>[${h.date}] >> TRANSMISSION_EDF_CONFIRMÉE | CLIENT:${h.client} | VAL:${h.total}€</div>
+        `).join('') + "<div>>_ SCANNING_NETWORK_STATUS... OK</div>";
     }
 
     window.onload = init;
