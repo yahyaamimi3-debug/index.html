@@ -3,296 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDF | Solutions Énergie Haute Performance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>EDF Corporate | Excellence Énergétique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary: #005BBB;
-            --accent: #FF7900;
-            --bg: #020617;
-            --surface: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #f8fafc;
-            --text-dim: #94a3b8;
-            --glass: blur(12px);
+            --edf-dark: #001E4E;
+            --edf-blue: #005BBB;
+            --edf-orange: #FF7900;
+            --bg-deep: #020617;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #F8FAFC;
+            --text-dim: #94A3B8;
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; outline: none; border: none; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
-
-        /* ARRIÈRE-PLAN DYNAMIQUE */
-        .bg-glow {
-            position: fixed; width: 60vw; height: 60vw;
-            background: radial-gradient(circle, rgba(0, 91, 187, 0.08) 0%, transparent 70%);
-            top: -20%; right: -10%; z-index: -1;
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; border: none; }
+        body { 
+            font-family: 'Lato', sans-serif; 
+            background-color: var(--bg-deep); 
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* NAVIGATION PRO */
+        /* BACKGROUND ELEMENTS */
+        .glow {
+            position: fixed; width: 40vw; height: 40vw;
+            background: radial-gradient(circle, rgba(0, 91, 187, 0.1) 0%, transparent 70%);
+            top: -10%; right: -5%; z-index: -1;
+        }
+
+        /* NAVIGATION EXECUTIVE */
         nav { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: var(--glass);
+            position: fixed; top: 0; left: 0; width: 100%; height: 85px;
+            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border); z-index: 1000;
-            display: flex; align-items: center; justify-content: space-around;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%;
         }
 
-        .logo { font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: #fff; letter-spacing: -1px; }
-        .logo span { color: var(--accent); }
+        .logo { font-family: 'Montserrat'; font-weight: 800; font-size: 1.6rem; color: #fff; letter-spacing: -1px; }
+        .logo span { color: var(--edf-orange); }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 35px; }
         .nav-links a { 
-            color: var(--text-dim); text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            transition: 0.3s; cursor: pointer;
+            color: var(--text-dim); text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; cursor: pointer;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--text); }
+        .nav-links a:hover, .nav-links a.active { color: var(--edf-orange); }
 
-        /* SECTIONS */
-        section { min-height: 100vh; padding: 120px 5% 60px; display: none; }
-        section.active { display: block; animation: fadeInUp 0.5s ease forwards; }
+        /* SECTIONS SPA */
+        section { min-height: 100vh; padding: 140px 5% 60px; display: none; }
+        section.active { display: block; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ACCUEIL HERO */
+        /* HERO SECTION */
         .hero { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .hero h1 { font-family: 'Montserrat'; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; }
-        .hero p { max-width: 600px; color: var(--text-dim); font-size: 1.2rem; margin-bottom: 40px; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 25px; }
+        .hero h1 span { color: var(--edf-blue); }
+        .hero p { max-width: 700px; color: var(--text-dim); font-size: 1.3rem; margin-bottom: 45px; line-height: 1.6; font-weight: 300; }
 
-        /* BOUTIQUE GRID */
-        .shop-container { display: grid; grid-template-columns: 1fr 350px; gap: 40px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        /* BOUTIQUE PRO */
+        .shop-wrapper { display: grid; grid-template-columns: 1fr 380px; gap: 50px; }
+        .category-title { font-family: 'Montserrat'; font-size: 1.8rem; margin-bottom: 30px; border-left: 5px solid var(--edf-orange); padding-left: 20px; }
         
-        .card { 
-            background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px;
-            transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .product-card { 
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 35px 25px;
+            transition: 0.4s ease; text-align: center; position: relative; overflow: hidden;
         }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .card h3 { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; height: 50px; }
-        .price { color: var(--accent); font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; }
+        .product-card:hover { border-color: var(--edf-blue); background: rgba(255,255,255,0.05); transform: translateY(-8px); }
+        .product-card h3 { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 15px; height: 45px; font-weight: 700; }
+        .price { color: var(--edf-orange); font-weight: 800; font-size: 1.8rem; margin-bottom: 25px; display: block; }
 
-        /* QUANTITÉS */
-        .qty-box { display: flex; align-items: center; background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 20px; padding: 5px; }
-        .qty-btn { width: 35px; height: 35px; color: white; cursor: pointer; background: none; font-size: 1.2rem; }
-        .qty-num { width: 40px; text-align: center; font-weight: 800; color: var(--primary); }
-
-        .btn { 
-            background: var(--primary); color: white; padding: 12px 25px; border-radius: 10px;
-            font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s;
+        /* QTY SELECTOR */
+        .qty-selector { 
+            display: flex; align-items: center; justify-content: center; 
+            background: rgba(0,0,0,0.4); border-radius: 50px; padding: 5px; margin-bottom: 25px;
+            border: 1px solid var(--border);
         }
-        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .qty-btn { width: 35px; height: 35px; color: white; cursor: pointer; background: none; font-size: 1.2rem; transition: 0.2s; }
+        .qty-btn:hover { color: var(--edf-blue); }
+        .qty-num { width: 45px; text-align: center; font-weight: 800; font-family: 'Montserrat'; color: white; }
 
-        /* PANIER */
-        .sidebar { 
-            background: var(--surface); border: 1px solid var(--primary); border-radius: 24px; 
-            padding: 30px; height: fit-content; position: sticky; top: 100px;
+        .btn-main { 
+            background: var(--edf-blue); color: white; padding: 15px 30px; border-radius: 12px;
+            font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Montserrat';
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
         }
+        .btn-main:hover { background: var(--edf-orange); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 121, 0, 0.2); }
+
+        /* SIDEBAR PANIER */
+        .cart-sidebar { 
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px); border: 1px solid var(--edf-blue);
+            border-radius: 28px; padding: 35px; height: fit-content; position: sticky; top: 120px;
+        }
+        .cart-sidebar h3 { font-family: 'Montserrat'; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+        .cart-item { 
+            display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        /* STAFF ANALYTICS (1981) */
+        .analytics-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .analytics-table th { text-align: left; padding: 20px; color: var(--edf-blue); font-family: 'Montserrat'; font-size: 0.8rem; border-bottom: 2px solid var(--border); }
+        .analytics-table td { padding: 20px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .status-badge { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; }
 
         /* TERMINAL LOGS (2009) */
         .terminal { 
-            background: #000; border: 1px solid #1e293b; border-radius: 12px; padding: 25px;
-            font-family: 'Courier New', monospace; height: 500px; overflow-y: auto; color: #4ade80;
+            background: #000; border: 1px solid #1e293b; border-radius: 15px; padding: 30px;
+            font-family: 'Courier New', monospace; height: 550px; overflow-y: auto; color: #4ade80;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
+        .log-entry { margin-bottom: 12px; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; }
+        .ts { color: #64748b; margin-right: 15px; }
 
-        /* INPUTS PRO */
+        /* INPUTS */
         input, textarea { 
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            border-radius: 12px; color: white; margin-bottom: 15px; font-family: inherit;
+            width: 100%; padding: 18px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-radius: 14px; color: white; margin-bottom: 20px; font-family: inherit; transition: 0.3s;
         }
-        input:focus { border-color: var(--primary); }
+        input:focus { border-color: var(--edf-blue); background: rgba(255,255,255,0.08); }
 
     </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
+<div class="glow"></div>
 
 <nav>
-    <div class="logo" onclick="show('home')">EDF<span>.</span></div>
+    <div class="logo" onclick="navigateTo('home')">EDF<span>.</span> CORPORATE</div>
     <div class="nav-links">
-        <a onclick="show('home')" id="l-home" class="active">Vision</a>
-        <a onclick="show('shop')" id="l-shop">Solutions</a>
-        <a onclick="show('avis')" id="l-avis">Expertise</a>
-        <a onclick="show('portal')" id="l-portal">Staff Portal</a>
+        <a onclick="navigateTo('home')" id="nav-home" class="active">Vision</a>
+        <a onclick="navigateTo('shop')" id="nav-shop">Solutions</a>
+        <a onclick="navigateTo('avis')" id="nav-avis">Expertise</a>
+        <a onclick="navigateTo('portal')" id="nav-portal">Portal</a>
     </div>
 </nav>
 
 <section id="home" class="hero active">
-    <div style="text-transform: uppercase; letter-spacing: 4px; color: var(--accent); font-weight: 700; margin-bottom: 10px;">L'énergie de demain</div>
-    <h1>Expertise & <span style="color:var(--primary)">Fiabilité</span></h1>
-    <p>Leader mondial des solutions énergétiques bas-carbone. Nous accompagnons les infrastructures critiques et les particuliers vers une performance durable.</p>
-    <button class="btn" style="width:auto; padding: 18px 40px; border-radius: 50px;" onclick="show('shop')">Explorer le catalogue</button>
+    <div style="font-family:'Montserrat'; text-transform: uppercase; letter-spacing: 5px; color: var(--edf-orange); font-weight: 700; margin-bottom: 15px; font-size: 0.9rem;">Management & Innovation</div>
+    <h1>L'Énergie du <span>Futur</span></h1>
+    <p>Leader européen de la transition énergétique, EDF déploie des solutions industrielles décarbonées pour accompagner les infrastructures critiques vers l'excellence durable.</p>
+    <div style="display: flex; gap: 20px;">
+        <button class="btn-main" style="width:auto; padding: 20px 50px; border-radius: 100px;" onclick="navigateTo('shop')">Accéder au catalogue</button>
+        <button class="btn-main" style="width:auto; background: transparent; border: 1px solid var(--border); padding: 20px 50px; border-radius: 100px;" onclick="navigateTo('avis')">Nos références</button>
+    </div>
 </section>
 
 <section id="shop">
-    <div class="shop-container">
+    <div class="shop-wrapper">
         <div>
-            <h2 style="margin-bottom: 40px; font-family: 'Montserrat'; font-size: 2rem;">Infrastructures & Équipements</h2>
-            <div class="grid" id="product-grid"></div>
+            <h2 class="category-title">Unités de Production & Infrastructure</h2>
+            <div class="grid" id="product-display"></div>
         </div>
         
-        <aside class="sidebar">
-            <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-file-invoice"></i> Bon de commande</h3>
-            <input type="text" id="client-name" placeholder="Nom du Client (RP)">
-            <div id="cart-content" style="margin-bottom: 20px; font-size: 0.9rem;">
-                <p style="text-align:center; opacity:0.5; padding: 20px;">Aucun article sélectionné.</p>
+        <aside class="cart-sidebar">
+            <h3><i class="fa-solid fa-file-invoice-dollar" style="color: var(--edf-orange)"></i> Bon de commande</h3>
+            <input type="text" id="client-id" placeholder="Identification Client (RP)">
+            <div id="cart-items-list" style="margin-bottom: 25px; min-height: 100px;">
+                <p style="text-align:center; opacity:0.4; padding: 40px 0; font-style: italic;">En attente de sélection...</p>
             </div>
-            <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:20px;">
-                <span style="font-weight: 600; opacity:0.6;">TOTAL HT</span>
-                <span id="total-val" style="font-weight:800; color:var(--accent); font-size: 1.4rem;">0 €</span>
+            <div style="display:flex; justify-content:space-between; border-top: 1px solid var(--border); padding-top:25px; margin-bottom: 30px;">
+                <span style="font-weight: 700; opacity:0.6; font-family:'Montserrat'; font-size: 0.8rem; align-self:center;">TOTAL HT</span>
+                <span id="grand-total" style="font-weight:800; color:var(--edf-orange); font-size: 2.2rem; font-family:'Montserrat';">0 €</span>
             </div>
-            <button class="btn" style="margin-top:20px; background:var(--accent);" onclick="submitOrder()">Valider la vente</button>
+            <button class="btn-main" style="background:var(--edf-orange);" onclick="validateVente()">Finaliser la transaction</button>
         </aside>
     </div>
 </section>
 
 <section id="avis">
-    <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <h2 style="margin-bottom: 20px;">Rapport de satisfaction</h2>
-        <p style="margin-bottom: 40px; color: var(--text-dim);">Votre retour d'expérience permet à nos ingénieurs d'optimiser nos solutions.</p>
-        <textarea id="review-text" rows="6" placeholder="Décrivez votre expérience client..."></textarea>
-        <button class="btn" onclick="sendReview()">Soumettre le rapport</button>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 class="category-title">Rapport de Satisfaction Client</h2>
+        <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 50px; border-radius: 30px; backdrop-filter: blur(10px);">
+            <p style="margin-bottom: 35px; color: var(--text-dim); font-size: 1.1rem; font-weight: 300;">
+                Votre évaluation technique nous permet d'affiner nos protocoles d'installation et d'améliorer nos solutions énergétiques.
+            </p>
+            <textarea id="feedback-content" rows="6" placeholder="Observations techniques et retours d'expérience..."></textarea>
+            <button class="btn-main" style="width: auto; padding: 18px 60px;" onclick="sendFeedback()">Transmettre le rapport</button>
+        </div>
     </div>
 </section>
 
 <section id="portal">
     <div style="height: 60vh; display: flex; align-items: center; justify-content: center;">
-        <div style="background: var(--surface); padding: 50px; border-radius: 30px; border: 1px solid var(--border); width: 400px; text-align: center; backdrop-filter: var(--glass);">
-            <i class="fa-solid fa-lock" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
-            <h2 style="margin-bottom: 30px;">Accès Restreint</h2>
-            <input type="password" id="staff-code" placeholder="Code d'autorisation" style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
-            <button class="btn" onclick="checkStaff()">Authentification</button>
+        <div style="background: var(--card-bg); padding: 60px; border-radius: 40px; border: 1px solid var(--edf-blue); width: 450px; text-align: center; backdrop-filter: blur(20px);">
+            <div style="background: rgba(0, 91, 187, 0.1); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
+                <i class="fa-solid fa-fingerprint" style="font-size: 3.5rem; color: var(--edf-blue);"></i>
+            </div>
+            <h2 style="font-family:'Montserrat'; margin-bottom: 35px; font-weight: 800;">Authentification</h2>
+            <input type="password" id="auth-input" placeholder="••••" style="text-align: center; font-size: 2rem; letter-spacing: 15px; border-radius: 20px;">
+            <button class="btn-main" style="margin-top: 15px;" onclick="authenticate()">Accéder au terminal</button>
         </div>
     </div>
 </section>
 
 <section id="dash">
-    <h2 style="margin-bottom: 30px;">Historique Transactionnel</h2>
-    <div id="sales-data"></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+        <h2 class="category-title" style="margin:0;">Dashboard des Ventes Industrielles</h2>
+        <button onclick="clearHistory()" style="color: #ef4444; background: none; cursor: pointer; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">[ Purger les données ]</button>
+    </div>
+    <table class="analytics-table">
+        <thead>
+            <tr>
+                <th>TIMESTAMP</th>
+                <th>CLIENT (UNITÉ RP)</th>
+                <th>CONFIGURATIONS</th>
+                <th>STATUT</th>
+                <th>VALEUR (EUR)</th>
+            </tr>
+        </thead>
+        <tbody id="sales-history"></tbody>
+    </table>
 </section>
 
 <section id="logs">
-    <h2 style="margin-bottom: 30px; color: var(--primary);">System Monitoring v2.009</h2>
-    <div class="terminal" id="log-output"></div>
+    <h2 class="category-title" style="color: var(--edf-blue);">Network Security Monitoring [v.2009]</h2>
+    <div class="terminal" id="terminal-output"></div>
 </section>
 
 <script>
-    const items = [
-        { id: 1, name: "Armoire Électrique Blindée", price: 1699 },
-        { id: 2, name: "Caméra Dôme AI 360°", price: 799 },
-        { id: 3, name: "Tableau Divisionnaire Pro", price: 549 },
-        { id: 4, name: "Néon Industriel Bleu", price: 359 },
-        { id: 5, name: "Panneau Solaire 500W", price: 1200 },
-        { id: 6, name: "Lustre Royal Crystal", price: 26000 }
+    const catalogueTechnique = [
+        { id: 1, name: "Armoire Électrique Industrielle", price: 1699 },
+        { id: 2, name: "Caméra Dôme Surveillance AI", price: 799 },
+        { id: 3, name: "Tableau Divisionnaire Expert", price: 549 },
+        { id: 4, name: "Néon Industriel Haute Capacité", price: 359 },
+        { id: 5, name: "Panneau Solaire 500W Monocristallin", price: 1200 },
+        { id: 6, name: "Lustre Royal Crystal Edition", price: 26000 }
     ];
 
-    let cart = [];
+    let panier = [];
 
-    function init() {
-        const grid = document.getElementById('product-grid');
-        grid.innerHTML = items.map(p => `
-            <div class="card">
+    function initializeStore() {
+        const grid = document.getElementById('product-display');
+        grid.innerHTML = catalogueTechnique.map(p => `
+            <div class="product-card">
                 <h3>${p.name}</h3>
-                <div class="price">${p.price.toLocaleString()} €</div>
-                <div class="qty-box">
-                    <button class="qty-btn" onclick="qty(${p.id}, -1)">-</button>
-                    <span class="qty-num" id="q-${p.id}">1</span>
-                    <button class="qty-btn" onclick="qty(${p.id}, 1)">+</button>
+                <span class="price">${p.price.toLocaleString()} €</span>
+                <div class="qty-selector">
+                    <button class="qty-btn" onclick="adjustQty(${p.id}, -1)">-</button>
+                    <span class="qty-num" id="qty-${p.id}">1</span>
+                    <button class="qty-btn" onclick="adjustQty(${p.id}, 1)">+</button>
                 </div>
-                <button class="btn" onclick="add(${p.id})">Ajouter</button>
+                <button class="btn-main" onclick="addToPanier(${p.id})">Ajouter à la commande</button>
             </div>
         `).join('');
     }
 
-    function qty(id, d) {
-        const el = document.getElementById(`q-${id}`);
-        let v = parseInt(el.innerText) + d;
-        if(v >= 1) el.innerText = v;
+    function adjustQty(id, delta) {
+        const el = document.getElementById(`qty-${id}`);
+        let val = parseInt(el.innerText) + delta;
+        if(val >= 1) el.innerText = val;
     }
 
-    function add(id) {
-        const product = items.find(p => p.id === id);
-        const count = parseInt(document.getElementById(`q-${id}`).innerText);
-        const inCart = cart.find(c => c.id === id);
-        if(inCart) inCart.count += count; else cart.push({...product, count});
-        document.getElementById(`q-${id}`).innerText = "1";
-        updateUI();
+    function addToPanier(id) {
+        const item = catalogueTechnique.find(p => p.id === id);
+        const qte = parseInt(document.getElementById(`qty-${id}`).innerText);
+        const index = panier.findIndex(c => c.id === id);
+        if(index > -1) panier[index].qte += qte; else panier.push({...item, qte});
+        document.getElementById(`qty-${id}`).innerText = "1";
+        refreshPanierUI();
     }
 
-    function updateUI() {
-        const cont = document.getElementById('cart-content');
+    function refreshPanierUI() {
+        const cont = document.getElementById('cart-items-list');
         let total = 0;
-        if(cart.length === 0) {
-            cont.innerHTML = `<p style="text-align:center; opacity:0.5; padding: 20px;">Aucun article sélectionné.</p>`;
+        if(panier.length === 0) {
+            cont.innerHTML = `<p style="text-align:center; opacity:0.4; padding: 40px 0; font-style: italic;">En attente de sélection...</p>`;
         } else {
-            cont.innerHTML = cart.map(c => {
-                total += (c.price * c.count);
-                return `<div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.85rem; background:rgba(255,255,255,0.02); padding:10px; border-radius:8px;">
-                    <span><b>x${c.count}</b> ${c.name}</span>
-                    <b>${(c.price * c.count).toLocaleString()}€</b>
+            cont.innerHTML = panier.map(c => {
+                total += (c.price * c.qte);
+                return `<div class="cart-item">
+                    <span><b style="color:var(--edf-blue)">x${c.qte}</b> ${c.name}</span>
+                    <b style="font-family:'Montserrat'">${(c.price * c.qte).toLocaleString()}€</b>
                 </div>`;
             }).join('');
         }
-        document.getElementById('total-val').innerText = total.toLocaleString() + " €";
+        document.getElementById('grand-total').innerText = total.toLocaleString() + " €";
     }
 
-    function submitOrder() {
-        const name = document.getElementById('client-name').value;
-        if(!name || cart.length === 0) return alert("Veuillez remplir le nom et le panier.");
-        const total = cart.reduce((s, c) => s + (c.price * c.count), 0);
-        const order = { name, total, summary: cart.map(c => `${c.count}x ${c.name}`).join(', '), date: new Date().toLocaleString() };
-        let db = JSON.parse(localStorage.getItem('edf_pro_site')) || [];
-        db.push(order);
-        localStorage.setItem('edf_pro_site', JSON.stringify(db));
-        alert("Vente validée !");
-        cart = []; document.getElementById('client-name').value = ""; updateUI();
+    function validateVente() {
+        const client = document.getElementById('client-id').value;
+        if(!client || panier.length === 0) return alert("Erreur: Données transactionnelles incomplètes.");
+        const total = panier.reduce((s, c) => s + (c.price * c.qte), 0);
+        const vente = { client, total, details: panier.map(c => `${c.qte}x ${c.name}`).join(', '), date: new Date().toLocaleString('fr-FR') };
+        let history = JSON.parse(localStorage.getItem('edf_corporate_sales')) || [];
+        history.push(vente);
+        localStorage.setItem('edf_corporate_sales', JSON.stringify(history));
+        alert("Transaction approuvée et enregistrée dans le système.");
+        panier = []; document.getElementById('client-id').value = ""; refreshPanierUI();
     }
 
-    function show(id) {
+    function navigateTo(id) {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-        const link = document.getElementById('l-' + id.split('-')[0]);
-        if(link) link.classList.add('active');
+        const activeLink = document.getElementById('nav-' + id.split('-')[0]);
+        if(activeLink) activeLink.classList.add('active');
         window.scrollTo(0,0);
     }
 
-    function checkStaff() {
-        const c = document.getElementById('staff-code').value;
-        if(c === "1981") { show('dash'); renderDash(); }
-        else if(c === "2009") { show('logs'); renderLogs(); }
-        else alert("Accès non autorisé.");
-        document.getElementById('staff-code').value = "";
+    function authenticate() {
+        const val = document.getElementById('auth-input').value;
+        if(val === "1981") { navigateTo('dash'); populateDashboard(); }
+        else if(val === "2009") { navigateTo('logs'); populateLogs(); }
+        else alert("Accès refusé. Autorisation de sécurité requise.");
+        document.getElementById('auth-input').value = "";
     }
 
-    function renderDash() {
-        const db = JSON.parse(localStorage.getItem('edf_pro_site')) || [];
-        document.getElementById('sales-data').innerHTML = db.reverse().map(o => `
-            <div style="background:var(--surface); padding:25px; border-radius:20px; border:1px solid var(--border); margin-bottom:15px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><b>${o.name}</b><small>${o.date}</small></div>
-                <p style="color:var(--text-dim); font-size:0.9rem;">${o.summary}</p>
-                <div style="margin-top:15px; color:var(--primary); font-weight:800; font-size:1.5rem;">${o.total.toLocaleString()} €</div>
+    function populateDashboard() {
+        const history = JSON.parse(localStorage.getItem('edf_corporate_sales')) || [];
+        document.getElementById('sales-history').innerHTML = history.reverse().map(o => `
+            <tr>
+                <td style="color:#64748b; font-size: 0.7rem;">${o.date}</td>
+                <td style="font-weight:700;">${o.client}</td>
+                <td style="color:var(--text-dim); font-size: 0.8rem;">${o.details}</td>
+                <td><span class="status-badge">VALIDE</span></td>
+                <td style="font-family:'Montserrat'; font-weight:800; color:var(--edf-blue);">${o.total.toLocaleString()}€</td>
+            </tr>
+        `).join('') || "<tr><td colspan='5' style='text-align:center; padding: 50px; opacity: 0.3;'>Aucune donnée archivée.</td></tr>";
+    }
+
+    function populateLogs() {
+        const history = JSON.parse(localStorage.getItem('edf_corporate_sales')) || [];
+        document.getElementById('terminal-output').innerHTML = history.map(o => `
+            <div class="log-entry">
+                <span class="ts">[${o.date}]</span> <span style="color:#4ade80">[TRANS_SUCCESS]</span> Node: EDF_FR_SERVER | User: <b>${o.client.toUpperCase()}</b> | Value: <b>${o.total}€</b><br>
+                > Data_Stream: { ${o.details} }
             </div>
-        `).join('') || "Aucune transaction.";
+        `).join('') + `<div class="log-entry animate__animated animate__pulse animate__infinite">>_ Monitoring en cours...</div>`;
     }
 
-    function renderLogs() {
-        const db = JSON.parse(localStorage.getItem('edf_pro_site')) || [];
-        document.getElementById('log-output').innerHTML = db.map(o => `
-            <div style="margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px;">
-                <span style="color:#64748b;">[${o.date}]</span> <span style="color:var(--accent)">[SYS_SALE]</span> Client: ${o.name} | Total: ${o.total}€ | Data: ${o.summary}
-            </div>
-        `).join('') + ">_ System Monitoring Active...";
+    function sendFeedback() {
+        if(!document.getElementById('feedback-content').value) return;
+        alert("Rapport transmis avec succès au centre de gestion de la qualité.");
+        document.getElementById('feedback-content').value = "";
     }
 
-    function sendReview() {
-        if(!document.getElementById('review-text').value) return;
-        alert("Rapport envoyé."); document.getElementById('review-text').value = "";
+    function clearHistory() {
+        if(confirm("Confirmer la purge complète du système ? Cette action est irréversible.")) {
+            localStorage.removeItem('edf_corporate_sales'); populateDashboard(); populateLogs();
+        }
     }
 
-    window.onload = init;
+    window.onload = initializeStore;
 </script>
 
 </body>
