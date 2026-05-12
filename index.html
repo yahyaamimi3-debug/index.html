@@ -3,341 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDF | NEXUS CORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>EDF | Solutions Énergie Haute Performance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary: #00f2ff;
-            --accent: #ff7900;
-            --bg: #05070a;
-            --card: rgba(255, 255, 255, 0.03);
-            --border: rgba(0, 242, 255, 0.2);
-            --text: #e2e8f0;
+            --primary: #005BBB;
+            --accent: #FF7900;
+            --bg: #020617;
+            --surface: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: blur(12px);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text);
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 50%, #0a1120 0%, #05070a 100%);
+        * { margin:0; padding:0; box-sizing:border-box; outline: none; border: none; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* ARRIÈRE-PLAN DYNAMIQUE */
+        .bg-glow {
+            position: fixed; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(0, 91, 187, 0.08) 0%, transparent 70%);
+            top: -20%; right: -10%; z-index: -1;
         }
 
-        /* EFFET DE GRILLE EN ARRIÈRE-PLAN */
-        body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.05; z-index: -1;
-        }
-
-        /* NAVIGATION NÉON */
+        /* NAVIGATION PRO */
         nav { 
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 1000px; height: 70px;
-            background: rgba(10, 15, 25, 0.8); backdrop-filter: blur(15px);
-            border: 1px solid var(--border); border-radius: 100px;
-            z-index: 1000; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: var(--glass);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+            display: flex; align-items: center; justify-content: space-around;
         }
 
-        .logo { font-family: 'Orbitron'; font-weight: 900; color: #fff; font-size: 1.2rem; letter-spacing: 2px; }
-        .logo span { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        .logo { font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: #fff; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
 
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { 
-            color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+            color: var(--text-dim); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: 0.3s; cursor: pointer;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); }
 
         /* SECTIONS */
-        section { min-height: 100vh; padding: 150px 5% 50px; display: none; }
-        section.active { display: block; animation: fadeIn 0.8s ease; }
+        section { min-height: 100vh; padding: 120px 5% 60px; display: none; }
+        section.active { display: block; animation: fadeInUp 0.5s ease forwards; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* TITRES HAUTE TECHNOLOGIE */
-        .section-header { margin-bottom: 50px; }
-        .section-header h2 { font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; text-transform: uppercase; }
-        .section-header .line { width: 60px; height: 4px; background: var(--primary); margin-top: 10px; box-shadow: 0 0 15px var(--primary); }
+        /* ACCUEIL HERO */
+        .hero { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; }
+        .hero p { max-width: 600px; color: var(--text-dim); font-size: 1.2rem; margin-bottom: 40px; }
 
-        /* BOUTIQUE CYBER */
-        .main-layout { display: grid; grid-template-columns: 1fr 400px; gap: 40px; }
-        .cyber-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        /* BOUTIQUE GRID */
+        .shop-container { display: grid; grid-template-columns: 1fr 350px; gap: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .module-card { 
-            background: var(--card); border: 1px solid var(--border); border-radius: 15px;
-            padding: 30px; position: relative; overflow: hidden; transition: 0.4s;
+        .card { 
+            background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px;
+            transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;
         }
-        .module-card::after { 
-            content: "MODULE"; position: absolute; top: 10px; right: 15px; 
-            font-family: 'Orbitron'; font-size: 0.6rem; color: var(--border);
-        }
-        .module-card:hover { border-color: var(--primary); background: rgba(0, 242, 255, 0.05); box-shadow: 0 0 20px rgba(0, 242, 255, 0.15); }
-        .module-card h3 { font-family: 'Orbitron'; font-size: 1rem; margin-bottom: 20px; color: #fff; height: 40px; }
-        .module-price { color: var(--primary); font-family: 'Orbitron'; font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; display: block; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .card h3 { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; height: 50px; }
+        .price { color: var(--accent); font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; }
 
-        /* CONTROLES QTY */
-        .cyber-qty { 
-            display: flex; align-items: center; justify-content: center; 
-            border: 1px solid var(--border); border-radius: 5px; margin-bottom: 20px; background: rgba(0,0,0,0.3);
-        }
-        .qty-btn { background: none; color: var(--primary); padding: 10px 15px; cursor: pointer; font-size: 1.2rem; }
-        .qty-val { width: 50px; text-align: center; font-family: 'Orbitron'; color: #fff; }
+        /* QUANTITÉS */
+        .qty-box { display: flex; align-items: center; background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 20px; padding: 5px; }
+        .qty-btn { width: 35px; height: 35px; color: white; cursor: pointer; background: none; font-size: 1.2rem; }
+        .qty-num { width: 40px; text-align: center; font-weight: 800; color: var(--primary); }
 
-        .cyber-btn { 
-            width: 100%; padding: 15px; background: none; border: 1px solid var(--primary); color: var(--primary);
-            font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.3s;
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        .btn { 
+            background: var(--primary); color: white; padding: 12px 25px; border-radius: 10px;
+            font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s;
         }
-        .cyber-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* PANIER INTERFACE */
-        .cyber-cart { 
-            background: rgba(10, 15, 25, 0.6); border: 1px solid var(--primary); border-radius: 20px;
-            padding: 30px; position: sticky; top: 110px; backdrop-filter: blur(10px);
+        /* PANIER */
+        .sidebar { 
+            background: var(--surface); border: 1px solid var(--primary); border-radius: 24px; 
+            padding: 30px; height: fit-content; position: sticky; top: 100px;
         }
-        .cart-title { font-family: 'Orbitron'; font-size: 1rem; color: var(--primary); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
 
-        /* INPUTS CYBER */
+        /* TERMINAL LOGS (2009) */
+        .terminal { 
+            background: #000; border: 1px solid #1e293b; border-radius: 12px; padding: 25px;
+            font-family: 'Courier New', monospace; height: 500px; overflow-y: auto; color: #4ade80;
+        }
+
+        /* INPUTS PRO */
         input, textarea { 
-            width: 100%; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid var(--border);
-            color: #fff; font-family: 'Inter'; margin-bottom: 15px; border-radius: 5px;
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-radius: 12px; color: white; margin-bottom: 15px; font-family: inherit;
         }
-        input:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--border); }
-
-        /* DASHBOARD (1981) */
-        .data-row { 
-            background: var(--card); border-left: 4px solid var(--primary); 
-            padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;
-        }
-
-        /* LOGS TERMINAL (2009) */
-        .console { 
-            background: #000; border: 1px solid var(--border); padding: 30px; border-radius: 10px;
-            font-family: 'Courier New', monospace; height: 60vh; overflow-y: auto;
-        }
-        .line-ok { color: #00f2ff; margin-bottom: 8px; font-size: 0.9rem; }
-        .line-ts { color: #4b5563; margin-right: 15px; }
+        input:focus { border-color: var(--primary); }
 
     </style>
 </head>
 <body>
 
+<div class="bg-glow"></div>
+
 <nav>
-    <div class="logo" onclick="go('home')">EDF<span>_</span>NEXUS</div>
+    <div class="logo" onclick="show('home')">EDF<span>.</span></div>
     <div class="nav-links">
-        <a onclick="go('home')" id="n-home" class="active">Interface</a>
-        <a onclick="go('shop')" id="n-shop">Modules</a>
-        <a onclick="go('avis')" id="n-avis">Feedback</a>
-        <a onclick="go('portal')" id="n-portal">Staff_Access</a>
+        <a onclick="show('home')" id="l-home" class="active">Vision</a>
+        <a onclick="show('shop')" id="l-shop">Solutions</a>
+        <a onclick="show('avis')" id="l-avis">Expertise</a>
+        <a onclick="show('portal')" id="l-portal">Staff Portal</a>
     </div>
 </nav>
 
-<section id="home" class="active" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 style="font-family: 'Orbitron'; font-size: 5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 10px;">CORE<span>_SYSTEM</span></h1>
-    <p style="letter-spacing: 8px; color: var(--primary); font-family: 'Orbitron'; font-size: 0.9rem; margin-bottom: 40px; text-transform: uppercase;">Énergie / Sécurité / Performance</p>
-    <div style="max-width: 600px; color: #94a3b8; line-height: 1.8; margin-bottom: 40px;">
-        Système centralisé de gestion des infrastructures EDF. Déploiement de modules énergétiques de nouvelle génération et monitoring de réseau haute-tension.
-    </div>
-    <button class="cyber-btn" style="width: auto; padding: 20px 60px;" onclick="go('shop')">Initialiser Catalogue</button>
+<section id="home" class="hero active">
+    <div style="text-transform: uppercase; letter-spacing: 4px; color: var(--accent); font-weight: 700; margin-bottom: 10px;">L'énergie de demain</div>
+    <h1>Expertise & <span style="color:var(--primary)">Fiabilité</span></h1>
+    <p>Leader mondial des solutions énergétiques bas-carbone. Nous accompagnons les infrastructures critiques et les particuliers vers une performance durable.</p>
+    <button class="btn" style="width:auto; padding: 18px 40px; border-radius: 50px;" onclick="show('shop')">Explorer le catalogue</button>
 </section>
 
 <section id="shop">
-    <div class="section-header">
-        <h2>Hardware_Modules</h2>
-        <div class="line"></div>
-    </div>
-    
-    <div class="main-layout">
-        <div class="cyber-grid" id="module-display"></div>
+    <div class="shop-container">
+        <div>
+            <h2 style="margin-bottom: 40px; font-family: 'Montserrat'; font-size: 2rem;">Infrastructures & Équipements</h2>
+            <div class="grid" id="product-grid"></div>
+        </div>
         
-        <aside class="cyber-cart">
-            <div class="cart-title"><i class="fa-solid fa-microchip"></i> Flux_Transactionnel</div>
-            <input type="text" id="user-id" placeholder="ID_CLIENT_REQUIS">
-            <div id="cart-list" style="margin-bottom: 30px; font-size: 0.85rem;">
-                <p style="text-align:center; opacity:0.3; padding: 30px 0;">[ Aucun module chargé ]</p>
+        <aside class="sidebar">
+            <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-file-invoice"></i> Bon de commande</h3>
+            <input type="text" id="client-name" placeholder="Nom du Client (RP)">
+            <div id="cart-content" style="margin-bottom: 20px; font-size: 0.9rem;">
+                <p style="text-align:center; opacity:0.5; padding: 20px;">Aucun article sélectionné.</p>
             </div>
-            <div style="display:flex; justify-content:space-between; border-top: 1px solid var(--border); padding-top:20px; margin-bottom: 30px;">
-                <span style="font-family:'Orbitron'; font-size: 0.7rem; opacity: 0.6;">CREDITS_REQUIS :</span>
-                <span id="total-price" style="font-family:'Orbitron'; color:var(--primary); font-size: 1.8rem; text-shadow: 0 0 10px var(--primary);">0 €</span>
+            <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:20px;">
+                <span style="font-weight: 600; opacity:0.6;">TOTAL HT</span>
+                <span id="total-val" style="font-weight:800; color:var(--accent); font-size: 1.4rem;">0 €</span>
             </div>
-            <button class="cyber-btn" onclick="finalize()">Confirmer Transfert</button>
+            <button class="btn" style="margin-top:20px; background:var(--accent);" onclick="submitOrder()">Valider la vente</button>
         </aside>
     </div>
 </section>
 
 <section id="avis">
-    <div style="max-width: 800px; margin: 0 auto;">
-        <div class="section-header">
-            <h2>Rapport_Expertise</h2>
-            <div class="line"></div>
-        </div>
-        <div style="background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 10px;">
-            <p style="margin-bottom: 30px; color: #94a3b8;">Soumission de rapports techniques suite à l'utilisation des modules NEXUS.</p>
-            <textarea id="report-input" rows="8" placeholder="Entrez votre log de maintenance ou avis client..."></textarea>
-            <button class="cyber-btn" style="width: auto; padding: 15px 40px;" onclick="sendReport()">Envoyer Log</button>
-        </div>
+    <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+        <h2 style="margin-bottom: 20px;">Rapport de satisfaction</h2>
+        <p style="margin-bottom: 40px; color: var(--text-dim);">Votre retour d'expérience permet à nos ingénieurs d'optimiser nos solutions.</p>
+        <textarea id="review-text" rows="6" placeholder="Décrivez votre expérience client..."></textarea>
+        <button class="btn" onclick="sendReview()">Soumettre le rapport</button>
     </div>
 </section>
 
 <section id="portal">
     <div style="height: 60vh; display: flex; align-items: center; justify-content: center;">
-        <div style="background: rgba(0, 242, 255, 0.02); border: 1px solid var(--primary); padding: 50px; border-radius: 10px; width: 400px; text-align: center; box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.05);">
-            <div style="margin-bottom: 30px; color: var(--primary);"><i class="fa-solid fa-shield-halved fa-4x"></i></div>
-            <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Security_Pass</h2>
-            <input type="password" id="pass-code" placeholder="PIN" style="text-align: center; font-family:'Orbitron'; font-size: 1.5rem; letter-spacing: 10px;">
-            <button class="cyber-btn" onclick="auth()">Décrypter</button>
+        <div style="background: var(--surface); padding: 50px; border-radius: 30px; border: 1px solid var(--border); width: 400px; text-align: center; backdrop-filter: var(--glass);">
+            <i class="fa-solid fa-lock" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+            <h2 style="margin-bottom: 30px;">Accès Restreint</h2>
+            <input type="password" id="staff-code" placeholder="Code d'autorisation" style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
+            <button class="btn" onclick="checkStaff()">Authentification</button>
         </div>
     </div>
 </section>
 
 <section id="dash">
-    <div class="section-header">
-        <h2>Database_Archive</h2>
-        <div class="line"></div>
-    </div>
-    <div id="archive-list"></div>
+    <h2 style="margin-bottom: 30px;">Historique Transactionnel</h2>
+    <div id="sales-data"></div>
 </section>
 
 <section id="logs">
-    <div class="section-header">
-        <h2>Live_System_Logs</h2>
-        <div class="line"></div>
-    </div>
-    <div class="console" id="console-log"></div>
+    <h2 style="margin-bottom: 30px; color: var(--primary);">System Monitoring v2.009</h2>
+    <div class="terminal" id="log-output"></div>
 </section>
 
 <script>
-    const db = [
-        { id: 1, name: "Core Electrique Blindé v.3", price: 1699 },
-        { id: 2, name: "Scanner IA Sentinel 360", price: 799 },
-        { id: 3, name: "Nexus Power Hub Expert", price: 549 },
-        { id: 4, name: "Réseau LED Cobalt", price: 359 },
-        { id: 5, name: "Cellule Photovoltaïque 500W", price: 1200 },
-        { id: 6, name: "Lustre Royal Crystal (Asset)", price: 26000 }
+    const items = [
+        { id: 1, name: "Armoire Électrique Blindée", price: 1699 },
+        { id: 2, name: "Caméra Dôme AI 360°", price: 799 },
+        { id: 3, name: "Tableau Divisionnaire Pro", price: 549 },
+        { id: 4, name: "Néon Industriel Bleu", price: 359 },
+        { id: 5, name: "Panneau Solaire 500W", price: 1200 },
+        { id: 6, name: "Lustre Royal Crystal", price: 26000 }
     ];
 
     let cart = [];
 
     function init() {
-        const display = document.getElementById('module-display');
-        display.innerHTML = db.map(p => `
-            <div class="module-card">
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = items.map(p => `
+            <div class="card">
                 <h3>${p.name}</h3>
-                <span class="module-price">${p.price.toLocaleString()} €</span>
-                <div class="cyber-qty">
-                    <button class="qty-btn" onclick="chQty(${p.id}, -1)">-</button>
-                    <span class="qty-val" id="val-${p.id}">1</span>
-                    <button class="qty-btn" onclick="chQty(${p.id}, 1)">+</button>
+                <div class="price">${p.price.toLocaleString()} €</div>
+                <div class="qty-box">
+                    <button class="qty-btn" onclick="qty(${p.id}, -1)">-</button>
+                    <span class="qty-num" id="q-${p.id}">1</span>
+                    <button class="qty-btn" onclick="qty(${p.id}, 1)">+</button>
                 </div>
-                <button class="cyber-btn" onclick="add(${p.id})">Charger Module</button>
+                <button class="btn" onclick="add(${p.id})">Ajouter</button>
             </div>
         `).join('');
     }
 
-    function chQty(id, d) {
-        const el = document.getElementById(`val-${id}`);
+    function qty(id, d) {
+        const el = document.getElementById(`q-${id}`);
         let v = parseInt(el.innerText) + d;
         if(v >= 1) el.innerText = v;
     }
 
     function add(id) {
-        const item = db.find(p => p.id === id);
-        const q = parseInt(document.getElementById(`val-${id}`).innerText);
-        const exists = cart.find(c => c.id === id);
-        if(exists) exists.q += q; else cart.push({...item, q});
-        document.getElementById(`val-${id}`).innerText = "1";
-        renderCart();
+        const product = items.find(p => p.id === id);
+        const count = parseInt(document.getElementById(`q-${id}`).innerText);
+        const inCart = cart.find(c => c.id === id);
+        if(inCart) inCart.count += count; else cart.push({...product, count});
+        document.getElementById(`q-${id}`).innerText = "1";
+        updateUI();
     }
 
-    function renderCart() {
-        const list = document.getElementById('cart-list');
+    function updateUI() {
+        const cont = document.getElementById('cart-content');
         let total = 0;
         if(cart.length === 0) {
-            list.innerHTML = `<p style="text-align:center; opacity:0.3; padding: 30px 0;">[ Aucun module chargé ]</p>`;
+            cont.innerHTML = `<p style="text-align:center; opacity:0.5; padding: 20px;">Aucun article sélectionné.</p>`;
         } else {
-            list.innerHTML = cart.map(c => {
-                total += (c.price * c.q);
-                return `<div style="display:flex; justify-content:space-between; margin-bottom:10px; font-family:'Orbitron'; font-size:0.7rem; color:var(--primary);">
-                    <span>${c.q}x ${c.name}</span>
-                    <span>${(c.price * c.q).toLocaleString()}€</span>
+            cont.innerHTML = cart.map(c => {
+                total += (c.price * c.count);
+                return `<div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.85rem; background:rgba(255,255,255,0.02); padding:10px; border-radius:8px;">
+                    <span><b>x${c.count}</b> ${c.name}</span>
+                    <b>${(c.price * c.count).toLocaleString()}€</b>
                 </div>`;
             }).join('');
         }
-        document.getElementById('total-price').innerText = total.toLocaleString() + " €";
+        document.getElementById('total-val').innerText = total.toLocaleString() + " €";
     }
 
-    function finalize() {
-        const client = document.getElementById('user-id').value;
-        if(!client || cart.length === 0) return alert("ERREUR: ID CLIENT REQUIS / FLUX VIDE");
-        const total = cart.reduce((s, c) => s + (c.price * c.q), 0);
-        const order = { client, total, content: cart.map(c => `${c.q}x ${c.name}`).join(', '), date: new Date().toLocaleString() };
-        let history = JSON.parse(localStorage.getItem('edf_nexus_logs')) || [];
-        history.push(order);
-        localStorage.setItem('edf_nexus_logs', JSON.stringify(history));
-        alert("TRANSFERT RÉUSSI: Données injectées dans la Database.");
-        cart = []; document.getElementById('user-id').value = ""; renderCart();
+    function submitOrder() {
+        const name = document.getElementById('client-name').value;
+        if(!name || cart.length === 0) return alert("Veuillez remplir le nom et le panier.");
+        const total = cart.reduce((s, c) => s + (c.price * c.count), 0);
+        const order = { name, total, summary: cart.map(c => `${c.count}x ${c.name}`).join(', '), date: new Date().toLocaleString() };
+        let db = JSON.parse(localStorage.getItem('edf_pro_site')) || [];
+        db.push(order);
+        localStorage.setItem('edf_pro_site', JSON.stringify(db));
+        alert("Vente validée !");
+        cart = []; document.getElementById('client-name').value = ""; updateUI();
     }
 
-    function go(id) {
+    function show(id) {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-        document.getElementById('n-' + id.split('-')[0]).classList.add('active');
+        const link = document.getElementById('l-' + id.split('-')[0]);
+        if(link) link.classList.add('active');
         window.scrollTo(0,0);
     }
 
-    function auth() {
-        const code = document.getElementById('pass-code').value;
-        if(code === "1981") { go('dash'); showArchive(); }
-        else if(code === "2009") { go('logs'); showLogs(); }
-        else alert("ACCESS_DENIED: PIN INCORRECT");
-        document.getElementById('pass-code').value = "";
+    function checkStaff() {
+        const c = document.getElementById('staff-code').value;
+        if(c === "1981") { show('dash'); renderDash(); }
+        else if(c === "2009") { show('logs'); renderLogs(); }
+        else alert("Accès non autorisé.");
+        document.getElementById('staff-code').value = "";
     }
 
-    function showArchive() {
-        const logs = JSON.parse(localStorage.getItem('edf_nexus_logs')) || [];
-        document.getElementById('archive-list').innerHTML = logs.reverse().map(l => `
-            <div class="data-row">
-                <div>
-                    <div style="font-family:'Orbitron'; font-size: 0.8rem; margin-bottom:5px;">ID: ${l.client}</div>
-                    <div style="font-size:0.75rem; color:#64748b;">${l.content}</div>
-                </div>
-                <div style="text-align:right;">
-                    <div style="font-family:'Orbitron'; color:var(--primary); font-size: 1.2rem;">${l.total.toLocaleString()}€</div>
-                    <div style="font-size:0.6rem; opacity:0.5;">DATE: ${l.date}</div>
-                </div>
+    function renderDash() {
+        const db = JSON.parse(localStorage.getItem('edf_pro_site')) || [];
+        document.getElementById('sales-data').innerHTML = db.reverse().map(o => `
+            <div style="background:var(--surface); padding:25px; border-radius:20px; border:1px solid var(--border); margin-bottom:15px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><b>${o.name}</b><small>${o.date}</small></div>
+                <p style="color:var(--text-dim); font-size:0.9rem;">${o.summary}</p>
+                <div style="margin-top:15px; color:var(--primary); font-weight:800; font-size:1.5rem;">${o.total.toLocaleString()} €</div>
             </div>
-        `).join('') || "<p style='opacity:0.3;'>ARCHIVES VIDES</p>";
+        `).join('') || "Aucune transaction.";
     }
 
-    function showLogs() {
-        const logs = JSON.parse(localStorage.getItem('edf_nexus_logs')) || [];
-        document.getElementById('console-log').innerHTML = logs.map(l => `
-            <div class="line-ok">
-                <span class="line-ts">[${l.date}]</span> >> TRANSACTION_CONFIRMED | NODE: NEXUS_01 | USER: ${l.client} | VAL: ${l.total}€ | DATA: [${l.content}]
+    function renderLogs() {
+        const db = JSON.parse(localStorage.getItem('edf_pro_site')) || [];
+        document.getElementById('log-output').innerHTML = db.map(o => `
+            <div style="margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px;">
+                <span style="color:#64748b;">[${o.date}]</span> <span style="color:var(--accent)">[SYS_SALE]</span> Client: ${o.name} | Total: ${o.total}€ | Data: ${o.summary}
             </div>
-        `).join('') + "<div class='line-ok' style='animation: blink 1s infinite;'>>_ LISTENING_FOR_STREAMS...</div>";
+        `).join('') + ">_ System Monitoring Active...";
     }
 
-    function sendReport() {
-        if(!document.getElementById('report-input').value) return;
-        alert("LOG TRANSMIS."); document.getElementById('report-input').value = "";
+    function sendReview() {
+        if(!document.getElementById('review-text').value) return;
+        alert("Rapport envoyé."); document.getElementById('review-text').value = "";
     }
 
     window.onload = init;
 </script>
-
-<style>
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    textarea { font-family: 'Courier New', monospace; font-size: 0.9rem; }
-</style>
 
 </body>
 </html>
