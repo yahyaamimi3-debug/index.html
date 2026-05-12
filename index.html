@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset<!DOCTYPE html>
-<html lang="fr">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDF | Système de Gestion Énergétique</title>
@@ -16,6 +13,7 @@
             --card: rgba(255, 255, 255, 0.03);
             --border: rgba(0, 242, 255, 0.2);
             --text: #e2e8f0;
+            --danger: #ff4444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
@@ -26,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* EFFET DE GRILLE NÉON */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -35,7 +32,6 @@
             opacity: 0.1; z-index: -1;
         }
 
-        /* NAVIGATION EDF */
         nav { 
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 1100px; height: 70px;
@@ -55,12 +51,10 @@
         }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
 
-        /* SECTIONS */
         section { display: none; min-height: 100vh; padding: 120px 5% 50px; }
         section.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* PAGE D'ACCUEIL */
         .hero { text-align: center; max-width: 900px; margin: 0 auto; }
         .hero h1 { font-family: 'Orbitron'; font-size: 3.5rem; color: #fff; margin-bottom: 20px; }
         .hero p.tagline { color: var(--primary); font-family: 'Orbitron'; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
@@ -70,7 +64,6 @@
         .usp-card h3 { color: var(--primary); font-family: 'Orbitron'; font-size: 0.9rem; margin-bottom: 10px; }
         .usp-card p { font-size: 0.85rem; color: #94a3b8; }
 
-        /* BOUTIQUE */
         .shop-container { display: grid; grid-template-columns: 1fr 350px; gap: 30px; }
         .category-title { font-family: 'Orbitron'; color: var(--primary); font-size: 0.8rem; letter-spacing: 2px; margin: 30px 0 15px; border-left: 3px solid var(--primary); padding-left: 10px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
@@ -83,7 +76,6 @@
         .card h3 { font-family: 'Orbitron'; font-size: 0.8rem; color: #fff; margin-bottom: 10px; height: 35px; overflow: hidden; }
         .card .price { color: var(--primary); font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; display: block; }
 
-        /* CONTROLES */
         .qty-box { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 5px; margin-bottom: 15px; width: fit-content; }
         .qty-box button { background: none; border: none; color: var(--primary); padding: 5px 12px; cursor: pointer; }
         .qty-box span { width: 35px; text-align: center; font-family: 'Orbitron'; border-left: 1px solid var(--border); border-right: 1px solid var(--border); font-size: 0.9rem; }
@@ -94,6 +86,8 @@
             transition: 0.3s; clip-path: polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%);
         }
         .btn-cyber:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
+        .btn-danger { border-color: var(--danger); color: var(--danger); font-size: 0.6rem; padding: 5px 10px; }
+        .btn-danger:hover { background: var(--danger); color: #fff; box-shadow: 0 0 10px var(--danger); }
 
         .sidebar { background: rgba(0,0,0,0.4); border: 1px solid var(--primary); padding: 25px; border-radius: 15px; height: fit-content; position: sticky; top: 110px; }
         .cart-item { font-size: 0.8rem; display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -148,8 +142,7 @@
 
 <section id="shop">
     <div class="shop-container">
-        <div id="catalog">
-            </div>
+        <div id="catalog"></div>
         <div class="sidebar">
             <h2 style="font-family: 'Orbitron'; font-size: 0.9rem; color: var(--primary); margin-bottom: 20px;">BON_DE_COMMANDE</h2>
             <input type="text" id="client-rp" placeholder="NOM_DU_CLIENT">
@@ -166,8 +159,13 @@
 <section id="avis">
     <div style="max-width: 700px; margin: 0 auto;">
         <h2 style="font-family: 'Orbitron'; margin-bottom: 20px;">Rapport_Expertise</h2>
-        <textarea rows="8" placeholder="Commentaires sur l'installation ou retour d'expérience..."></textarea>
-        <button class="btn-cyber" style="width: auto; padding: 10px 40px;">Envoyer_Rapport</button>
+        <form action="https://formsubmit.co/yahyaamimi3@gmail.com" method="POST" id="avis-form">
+            <input type="hidden" name="_subject" value="Nouveau Rapport d'Expertise EDF">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="nom" placeholder="Votre nom / Identifiant" required>
+            <textarea name="message" rows="8" placeholder="Commentaires sur l'installation ou retour d'expérience..." required></textarea>
+            <button type="submit" class="btn-cyber" style="width: auto; padding: 10px 40px;">Envoyer par Email</button>
+        </form>
     </div>
 </section>
 
@@ -180,10 +178,19 @@
 </section>
 
 <section id="logs-1981">
-    <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;">Archive_Database_1981</h2>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2 style="font-family: 'Orbitron';">Archive_Database_1981</h2>
+        <button class="btn-cyber btn-danger" style="width: auto;" onclick="clearAllLogs()">Vider_Base_Données</button>
+    </div>
     <table>
         <thead>
-            <tr><th>DATE</th><th>CLIENT</th><th>DÉTAILS</th><th>TOTAL</th></tr>
+            <tr>
+                <th>DATE</th>
+                <th>CLIENT</th>
+                <th>DÉTAILS</th>
+                <th>TOTAL</th>
+                <th>ACTION</th>
+            </tr>
         </thead>
         <tbody id="table-logs"></tbody>
     </table>
@@ -253,7 +260,7 @@
     function add(id, name, price) {
         const q = parseInt(document.getElementById(`q-${id}`).innerText);
         const exists = panier.find(p => p.id === id);
-        if(exists) exists.q += q; else panier.push({id, name, price, q});
+        if(exists) exists.q += q; else panier.push({id, name, price, q, timestamp: Date.now()});
         renderCart();
     }
 
@@ -270,7 +277,13 @@
         const client = document.getElementById('client-rp').value;
         if(!client || panier.length === 0) return alert("ERREUR: NOM CLIENT OU PANIER VIDE");
         const total = panier.reduce((s, i) => s + (i.price * i.q), 0);
-        const data = { client, total, info: panier.map(p => `${p.q}x ${p.name}`).join(', '), date: new Date().toLocaleString() };
+        const data = { 
+            id: Date.now(),
+            client, 
+            total, 
+            info: panier.map(p => `${p.q}x ${p.name}`).join(', '), 
+            date: new Date().toLocaleString() 
+        };
         let history = JSON.parse(localStorage.getItem('edf_db_secure')) || [];
         history.push(data);
         localStorage.setItem('edf_db_secure', JSON.stringify(history));
@@ -296,10 +309,33 @@
         document.getElementById('pass').value = "";
     }
 
+    // FONCTIONS DE SUPPRESSION
+    function deleteLog(id) {
+        if(confirm("Confirmer la suppression de cette commande ?")) {
+            let history = JSON.parse(localStorage.getItem('edf_db_secure')) || [];
+            history = history.filter(item => item.id !== id);
+            localStorage.setItem('edf_db_secure', JSON.stringify(history));
+            renderTable();
+        }
+    }
+
+    function clearAllLogs() {
+        if(confirm("ATTENTION : Voulez-vous vraiment effacer TOUTES les commandes ?")) {
+            localStorage.setItem('edf_db_secure', JSON.stringify([]));
+            renderTable();
+        }
+    }
+
     function renderTable() {
         const history = JSON.parse(localStorage.getItem('edf_db_secure')) || [];
-        document.getElementById('table-logs').innerHTML = history.reverse().map(h => `
-            <tr><td>${h.date}</td><td><b>${h.client}</b></td><td style="font-size:0.7rem; color:#94a3b8;">${h.info}</td><td style="color:var(--primary); font-weight:bold;">${h.total.toLocaleString()}€</td></tr>
+        document.getElementById('table-logs').innerHTML = history.slice().reverse().map(h => `
+            <tr>
+                <td>${h.date}</td>
+                <td><b>${h.client}</b></td>
+                <td style="font-size:0.7rem; color:#94a3b8;">${h.info}</td>
+                <td style="color:var(--primary); font-weight:bold;">${h.total.toLocaleString()}€</td>
+                <td><button class="btn-cyber btn-danger" onclick="deleteLog(${h.id})">Supprimer</button></td>
+            </tr>
         `).join('');
     }
 
