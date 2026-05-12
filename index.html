@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDF | Digital Store</title>
+    <title>EDF | Solution Énergie</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -20,6 +20,7 @@
         * { margin:0; padding:0; box-sizing:border-box; outline: none; border: none; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
+        /* EFFET DE LUMIÈRE */
         .glow {
             position: fixed; width: 50vw; height: 50vw;
             background: radial-gradient(circle, rgba(0, 102, 255, 0.07) 0%, transparent 70%);
@@ -34,36 +35,47 @@
             display: flex; align-items: center; justify-content: space-between; padding: 0 1.2rem;
         }
 
+        .logo { font-weight: 800; color: white; text-decoration: none; font-size: 1.2rem; }
+        .logo span { color: var(--accent); }
+
         .nav-links button { 
             background: transparent; color: var(--text-dim); font-weight: 600; font-size: 0.8rem;
             padding: 8px 18px; border-radius: 100px; cursor: pointer; transition: 0.4s;
         }
         .nav-links button.active { background: var(--primary); color: white; }
 
-        .shop-layout { display: grid; grid-template-columns: 1fr 380px; gap: 50px; max-width: 1300px; margin: 0 auto; padding: 140px 2rem; }
+        /* LAYOUT BOUTIQUE */
+        .shop-layout { display: grid; grid-template-columns: 1fr 380px; gap: 40px; max-width: 1300px; margin: 0 auto; padding: 120px 2rem; }
         
         .product-card { 
             background: var(--card); border: 1px solid var(--border) !important; border-radius: 24px; padding: 30px 20px;
-            display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.4s;
+            display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.4s; margin-bottom: 20px;
         }
 
-        /* QUANTITY SELECTOR */
-        .qty-box { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 12px; }
-        .qty-btn { background: none; color: white; font-size: 1.2rem; cursor: pointer; font-weight: 800; padding: 0 10px; }
-        .qty-val { font-weight: 800; color: var(--primary); font-size: 1.1rem; min-width: 20px; }
+        /* SYSTÈME DE QUANTITÉ */
+        .qty-selector { display: flex; align-items: center; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 15px; padding: 5px; }
+        .qty-btn { width: 35px; height: 35px; background: none; color: white; font-size: 1.2rem; cursor: pointer; font-weight: bold; }
+        .qty-val { width: 40px; text-align: center; font-weight: 800; color: var(--primary); }
 
         .btn-action { 
-            background: #fff; color: #000; padding: 14px 30px; border-radius: 14px; 
+            background: #fff; color: #000; padding: 12px 25px; border-radius: 12px; 
             font-weight: 800; cursor: pointer; transition: 0.3s; width: 100%;
         }
         .btn-action:hover { background: var(--primary); color: white; }
 
-        /* LOGS */
-        .log-screen { background: #0f172a; border: 1px solid var(--border); border-radius: 15px; padding: 20px; font-family: monospace; min-height: 400px; }
-        .log-line { margin-bottom: 8px; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        /* LOGS ÉCRAN */
+        .log-box { 
+            background: #070b14; border: 1px solid var(--primary); border-radius: 15px; 
+            padding: 20px; font-family: 'Courier New', monospace; min-height: 450px; overflow-y: auto;
+        }
+        .log-line { font-size: 0.8rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.03); line-height: 1.4; }
+        .log-time { color: #565f89; }
+        .log-success { color: #4ade80; font-weight: bold; }
 
         .page { display: none; }
         .page.active { display: block; }
+
+        @media (max-width: 1000px) { .shop-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -71,7 +83,7 @@
 <div class="glow"></div>
 
 <nav>
-    <a href="#" style="color:white; text-decoration:none; font-weight:800;">EDF<span>.</span></a>
+    <a href="#" class="logo" onclick="showPage('accueil')">EDF<span>.</span></a>
     <div class="nav-links">
         <button onclick="showPage('accueil')" id="btn-accueil" class="active">Vision</button>
         <button onclick="showPage('boutique')" id="btn-boutique">Catalogue</button>
@@ -80,24 +92,32 @@
 </nav>
 
 <div id="accueil" class="page active">
-    <div style="height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
-        <h1>L'Énergie du <span>Futur</span>.</h1>
+    <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <h1 style="font-size: 4rem; font-weight: 800;">L'Énergie du <span style="color:var(--primary);">Futur</span>.</h1>
+        <p style="color:var(--text-dim); max-width: 500px; margin-top: 20px;">Solutions électriques haut de gamme pour infrastructures et particuliers.</p>
+        <button onclick="showPage('boutique')" class="btn-action" style="width: auto; margin-top: 30px; padding: 15px 40px; border-radius: 100px;">Découvrir la Boutique</button>
     </div>
 </div>
 
 <div id="boutique" class="page">
     <div class="shop-layout">
-        <div id="product-list"></div>
+        <div id="product-list">
+            </div>
         
-        <div style="background: rgba(15,23,42,0.8); padding:30px; border-radius:30px; height:fit-content; border:1px solid var(--primary); position: sticky; top: 120px;">
-            <h3 style="margin-bottom:20px;">🛒 Panier</h3>
-            <input type="text" id="client-name" placeholder="Nom du Client RP" style="width:100%; padding:15px; background:rgba(255,255,255,0.05); border-radius:10px; margin-bottom:15px; color:white; border:1px solid var(--border);">
-            <div id="cart-items" style="margin-bottom:20px; max-height: 300px; overflow-y: auto;"></div>
-            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.5rem; border-top: 1px dashed var(--border); padding-top: 15px;">
-                <span style="font-size: 0.9rem; color: var(--text-dim);">TOTAL</span>
+        <div style="background: rgba(15,23,42,0.9); padding:30px; border-radius:30px; height:fit-content; border:1px solid var(--primary); position: sticky; top: 110px;">
+            <h3 style="margin-bottom:20px; font-weight: 800;">🛒 Panier</h3>
+            <input type="text" id="client-name" placeholder="Nom RP du client" style="width:100%; padding:15px; background:rgba(255,255,255,0.05); border-radius:12px; margin-bottom:15px; color:white; border: 1px solid var(--border);">
+            
+            <div id="cart-items" style="margin-bottom:20px; max-height: 250px; overflow-y: auto; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+                <p style="text-align:center; color:var(--text-dim); font-size: 0.8rem;">Votre panier est vide.</p>
+            </div>
+            
+            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.6rem;">
+                <span style="font-size: 0.9rem; color: var(--text-dim); align-self: center;">TOTAL</span>
                 <span id="total-price" style="color:var(--accent);">0 €</span>
             </div>
-            <button class="btn-action" style="margin-top:20px; background:var(--accent); color:white;" onclick="processOrder()">TRANSMETTRE</button>
+            
+            <button class="btn-action" style="margin-top:25px; background:var(--accent); color:white;" onclick="processOrder()">VALIDER LA VENTE</button>
         </div>
     </div>
 </div>
@@ -106,7 +126,7 @@
     <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
         <div style="background:var(--card); padding:40px; border-radius:30px; border:1px solid var(--border); width:350px; text-align: center;">
             <h2 style="margin-bottom:20px;">Accès Portal</h2>
-            <input type="password" id="staff-code" placeholder="Code d'accès" style="width:100%; padding:15px; background:rgba(255,255,255,0.05); border-radius:10px; margin-bottom:15px; color:white; text-align:center;">
+            <input type="password" id="staff-code" placeholder="Entrez le code" style="width:100%; padding:15px; background:rgba(255,255,255,0.05); border-radius:12px; margin-bottom:15px; color:white; text-align:center; border: 1px solid var(--border);">
             <button class="btn-action" onclick="verifyCode()">S'identifier</button>
         </div>
     </div>
@@ -114,23 +134,23 @@
 
 <div id="staff-dashboard" class="page">
     <div style="max-width:800px; margin:140px auto; padding:0 20px;">
-        <h2 style="margin-bottom:30px;">Gestion des Commandes</h2>
+        <h2 style="margin-bottom:30px; border-left: 4px solid var(--primary); padding-left: 15px;">Ventes Récentes</h2>
         <div id="orders-list"></div>
     </div>
 </div>
 
 <div id="staff-logs" class="page">
     <div style="max-width:900px; margin:140px auto; padding:0 20px;">
-        <h2 style="margin-bottom:20px; color: var(--primary);">System Logs [Security 2009]</h2>
-        <div class="log-screen" id="logs-container"></div>
-        <button onclick="clearAll()" style="margin-top:20px; color:red; cursor:pointer; background:none;">Réinitialiser les données</button>
+        <h2 style="margin-bottom:20px; color: var(--primary);">System Monitoring — Logs [2009]</h2>
+        <div class="log-box" id="logs-container"></div>
+        <button onclick="clearData()" style="margin-top:20px; color:rgba(255,0,0,0.5); cursor:pointer; background:none; font-size: 0.8rem;">[ FORMAT DATABASE ]</button>
     </div>
 </div>
 
 <script>
-    const products = [
-        { id: 1, name: "Armoire Électrique", price: 1699 },
-        { id: 2, name: "Caméra Dôme AI", price: 799 },
+    const items = [
+        { id: 1, name: "Armoire Électrique Blindée", price: 1699 },
+        { id: 2, name: "Caméra Dôme 360° AI", price: 799 },
         { id: 3, name: "Néon Design Bleu", price: 359 },
         { id: 4, name: "Panneau Solaire 500W", price: 1200 },
         { id: 5, name: "Lustre Royal Crystal", price: 26000 }
@@ -141,15 +161,15 @@
     function init() {
         const list = document.getElementById('product-list');
         list.innerHTML = `<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:20px;">
-            ${products.map(p => `
+            ${items.map(p => `
                 <div class="product-card">
-                    <h4 style="height: 40px;">${p.name}</h4>
+                    <h4 style="font-weight:600;">${p.name}</h4>
                     <p style="color:var(--accent); font-size:1.6rem; font-weight:800; margin:15px 0;">${p.price.toLocaleString()}€</p>
                     
-                    <div class="qty-box">
-                        <button class="qty-btn" onclick="updateQtyDisplay(${p.id}, -1)">-</button>
+                    <div class="qty-selector">
+                        <button class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
                         <span class="qty-val" id="qty-${p.id}">1</span>
-                        <button class="qty-btn" onclick="updateQtyDisplay(${p.id}, 1)">+</button>
+                        <button class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
                     </div>
 
                     <button class="btn-action" onclick="addToCart(${p.id})">Ajouter au panier</button>
@@ -158,44 +178,40 @@
         </div>`;
     }
 
-    function updateQtyDisplay(id, change) {
+    function changeQty(id, delta) {
         const el = document.getElementById(`qty-${id}`);
-        let current = parseInt(el.innerText);
-        if (current + change >= 1) el.innerText = current + change;
+        let val = parseInt(el.innerText) + delta;
+        if (val >= 1) el.innerText = val;
     }
 
     function addToCart(id) {
-        const product = products.find(p => p.id === id);
+        const product = items.find(p => p.id === id);
         const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
         
-        // On vérifie si l'article est déjà dans le panier
-        const existing = cart.find(item => item.id === id);
+        const existing = cart.find(c => c.id === id);
         if (existing) {
             existing.qty += qty;
         } else {
             cart.push({ ...product, qty: qty });
         }
         
-        // Reset l'affichage à 1 après l'ajout
-        document.getElementById(`qty-${id}`).innerText = "1";
-        updateCartUI();
+        document.getElementById(`qty-${id}`).innerText = "1"; // Reset qty
+        renderCart();
     }
 
-    function updateCartUI() {
+    function renderCart() {
         const container = document.getElementById('cart-items');
         let total = 0;
         
-        if(cart.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:var(--text-dim); margin-top:20px;">Panier vide.</p>';
+        if (cart.length === 0) {
+            container.innerHTML = '<p style="text-align:center; color:var(--text-dim); font-size: 0.8rem;">Votre panier est vide.</p>';
         } else {
-            container.innerHTML = cart.map((item, index) => {
-                total += (item.price * item.qty);
+            container.innerHTML = cart.map(c => {
+                total += (c.price * c.qty);
                 return `
-                <div style="display:flex; justify-content:space-between; margin-bottom:8px; background:rgba(255,255,255,0.03); padding:10px; border-radius:8px;">
-                    <div>
-                        <span style="color:var(--primary); font-weight:bold;">x${item.qty}</span> ${item.name}
-                    </div>
-                    <b>${(item.price * item.qty).toLocaleString()}€</b>
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; background:rgba(255,255,255,0.03); padding:12px; border-radius:10px; font-size:0.9rem;">
+                    <span><b style="color:var(--primary)">x${c.qty}</b> ${c.name}</span>
+                    <b>${(c.price * c.qty).toLocaleString()}€</b>
                 </div>`;
             }).join('');
         }
@@ -204,31 +220,31 @@
 
     function processOrder() {
         const name = document.getElementById('client-name').value;
-        if(!name || cart.length === 0) return alert("Veuillez entrer un nom et remplir le panier.");
+        if (!name || cart.length === 0) return alert("Nom manquant ou panier vide !");
         
-        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        const total = cart.reduce((s, c) => s + (c.price * c.qty), 0);
         const order = {
             name: name,
             total: total,
-            details: cart.map(item => `${item.qty}x ${item.name}`).join(', '),
+            summary: cart.map(c => `${c.qty}x ${c.name}`).join(', '),
             date: new Date().toLocaleString('fr-FR')
         };
 
-        let history = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        history.push(order);
-        localStorage.setItem('edf_orders', JSON.stringify(history));
+        let db = JSON.parse(localStorage.getItem('edf_orders_v2')) || [];
+        db.push(order);
+        localStorage.setItem('edf_orders_v2', JSON.stringify(db));
 
-        alert("Commande transmise au staff !");
+        alert("Vente enregistrée avec succès !");
         cart = [];
         document.getElementById('client-name').value = "";
-        updateCartUI();
+        renderCart();
     }
 
     function verifyCode() {
-        const code = document.getElementById('staff-code').value;
-        if(code === "1981") { showPage('staff-dashboard'); renderOrders(); }
-        else if(code === "2009") { showPage('staff-logs'); renderLogs(); }
-        else alert("Code incorrect.");
+        const val = document.getElementById('staff-code').value;
+        if (val === "1981") { showPage('staff-dashboard'); renderStaff(); }
+        else if (val === "2009") { showPage('staff-logs'); renderLogs(); }
+        else alert("Accès refusé.");
         document.getElementById('staff-code').value = "";
     }
 
@@ -237,36 +253,35 @@
         document.getElementById(id).classList.add('active');
     }
 
-    function renderOrders() {
-        const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
-        document.getElementById('orders-list').innerHTML = orders.reverse().map(o => `
+    function renderStaff() {
+        const db = JSON.parse(localStorage.getItem('edf_orders_v2')) || [];
+        document.getElementById('orders-list').innerHTML = db.reverse().map(o => `
             <div style="background:var(--card); padding:20px; border-radius:20px; margin-bottom:15px; border:1px solid var(--border);">
                 <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                    <b style="font-size:1.2rem;">${o.name}</b>
-                    <span style="color:var(--text-dim);">${o.date}</span>
+                    <b style="font-size:1.1rem;">${o.name}</b>
+                    <span style="color:var(--text-dim); font-size:0.8rem;">${o.date}</span>
                 </div>
-                <p style="color:var(--text-dim); line-height:1.4;">Articles : ${o.details}</p>
-                <div style="margin-top:15px; font-weight:800; color:var(--primary); font-size:1.4rem;">Total : ${o.total.toLocaleString()}€</div>
+                <p style="color:var(--text-dim); font-size:0.9rem;">${o.summary}</p>
+                <div style="margin-top:15px; font-weight:800; color:var(--primary); font-size:1.3rem;">${o.total.toLocaleString()} €</div>
             </div>
-        `).join('');
+        `).join('') || '<p>Aucune vente enregistrée.</p>';
     }
 
     function renderLogs() {
-        const orders = JSON.parse(localStorage.getItem('edf_orders')) || [];
+        const db = JSON.parse(localStorage.getItem('edf_orders_v2')) || [];
         const container = document.getElementById('logs-container');
-        container.innerHTML = orders.map(o => `
+        container.innerHTML = db.map(o => `
             <div class="log-line">
-                <span style="color:#64748b;">[${o.date}]</span> 
-                <span style="color:#4ade80;">[TRANS_OK]</span> 
-                ID: ${Math.floor(Math.random()*9000)} | 
-                Client: ${o.name} | 
-                Data: (${o.details}) | 
-                <span style="color:var(--accent);">${o.total}€</span>
+                <span class="log-time">[${o.date}]</span> 
+                <span class="log-success">[ACTION:SALE_COMPLETED]</span><br>
+                > SOURCE: WEB_PORTAL_V2 | CLIENT: ${o.name.toUpperCase()}<br>
+                > DATA: { ${o.summary} }<br>
+                > REVENUE: <span style="color:var(--accent)">+${o.total}€</span>
             </div>
-        `).join('') || '<div class="log-line">>_ Aucun log détecté.</div>';
+        `).join('') || '<div class="log-line">>_ DATABASE_EMPTY: En attente de transactions...</div>';
     }
 
-    function clearAll() { if(confirm("Vider toutes les données ?")) { localStorage.removeItem('edf_orders'); renderOrders(); renderLogs(); } }
+    function clearData() { if(confirm("Supprimer l'historique complet ?")) { localStorage.removeItem('edf_orders_v2'); renderStaff(); renderLogs(); } }
 
     window.onload = init;
 </script>
