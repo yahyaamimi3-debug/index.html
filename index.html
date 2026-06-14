@@ -3,230 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ LOGISTIX - Grossiste Alimentaire ⚡</title>
+    <title>GROSSISTE . PRO</title>
     <style>
-        /* --- DESIGN UNIQUE : CYBER-ENTREPÔT / BRUTALISME LUMINEUX --- */
+        /* --- STYLE NEO-BRUTALISTE : JAMAIS VU POUR UN GROSSISTE --- */
         :root {
-            --bg-dark: #0a0f1d;
-            --bg-card: #131a30;
-            --neon-cyan: #00f2fe;
-            --neon-green: #4facfe;
-            --text-light: #f1f5f9;
-            --text-muted: #64748b;
-            --border-neon: #1e293b;
-            --neon-success: #39ff14;
-            --neon-danger: #ff0055;
+            --bg: #f3f4f6;
+            --main-yellow: #ffde4d;
+            --main-cyan: #4cc9f0;
+            --main-green: #38b000;
+            --main-pink: #f72585;
+            --dark: #000000;
+            --white: #ffffff;
+            --neo-shadow: 6px 6px 0px #000000;
+            --neo-shadow-sm: 4px 4px 0px #000000;
+            --neo-shadow-hover: 2px 2px 0px #000000;
         }
 
+        * { box-sizing: border-box; }
+
         body { 
-            font-family: 'Courier New', Courier, monospace; /* Style terminal/facture */
-            background-color: var(--bg-dark); 
-            color: var(--text-light); 
+            font-family: 'Arial Black', Impact, sans-serif; /* Écriture très grasse et percutante */
+            background-color: var(--bg); 
+            color: var(--dark); 
             margin: 0; 
             padding: 0; 
         }
         
         /* --- NAVIGATION RADICALE --- */
         nav { 
-            background-color: #0d1527; 
-            border-bottom: 2px solid var(--neon-cyan);
-            padding: 10px; 
+            background-color: var(--white); 
+            border-bottom: 4px solid var(--dark);
+            padding: 15px; 
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             position: sticky; 
             top: 0; 
             z-index: 1000; 
         }
         nav button { 
-            background: transparent; 
-            border: 1px solid var(--border-neon); 
-            color: var(--text-muted); 
-            padding: 12px 24px;
-            font-size: 0.9em; 
-            font-weight: bold; 
+            background: var(--white); 
+            border: 3px solid var(--dark); 
+            color: var(--dark); 
+            padding: 12px 25px;
+            font-size: 1.1em; 
+            font-weight: 900; 
             cursor: pointer; 
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+            box-shadow: var(--neo-shadow-sm);
+            transition: all 0.1s ease;
         }
         nav button:hover, nav button.active { 
-            color: var(--neon-cyan); 
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-            background-color: rgba(0, 242, 254, 0.05);
+            background-color: var(--main-cyan);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--dark);
+        }
+        nav button:active {
+            transform: translate(2px, 2px);
+            box-shadow: var(--neo-shadow-hover);
         }
         
-        /* --- BANNER TERMINAL --- */
+        /* --- EN-TETE --- */
         header { 
-            border-bottom: 1px dashed #1e293b;
-            padding: 40px 20px; 
+            background-color: var(--main-yellow);
+            border-bottom: 4px solid var(--dark);
+            padding: 50px 20px; 
             text-align: center; 
-            background: radial-gradient(circle at top, #1e293b 0%, var(--bg-dark) 70%);
         }
-        header h1 { margin: 0; font-size: 2.8em; font-weight: 900; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.2); letter-spacing: 2px; }
-        header p { margin: 10px 0 0 0; font-size: 1em; color: var(--neon-cyan); font-weight: bold; text-transform: uppercase; }
+        header h1 { margin: 0; font-size: 3.5em; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; -webkit-text-stroke: 1px var(--dark); }
+        header p { margin: 15px 0 0 0; font-size: 1.2em; background: var(--white); display: inline-block; padding: 5px 15px; border: 3px solid var(--dark); box-shadow: var(--neo-shadow-sm); }
         
         /* --- CONTENEUR --- */
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
         .page { 
             display: none; 
-            background-color: var(--bg-card); 
+            background-color: var(--white); 
             padding: 40px; 
-            border: 2px solid var(--border-neon);
-            border-radius: 0px; /* Brutalisme : angles droits et bruts */
-            box-shadow: 10px 10px 0px #05070f; /* Ombre décalée solide */
-            animation: glitch 0.2s ease;
+            border: 4px solid var(--dark);
+            box-shadow: var(--neo-shadow); 
         }
         .page.active-page { display: block; }
         
-        @keyframes glitch { from { filter: hue-rotate(90deg); opacity: 0.8; } to { filter: hue-rotate(0deg); opacity: 1; } }
+        h2 { font-size: 2.2em; text-transform: uppercase; margin-top: 0; background: var(--main-yellow); display: inline-block; padding: 5px 15px; border: 3px solid var(--dark); box-shadow: var(--neo-shadow-sm); }
+        .subtitle { font-family: Arial, sans-serif; color: #475569; font-weight: bold; margin-bottom: 30px; font-size: 1.1em; }
         
-        h2 { color: #fff; font-size: 1.6em; text-transform: uppercase; border-left: 5px solid var(--neon-cyan); padding-left: 15px; margin-top: 0; }
-        .subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 0.9em; text-transform: uppercase; }
-        
-        /* --- BLOCS ACCUEIL INDUSTRIAL --- */
-        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
+        /* --- PAGE D'ACCUEIL --- */
+        .intro-text { font-family: Arial, sans-serif; font-size: 1.2em; line-height: 1.6; font-weight: bold; margin-bottom: 35px; }
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .card { 
-            background-color: rgba(255,255,255,0.02); 
-            padding: 25px; 
-            border: 1px solid var(--border-neon);
+            background-color: var(--white); 
+            padding: 30px; 
+            border: 4px solid var(--dark);
+            box-shadow: var(--neo-shadow);
         }
-        .card h3 { margin-top: 0; color: var(--neon-cyan); font-size: 1.1em; text-transform: uppercase; }
-        .card p { color: #94a3b8; margin: 0; font-size: 0.9em; }
+        .card.c1 { background-color: #ffc2d1; }
+        .card.c2 { background-color: #e0aaff; }
+        .card h3 { margin-top: 0; font-size: 1.5em; text-transform: uppercase; }
+        .card p { font-family: Arial, sans-serif; font-weight: bold; margin: 10px 0 0 0; }
 
-        /* --- TABLEAU STYLE "BORDERLESS INVERSE" --- */
+        /* --- CATALOGUE --- */
         .table-responsive { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th { background-color: #0d1527; color: var(--neon-cyan); padding: 16px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-neon); }
-        td { padding: 16px; border: 1px solid var(--border-neon); font-size: 0.95em; }
-        tr:hover td { background-color: rgba(255, 255, 255, 0.03); }
+        table { width: 100%; border-collapse: collapse; text-align: left; background: var(--white); }
+        th { background-color: var(--dark); color: var(--white); padding: 16px; font-size: 1.1em; text-transform: uppercase; }
+        td { padding: 16px; border: 3px solid var(--dark); font-size: 1.1em; font-family: Arial, sans-serif; font-weight: bold; }
+        tr:hover td { background-color: #f8fafc; }
         
-        .product-name { font-weight: bold; color: #fff; }
-        .price-badge { color: var(--neon-green); font-weight: bold; }
-        .subtotal-badge { font-weight: bold; color: var(--neon-cyan); }
+        .product-name { font-family: 'Arial Black', sans-serif; font-weight: 900; }
+        .price-badge { background: var(--main-yellow); padding: 5px 10px; border: 2px solid var(--dark); display: inline-block; }
+        .subtotal-badge { color: var(--main-pink); }
         
         /* Inputs Quantité */
         input[type="number"] { 
-            background: #0a0f1d;
-            border: 1px solid var(--border-neon);
-            color: var(--neon-success);
-            width: 70px; 
-            padding: 8px; 
+            background: var(--white);
+            border: 3px solid var(--dark);
+            color: var(--dark);
+            width: 80px; 
+            padding: 10px; 
             text-align: center; 
-            font-size: 1em; 
-            font-family: inherit;
+            font-size: 1.1em; 
+            font-family: 'Arial Black', sans-serif;
+            box-shadow: 3px 3px 0px var(--dark);
         }
-        input[type="number"]:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 242, 254, 0.2); }
+        input[type="number"]:focus { outline: none; background: #e0f2fe; }
         
-        /* Checkout Bar */
-        .checkout-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding: 20px; background: #0d1527; border: 1px dashed var(--border-neon); }
-        .total-box { font-size: 1.4em; font-weight: bold; text-transform: uppercase; }
-        .total-box span { color: var(--neon-success); text-shadow: 0 0 10px rgba(57, 255, 20, 0.3); }
+        /* Barre de validation de commande */
+        .checkout-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding: 25px; background: var(--white); border: 4px solid var(--dark); box-shadow: var(--neo-shadow); }
+        .total-box { font-size: 1.8em; text-transform: uppercase; }
+        .total-box span { background: var(--main-green); color: var(--white); padding: 5px 15px; border: 3px solid var(--dark); }
         
-        /* BOUTONS GLOWING */
+        /* BOUTON PRINCIPAL */
         .btn { 
-            background: transparent;
-            color: var(--neon-success); 
-            border: 2px solid var(--neon-success); 
-            padding: 15px 30px; font-size: 0.9em; font-weight: bold; 
-            text-transform: uppercase; cursor: pointer; letter-spacing: 1px;
-            transition: all 0.2s ease;
+            background: var(--main-green);
+            color: var(--white); 
+            border: 4px solid var(--dark); 
+            padding: 18px 35px; font-size: 1.1em; font-weight: 900; 
+            text-transform: uppercase; cursor: pointer;
+            box-shadow: var(--neo-shadow-sm);
+            transition: all 0.1s ease;
         }
         .btn:hover { 
-            background-color: var(--neon-success); color: #000; 
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+            transform: translate(-2px, -2px);
+            box-shadow: var(--neo-shadow);
+        }
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: var(--neo-shadow-hover);
         }
         
-        /* --- SECURITE & PANELS EMPLOYES --- */
-        #lock-screen { text-align: center; padding: 40px 20px; max-width: 400px; margin: 40px auto; border: 1px dashed var(--neon-danger); }
-        .lock-icon { font-size: 2.5em; margin-bottom: 15px; color: var(--neon-danger); }
+        /* --- ACCÈS EMPLOYÉ --- */
+        #lock-screen { text-align: center; padding: 40px 20px; max-width: 450px; margin: 40px auto; border: 4px solid var(--dark); background: #ff9e00; box-shadow: var(--neo-shadow); }
         input[type="password"] { 
-            background: #0a0f1d; border: 1px solid var(--border-neon); color: #fff;
-            padding: 14px; width: 100%; margin-bottom: 20px; text-align: center; font-size: 1.3em; letter-spacing: 6px; box-sizing: border-box;
+            background: var(--white); border: 3px solid var(--dark); color: var(--dark);
+            padding: 15px; width: 100%; margin-bottom: 25px; text-align: center; font-size: 1.5em; font-family: 'Arial Black', sans-serif; box-shadow: var(--neo-shadow-sm);
         }
-        .btn-auth { color: var(--neon-cyan); border-color: var(--neon-cyan); }
-        .btn-auth:hover { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
+        .btn-auth { background: var(--dark); color: var(--white); width: 100%; }
+        .btn-auth:hover { background: #1e293b; }
         
         #employee-dashboard { display: none; }
-        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-neon); padding-bottom: 15px; }
-        .btn-clear { color: var(--neon-danger); border-color: var(--neon-danger); padding: 10px 20px; font-size: 0.85em;}
-        .btn-clear:hover { background-color: var(--neon-danger); color: #000; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; border-bottom: 4px solid var(--dark); padding-bottom: 20px; }
+        .btn-clear { background: var(--main-pink); box-shadow: var(--neo-shadow-sm); }
         
-        /* Cartes des Commandes en Grille Machine */
-        .orders-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        /* Flux des Commandes Reçues */
+        .orders-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
         .order-card { 
-            background-color: #0d1527; border: 1px solid var(--border-neon); 
-            padding: 20px; position: relative;
+            background-color: var(--white); border: 4px solid var(--dark); 
+            padding: 25px; box-shadow: var(--neo-shadow);
         }
-        .order-card::before {
-            content: 'SYSTEM_INCOMING'; position: absolute; top: -10px; right: 15px; background: var(--bg-card); color: var(--neon-cyan); font-size: 0.7em; padding: 2px 6px; border: 1px solid var(--border-neon);
-        }
-        .order-meta { display: flex; justify-content: space-between; font-weight: bold; color: var(--text-light); font-size: 0.9em; border-bottom: 1px dashed var(--border-neon); padding-bottom: 10px; margin-bottom: 15px; }
-        .order-meta .time { color: var(--neon-cyan); }
+        .order-meta { display: flex; justify-content: space-between; font-size: 1.1em; border-bottom: 3px solid var(--dark); padding-bottom: 12px; margin-bottom: 15px; }
+        .order-meta .time { background: var(--main-cyan); padding: 3px 10px; border: 2px solid var(--dark); }
         
-        .order-card ul { padding-left: 15px; margin: 0; color: #cbd5e1; font-size: 0.9em; }
-        .order-card li { margin-bottom: 6px; list-style-type: square; }
-        .order-card .final-price { text-align: right; font-weight: bold; font-size: 1.2em; color: var(--neon-success); margin-top: 15px; padding-top: 10px; border-top: 1px solid var(--border-neon); }
-        .no-order { text-align: center; color: var(--text-muted); font-style: italic; padding: 40px 0; font-size: 0.9em; }
+        .order-card ul { padding-left: 20px; margin: 0; font-family: Arial, sans-serif; font-weight: bold; font-size: 1.1em; }
+        .order-card li { margin-bottom: 8px; }
+        .order-card .final-price { text-align: right; font-size: 1.5em; margin-top: 20px; padding-top: 15px; border-top: 3px dashed var(--dark); }
+        .order-card .final-price span { background: var(--main-green); color: var(--white); padding: 5px 10px; border: 2px solid var(--dark); }
+        .no-order { text-align: center; font-style: italic; padding: 40px 0; font-size: 1.2em; }
         
         @media (max-width: 768px) { 
             .features { grid-template-columns: 1fr; } 
-            .checkout-bar { flex-direction: column; gap: 20px; align-items: stretch; text-align: center; }
+            .checkout-bar { flex-direction: column; gap: 20px; text-align: center; }
+            header h1 { font-size: 2.3em; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Barre de Navigation Matrix -->
+    <!-- Barre de Navigation Néo-Brutale -->
     <nav>
         <div class="nav-container">
-            <button id="nav-accueil" class="active" onclick="changerPage('accueil')">[ 01. Accueil ]</button>
-            <button id="nav-catalogue" onclick="changerPage('catalogue')">[ 02. Catalogue ]</button>
-            <button id="nav-employe" onclick="changerPage('employe')">[ 03. Employes ]</button>
+            <button id="nav-accueil" class="active" onclick="changerPage('accueil')">ACCUEIL</button>
+            <button id="nav-catalogue" onclick="changerPage('catalogue')">VOIR CATALOGUE</button>
+            <button id="nav-employe" onclick="changerPage('employe')">ACCÈS EMPLOYÉS</button>
         </div>
     </nav>
 
-    <!-- Header Terminal -->
+    <!-- Header Impact -->
     <header>
-        <h1>SYS.LOGISTIX // CORE_UNIT</h1>
-        <p>Centrale d'automatisation des flux de marchandises alimentaires</p>
+        <h1>GROSSISTE.ALIMENTAIRE</h1>
+        <p>PLATEFORME D'APPROVISIONNEMENT DIRECTE POUR LES PROS</p>
     </header>
 
     <div class="container">
 
         <!-- PAGE 1 : ACCUEIL -->
         <div id="page-accueil" class="page active-page">
-            <h2>// INITIALISATION_RÉSEAU</h2>
-            <p class="subtitle">Architecture logistique brute dédiée au traitement B2B à haute fréquence.</p>
+            <h2>INFOS GENERALES</h2>
+            <div class="subtitle">Tout ce qu'il faut savoir sur notre centrale de stocks.</div>
             
-            <p>Le protocole SYS.LOGISTIX orchestre la distribution de matières premières industrielles et alimentaires. Ce panneau permet de requérir l'acheminement de palettes de denrées directement vers vos zones de transformation ou de commercialisation locale.</p>
+            <div class="intro-text">
+                Nous distribuons des ingrédients de premier choix en gros volumes. Pas de chichis, pas de pertes de temps : vous sélectionnez vos quantités dans le catalogue, vous validez, et l'entrepôt s'occupe du reste en moins de 24h.
+            </div>
             
             <div class="features">
-                <div class="card">
-                    <h3>[ DIRECT_ORDER ]</h3>
-                    <p>Déployez le registre catalogue pour manipuler les entrées de données numériques et soumettre un nouveau manifeste logistique.</p>
+                <div class="card c1">
+                    <h3>ESPACE CLIENTS</h3>
+                    <p>Ouvrez l'onglet catalogue pour commander directement vos marchandises. Les calculs se font instantanément.</p>
                 </div>
-                <div class="card">
-                    <h3>[ ROOT_GATEWAY ]</h3>
-                    <p>Interface de réception sécurisée pour les opérateurs en entrepôt. Permet le déstockage physique immédiat en zone de fret.</p>
+                <div class="card c2">
+                    <h3>ZONE ENTREPÔT</h3>
+                    <p>Réservé à nos équipes pour intercepter les commandes entrantes en direct et lancer la préparation physique.</p>
                 </div>
             </div>
         </div>
 
-        <!-- PAGE 2 : CATALOGUE BRUTALISTE -->
+        <!-- PAGE 2 : CATALOGUE -->
         <div id="page-catalogue" class="page">
-            <h2>// INVENTAIRE_GLOBAL_STOCKS</h2>
-            <p class="subtitle">Assignez les valeurs numériques de volume pour compiler le manifeste de fret.</p>
+            <h2>NOTRE INVENTAIRE (25 PRODUITS)</h2>
+            <div class="subtitle">Ajustez vos quantités ci-dessous pour créer le bon d'enlèvement.</div>
             
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
-                            <th>CODE_DÉSIGNATION</th>
-                            <th>VALEUR_UNITAIRE</th>
-                            <th>SÉLECTION_QTE</th>
-                            <th>MONTANT_LIGNE</th>
+                            <th>PRODUIT</th>
+                            <th>PRIX UNITAIRE</th>
+                            <th>QUANTITÉ</th>
+                            <th>TOTAL</th>
                         </tr>
                     </thead>
                     <tbody id="catalog-table-body">
@@ -237,32 +248,32 @@
 
             <div class="checkout-bar">
                 <div class="total-box">
-                    VALEUR TOTAL : <span id="total-price">0.00</span> €
+                    TOTAL : <span id="total-price">0.00</span> €
                 </div>
-                <button class="btn" onclick="transmettreCommande()">COMPILE_AND_SEND()</button>
+                <button class="btn" onclick="transmettreCommande()">VALIDER LA COMMANDE</button>
             </div>
         </div>
 
-        <!-- PAGE 3 : ESPACE EMPLOYE CYBER -->
+        <!-- PAGE 3 : ESPACE EMPLOYE -->
         <div id="page-employe" class="page">
             
             <!-- Lock Screen -->
             <div id="lock-screen">
-                <div class="lock-icon">⚠️</div>
-                <h2>RESTRICTED_AREA</h2>
-                <p class="subtitle">Entrez la clé maîtresse réseau pour authentifier votre session opérateur.</p>
-                <input type="password" id="code-secu" placeholder="0000">
-                <button class="btn btn-auth" onclick="authentifierEmploye()">EXECUTE_AUTH</button>
+                <div class="lock-icon">🔒</div>
+                <h2>SECTION SÉCURISÉE</h2>
+                <div class="subtitle" style="color:var(--dark);">Réservé au personnel de la centrale.</div>
+                <input type="password" id="code-secu" placeholder="CODE">
+                <button class="btn btn-auth" onclick="authentifierEmploye()">CONNEXION</button>
             </div>
 
             <!-- Dashboard Caché -->
             <div id="employee-dashboard">
                 <div class="dash-header">
                     <div>
-                        <h2>// TABLEAU_DE_PICKING_FLUX</h2>
-                        <p class="subtitle" style="margin-bottom:0;">Flux réseau actif des commandes prêtes pour colisage.</p>
+                        <h2>COMMANDES EN ATTENTE</h2>
+                        <div class="subtitle">Bons de picking reçus en temps réel.</div>
                     </div>
-                    <button class="btn btn-clear" onclick="viderToutesLesCommandes()">PURGE_ALL_DATA</button>
+                    <button class="btn btn-clear" onclick="viderToutesLesCommandes()">TOUT EFFACER</button>
                 </div>
                 
                 <div id="orders-feed" class="orders-grid">
@@ -322,10 +333,10 @@ const tBody = document.getElementById('catalog-table-body');
 catalogueProduits.forEach(p => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-        <td><span class="product-name">> ${p.nom.toUpperCase()}</span></td>
-        <td><span class="price-badge">${p.prix.toFixed(2)} EUR</span></td>
+        <td><span class="product-name">${p.nom.toUpperCase()}</span></td>
+        <td><span class="price-badge">${p.prix.toFixed(2)} €</span></td>
         <td><input type="number" min="0" value="0" data-id="${p.id}" oninput="mettreAJourTotal()"></td>
-        <td><span id="subtotal-${p.id}" class="subtotal-badge">0.00 EUR</span></td>
+        <td><span id="subtotal-${p.id}" class="subtotal-badge">0.00 €</span></td>
     `;
     tBody.appendChild(tr);
 });
@@ -336,7 +347,7 @@ function mettreAJourTotal() {
         const input = document.querySelector(`input[data-id="${p.id}"]`);
         const qte = parseInt(input.value) || 0;
         const sub = qte * p.prix;
-        document.getElementById(`subtotal-${p.id}`).innerText = sub.toFixed(2) + " EUR";
+        document.getElementById(`subtotal-${p.id}`).innerText = sub.toFixed(2) + " €";
         globalTotal += sub;
     });
     document.getElementById('total-price').innerText = globalTotal.toFixed(2);
@@ -354,12 +365,12 @@ function transmettreCommande() {
     });
 
     if(panier.length === 0) {
-        alert("COMMANDE REJETÉE : MANIFESTE VIDE.");
+        alert("ERREUR : VOTRE PANIER EST VIDE !");
         return;
     }
 
     const nouvelleCommande = {
-        idTicket: 'SYS-' + Math.floor(1000 + Math.random() * 9000),
+        idTicket: 'CMD-' + Math.floor(1000 + Math.random() * 9000),
         heure: new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
         marchandises: panier,
         totalFacture: prixTotal
@@ -368,7 +379,7 @@ function transmettreCommande() {
     baseCommandes.push(nouvelleCommande);
     localStorage.setItem('grossiste_commandes', JSON.stringify(baseCommandes));
 
-    alert(`[SUCCESS] MANIFESTE SÉCURISÉ TRANSMIS VERS L'ENTREPÔT.`);
+    alert(`✅ REÇU ! LA COMMANDE A ÉTÉ ENVOYÉE À L'ENTREPÔT.`);
     
     document.querySelectorAll('input[type="number"]').forEach(i => i.value = 0);
     mettreAJourTotal();
@@ -381,7 +392,7 @@ function authentifierEmploye() {
         document.getElementById('employee-dashboard').style.display = 'block';
         afficherFluxCommandes();
     } else {
-        alert("CRITICAL_ERROR : CLÉ D'ACCÈS ERRONÉE.");
+        alert("ACCÈS REFUSÉ : CODE INCORRECT.");
     }
 }
 
@@ -390,7 +401,7 @@ function afficherFluxCommandes() {
     conteneur.innerHTML = "";
 
     if (baseCommandes.length === 0) {
-        conteneur.innerHTML = "<p class='no-order'>STACK_EMPTY : En attente de transmissions entrantes...</p>";
+        conteneur.innerHTML = "<p class='no-order'>AUCUNE COMMANDE EN ATTENTE.</p>";
         return;
     }
 
@@ -400,23 +411,23 @@ function afficherFluxCommandes() {
         
         let lignesProduits = "";
         cmd.marchandises.forEach(m => {
-            lignesProduits += `<li>FILE_ITEM: ${m.nom} || QTE: ${m.quantite} (Total: ${m.prixLigne} EUR)</li>`;
+            lignesProduits += `<li><strong>${m.nom}</strong> x${m.quantite} — (${m.prixLigne} €)</li>`;
         });
 
         division.innerHTML = `
             <div class="order-meta">
-                <span>[ TICKET_ID : ${cmd.idTicket} ]</span>
-                <span class="time">// TIMELOG : ${cmd.heure}</span>
+                <span>TICKET: ${cmd.idTicket}</span>
+                <span class="time">REÇU À : ${cmd.heure}</span>
             </div>
             <ul>${lignesProduits}</ul>
-            <div class="order-total final-price">VALEUR MANIFESTE : ${cmd.totalFacture} EUR</div>
+            <div class="order-total final-price">TOTAL À FACTURER : <span>${cmd.totalFacture} €</span></div>
         `;
         conteneur.appendChild(division);
     });
 }
 
 function viderToutesLesCommandes() {
-    if(confirm("ÉVACUER TOUTES LES DONNÉES DU FLUX ACTUEL ?")) {
+    if(confirm("EFFACER DÉFINITIVEMENT TOUTES LES COMMANDES REÇUES ?")) {
         baseCommandes = [];
         localStorage.removeItem('grossiste_commandes');
         afficherFluxCommandes();
