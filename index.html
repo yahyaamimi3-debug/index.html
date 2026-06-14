@@ -3,278 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centrale Grossiste - Distribution Alimentaire</title>
+    <title>⚡ LOGISTIX - Grossiste Alimentaire ⚡</title>
     <style>
-        /* --- VARIABLES DE COULEURS --- */
+        /* --- DESIGN UNIQUE : CYBER-ENTREPÔT / BRUTALISME LUMINEUX --- */
         :root {
-            --primary: #1e293b;
-            --primary-hover: #334155;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --success: #10b981;
-            --success-hover: #059669;
-            --danger: #ef4444;
-            --danger-hover: #dc2626;
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
+            --bg-dark: #0a0f1d;
+            --bg-card: #131a30;
+            --neon-cyan: #00f2fe;
+            --neon-green: #4facfe;
+            --text-light: #f1f5f9;
             --text-muted: #64748b;
-            --border: #e2e8f0;
+            --border-neon: #1e293b;
+            --neon-success: #39ff14;
+            --neon-danger: #ff0055;
         }
 
-        /* --- STYLES GENERAUX --- */
         body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
+            font-family: 'Courier New', Courier, monospace; /* Style terminal/facture */
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
             margin: 0; 
             padding: 0; 
-            line-height: 1.5;
         }
         
-        /* --- BARRE DE NAVIGATION MODERNE --- */
+        /* --- NAVIGATION RADICALE --- */
         nav { 
-            background-color: var(--primary); 
-            padding: 0 20px; 
+            background-color: #0d1527; 
+            border-bottom: 2px solid var(--neon-cyan);
+            padding: 10px; 
             display: flex;
             justify-content: center;
+            gap: 15px;
             position: sticky; 
             top: 0; 
             z-index: 1000; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
-        }
-        nav .nav-container {
-            display: flex;
-            gap: 10px;
         }
         nav button { 
-            background: none; 
-            border: none; 
-            color: #94a3b8; 
-            padding: 20px 15px;
-            font-size: 1em; 
-            font-weight: 600; 
+            background: transparent; 
+            border: 1px solid var(--border-neon); 
+            color: var(--text-muted); 
+            padding: 12px 24px;
+            font-size: 0.9em; 
+            font-weight: bold; 
             cursor: pointer; 
-            transition: all 0.2s ease;
-            position: relative;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
-        nav button:hover { 
-            color: white; 
-        }
-        nav button.active { 
-            color: white;
-        }
-        nav button.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 15px;
-            right: 15px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px 2px 0 0;
+        nav button:hover, nav button.active { 
+            color: var(--neon-cyan); 
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+            background-color: rgba(0, 242, 254, 0.05);
         }
         
-        /* --- EN-TETE --- */
+        /* --- BANNER TERMINAL --- */
         header { 
-            background: linear-gradient(135deg, #0f172a, #1e293b); 
-            color: white; 
-            padding: 50px 20px; 
+            border-bottom: 1px dashed #1e293b;
+            padding: 40px 20px; 
             text-align: center; 
+            background: radial-gradient(circle at top, #1e293b 0%, var(--bg-dark) 70%);
         }
-        header h1 { margin: 0; font-size: 2.5em; font-weight: 800; letter-spacing: -0.025em; }
-        header p { margin: 10px 0 0 0; font-size: 1.2em; color: #94a3b8; font-weight: 400; }
+        header h1 { margin: 0; font-size: 2.8em; font-weight: 900; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.2); letter-spacing: 2px; }
+        header p { margin: 10px 0 0 0; font-size: 1em; color: var(--neon-cyan); font-weight: bold; text-transform: uppercase; }
         
-        /* --- CONTENEUR PRINCIPAL --- */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        /* --- CONTENEUR --- */
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         
         .page { 
             display: none; 
             background-color: var(--bg-card); 
             padding: 40px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid var(--border);
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            border: 2px solid var(--border-neon);
+            border-radius: 0px; /* Brutalisme : angles droits et bruts */
+            box-shadow: 10px 10px 0px #05070f; /* Ombre décalée solide */
+            animation: glitch 0.2s ease;
         }
         .page.active-page { display: block; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes glitch { from { filter: hue-rotate(90deg); opacity: 0.8; } to { filter: hue-rotate(0deg); opacity: 1; } }
         
-        h2 { color: var(--primary); font-size: 1.8em; font-weight: 700; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 8px; }
-        .subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 1.05em; }
+        h2 { color: #fff; font-size: 1.6em; text-transform: uppercase; border-left: 5px solid var(--neon-cyan); padding-left: 15px; margin-top: 0; }
+        .subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 0.9em; text-transform: uppercase; }
         
-        /* --- BLOCS DE LA PAGE D'ACCUEIL --- */
+        /* --- BLOCS ACCUEIL INDUSTRIAL --- */
         .features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
         .card { 
-            background-color: var(--bg-main); 
+            background-color: rgba(255,255,255,0.02); 
             padding: 25px; 
-            border-radius: 8px; 
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--accent); 
+            border: 1px solid var(--border-neon);
         }
-        .card h3 { margin-top: 0; color: var(--primary); font-size: 1.3em; margin-bottom: 10px; }
-        .card p { color: var(--text-muted); margin: 0; }
+        .card h3 { margin-top: 0; color: var(--neon-cyan); font-size: 1.1em; text-transform: uppercase; }
+        .card p { color: #94a3b8; margin: 0; font-size: 0.9em; }
 
-        /* --- TABLEAU DU CATALOGUE --- */
-        .table-responsive { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
-        table { width: 100%; border-collapse: collapse; background-color: white; text-align: left; }
-        th { background-color: #f1f5f9; color: var(--primary); font-weight: 600; padding: 14px 16px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
-        td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background-color: #f8fafc; }
+        /* --- TABLEAU STYLE "BORDERLESS INVERSE" --- */
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { background-color: #0d1527; color: var(--neon-cyan); padding: 16px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-neon); }
+        td { padding: 16px; border: 1px solid var(--border-neon); font-size: 0.95em; }
+        tr:hover td { background-color: rgba(255, 255, 255, 0.03); }
         
-        .product-name { font-weight: 600; color: var(--primary); }
-        .price-badge { background-color: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 20px; font-weight: 600; font-size: 0.95em; display: inline-block; }
-        .subtotal-badge { font-weight: 700; color: var(--primary); font-size: 1em; }
+        .product-name { font-weight: bold; color: #fff; }
+        .price-badge { color: var(--neon-green); font-weight: bold; }
+        .subtotal-badge { font-weight: bold; color: var(--neon-cyan); }
         
         /* Inputs Quantité */
         input[type="number"] { 
+            background: #0a0f1d;
+            border: 1px solid var(--border-neon);
+            color: var(--neon-success);
             width: 70px; 
             padding: 8px; 
-            border: 1px solid var(--border); 
-            border-radius: 6px; 
             text-align: center; 
             font-size: 1em; 
-            font-weight: 600;
-            color: var(--primary);
-            transition: border-color 0.2s;
+            font-family: inherit;
         }
-        input[type="number"]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        input[type="number"]:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 242, 254, 0.2); }
         
-        /* Barre de Total & Bouton d'Envoi */
-        .checkout-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--border); }
-        .total-box { font-size: 1.5em; font-weight: 800; color: var(--primary); }
-        .total-box span { color: var(--success); }
+        /* Checkout Bar */
+        .checkout-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding: 20px; background: #0d1527; border: 1px dashed var(--border-neon); }
+        .total-box { font-size: 1.4em; font-weight: bold; text-transform: uppercase; }
+        .total-box span { color: var(--neon-success); text-shadow: 0 0 10px rgba(57, 255, 20, 0.3); }
         
+        /* BOUTONS GLOWING */
         .btn { 
-            display: inline-flex; align-items: center; justify-content: center;
-            background-color: var(--success); color: white; border: none; 
-            padding: 14px 28px; font-size: 1.05em; font-weight: 700; border-radius: 6px; 
-            cursor: pointer; transition: background-color 0.2s, transform 0.1s; 
+            background: transparent;
+            color: var(--neon-success); 
+            border: 2px solid var(--neon-success); 
+            padding: 15px 30px; font-size: 0.9em; font-weight: bold; 
+            text-transform: uppercase; cursor: pointer; letter-spacing: 1px;
+            transition: all 0.2s ease;
         }
-        .btn:hover { background-color: var(--success-hover); }
-        .btn:active { transform: scale(0.98); }
+        .btn:hover { 
+            background-color: var(--neon-success); color: #000; 
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
         
-        /* --- ESPACE EMPLOYE & SECURITE --- */
-        #lock-screen { text-align: center; padding: 40px 20px; max-width: 400px; margin: 40px auto; }
-        .lock-icon { font-size: 3em; margin-bottom: 15px; }
+        /* --- SECURITE & PANELS EMPLOYES --- */
+        #lock-screen { text-align: center; padding: 40px 20px; max-width: 400px; margin: 40px auto; border: 1px dashed var(--neon-danger); }
+        .lock-icon { font-size: 2.5em; margin-bottom: 15px; color: var(--neon-danger); }
         input[type="password"] { 
-            padding: 14px; width: 100%; border: 1px solid var(--border); border-radius: 6px; 
-            margin-bottom: 20px; text-align: center; font-size: 1.3em; letter-spacing: 4px; box-sizing: border-box;
+            background: #0a0f1d; border: 1px solid var(--border-neon); color: #fff;
+            padding: 14px; width: 100%; margin-bottom: 20px; text-align: center; font-size: 1.3em; letter-spacing: 6px; box-sizing: border-box;
         }
-        .btn-auth { background-color: var(--primary); width: 100%; }
-        .btn-auth:hover { background-color: var(--primary-hover); }
+        .btn-auth { color: var(--neon-cyan); border-color: var(--neon-cyan); }
+        .btn-auth:hover { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
         
         #employee-dashboard { display: none; }
-        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .btn-clear { background-color: var(--danger); padding: 10px 20px; font-size: 0.95em; }
-        .btn-clear:hover { background-color: var(--danger-hover); }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-neon); padding-bottom: 15px; }
+        .btn-clear { color: var(--neon-danger); border-color: var(--neon-danger); padding: 10px 20px; font-size: 0.85em;}
+        .btn-clear:hover { background-color: var(--neon-danger); color: #000; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
         
-        /* Flux des cartes de commandes */
+        /* Cartes des Commandes en Grille Machine */
         .orders-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .order-card { 
-            background-color: white; border-radius: 8px; border: 1px solid var(--border); 
-            border-left: 5px solid var(--accent); padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            background-color: #0d1527; border: 1px solid var(--border-neon); 
+            padding: 20px; position: relative;
         }
-        .order-meta { display: flex; justify-content: space-between; font-weight: 700; color: var(--primary); font-size: 1.05em; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; }
-        .order-meta .time { color: var(--text-muted); font-weight: 400; font-size: 0.9em; }
+        .order-card::before {
+            content: 'SYSTEM_INCOMING'; position: absolute; top: -10px; right: 15px; background: var(--bg-card); color: var(--neon-cyan); font-size: 0.7em; padding: 2px 6px; border: 1px solid var(--border-neon);
+        }
+        .order-meta { display: flex; justify-content: space-between; font-weight: bold; color: var(--text-light); font-size: 0.9em; border-bottom: 1px dashed var(--border-neon); padding-bottom: 10px; margin-bottom: 15px; }
+        .order-meta .time { color: var(--neon-cyan); }
         
-        .order-card ul { padding-left: 20px; margin: 0; color: #334155; }
-        .order-card li { margin-bottom: 6px; }
-        .order-card .final-price { text-align: right; font-weight: 800; font-size: 1.25em; color: var(--success); margin-top: 15px; padding-top: 10px; border-top: 1px dashed var(--border); }
-        .no-order { text-align: center; color: var(--text-muted); font-style: italic; padding: 40px 0; font-size: 1.1em; }
+        .order-card ul { padding-left: 15px; margin: 0; color: #cbd5e1; font-size: 0.9em; }
+        .order-card li { margin-bottom: 6px; list-style-type: square; }
+        .order-card .final-price { text-align: right; font-weight: bold; font-size: 1.2em; color: var(--neon-success); margin-top: 15px; padding-top: 10px; border-top: 1px solid var(--border-neon); }
+        .no-order { text-align: center; color: var(--text-muted); font-style: italic; padding: 40px 0; font-size: 0.9em; }
         
         @media (max-width: 768px) { 
             .features { grid-template-columns: 1fr; } 
-            .checkout-bar { flex-direction: column; gap: 20px; align-items: flex-start; }
-            .btn { width: 100%; }
+            .checkout-bar { flex-direction: column; gap: 20px; align-items: stretch; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Barre de Navigation Matrix -->
     <nav>
         <div class="nav-container">
-            <button id="nav-accueil" class="active" onclick="changerPage('accueil')">Accueil</button>
-            <button id="nav-catalogue" onclick="changerPage('catalogue')">Catalogue & Commande</button>
-            <button id="nav-employe" onclick="changerPage('employe')">Espace Employé</button>
+            <button id="nav-accueil" class="active" onclick="changerPage('accueil')">[ 01. Accueil ]</button>
+            <button id="nav-catalogue" onclick="changerPage('catalogue')">[ 02. Catalogue ]</button>
+            <button id="nav-employe" onclick="changerPage('employe')">[ 03. Employes ]</button>
         </div>
     </nav>
 
+    <!-- Header Terminal -->
     <header>
-        <h1>Centrale d'Achat Grossiste</h1>
-        <p>Portail d'approvisionnement et gestion des flux logistiques alimentaires</p>
+        <h1>SYS.LOGISTIX // CORE_UNIT</h1>
+        <p>Centrale d'automatisation des flux de marchandises alimentaires</p>
     </header>
 
     <div class="container">
 
+        <!-- PAGE 1 : ACCUEIL -->
         <div id="page-accueil" class="page active-page">
-            <h2>Bienvenue sur l'Espace Pro</h2>
-            <p class="subtitle">Votre plateforme de distribution et de réapprovisionnement pour commerces de gros et de détail.</p>
+            <h2>// INITIALISATION_RÉSEAU</h2>
+            <p class="subtitle">Architecture logistique brute dédiée au traitement B2B à haute fréquence.</p>
             
-            <p>Nous stockons et redistribuons des matières premières et ingrédients majeurs pour la restauration collective, les métiers de bouche et les chaînes de magasins. Notre interface unifiée permet un lien direct entre vos besoins de commandes et nos équipes de préparation.</p>
+            <p>Le protocole SYS.LOGISTIX orchestre la distribution de matières premières industrielles et alimentaires. Ce panneau permet de requérir l'acheminement de palettes de denrées directement vers vos zones de transformation ou de commercialisation locale.</p>
             
             <div class="features">
                 <div class="card">
-                    <h3>📦 Commandes Ouvertes</h3>
-                    <p>Consultez l'onglet Catalogue pour remplir instantanément vos besoins en marchandises et envoyer vos ordres de préparation.</p>
+                    <h3>[ DIRECT_ORDER ]</h3>
+                    <p>Déployez le registre catalogue pour manipuler les entrées de données numériques et soumettre un nouveau manifeste logistique.</p>
                 </div>
                 <div class="card">
-                    <h3>🔑 Gestion d'Entrepôt</h3>
-                    <p>La zone employé permet aux préparateurs de commande de visualiser les listes de picking et de valider les départs de stocks.</p>
+                    <h3>[ ROOT_GATEWAY ]</h3>
+                    <p>Interface de réception sécurisée pour les opérateurs en entrepôt. Permet le déstockage physique immédiat en zone de fret.</p>
                 </div>
             </div>
         </div>
 
+        <!-- PAGE 2 : CATALOGUE BRUTALISTE -->
         <div id="page-catalogue" class="page">
-            <h2>Catalogue Officiel des Produits</h2>
-            <p class="subtitle">Indiquez les quantités requises. Le calcul global se met à jour dynamiquement.</p>
+            <h2>// INVENTAIRE_GLOBAL_STOCKS</h2>
+            <p class="subtitle">Assignez les valeurs numériques de volume pour compiler le manifeste de fret.</p>
             
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
-                            <th>Désignation Produit</th>
-                            <th>Prix Unitaire</th>
-                            <th>Quantité</th>
-                            <th>Sous-total</th>
+                            <th>CODE_DÉSIGNATION</th>
+                            <th>VALEUR_UNITAIRE</th>
+                            <th>SÉLECTION_QTE</th>
+                            <th>MONTANT_LIGNE</th>
                         </tr>
                     </thead>
                     <tbody id="catalog-table-body">
-                        </tbody>
+                        <!-- Les 25 produits injectés ici -->
+                    </tbody>
                 </table>
             </div>
 
             <div class="checkout-bar">
                 <div class="total-box">
-                    Montant global : <span id="total-price">0.00</span> €
+                    VALEUR TOTAL : <span id="total-price">0.00</span> €
                 </div>
-                <button class="btn" onclick="transmettreCommande()">Valider et envoyer la commande</button>
+                <button class="btn" onclick="transmettreCommande()">COMPILE_AND_SEND()</button>
             </div>
         </div>
 
+        <!-- PAGE 3 : ESPACE EMPLOYE CYBER -->
         <div id="page-employe" class="page">
             
+            <!-- Lock Screen -->
             <div id="lock-screen">
-                <div class="lock-icon">🔐</div>
-                <h2>Accès Restreint</h2>
-                <p class="subtitle">Veuillez entrer le code d'authentification requis.</p>
-                <input type="password" id="code-secu" placeholder="••••">
-                <button class="btn btn-auth" onclick="authentifierEmploye()">Se connecter</button>
+                <div class="lock-icon">⚠️</div>
+                <h2>RESTRICTED_AREA</h2>
+                <p class="subtitle">Entrez la clé maîtresse réseau pour authentifier votre session opérateur.</p>
+                <input type="password" id="code-secu" placeholder="0000">
+                <button class="btn btn-auth" onclick="authentifierEmploye()">EXECUTE_AUTH</button>
             </div>
 
+            <!-- Dashboard Caché -->
             <div id="employee-dashboard">
                 <div class="dash-header">
                     <div>
-                        <h2>Flux des Commandes Entrantes</h2>
-                        <p class="subtitle" style="margin-bottom:0;">Ordres de colisage en attente de traitement.</p>
+                        <h2>// TABLEAU_DE_PICKING_FLUX</h2>
+                        <p class="subtitle" style="margin-bottom:0;">Flux réseau actif des commandes prêtes pour colisage.</p>
                     </div>
-                    <button class="btn btn-clear" onclick="viderToutesLesCommandes()">Purger la liste</button>
+                    <button class="btn btn-clear" onclick="viderToutesLesCommandes()">PURGE_ALL_DATA</button>
                 </div>
                 
                 <div id="orders-feed" class="orders-grid">
-                    </div>
+                    <!-- Les commandes s'afficheront ici -->
+                </div>
             </div>
             
         </div>
@@ -282,7 +275,7 @@
     </div>
 
 <script>
-// Base de données complète et mise à jour avec les 25 produits alimentaires
+// Base de données des 25 produits
 const catalogueProduits = [
     { id: 1, nom: "Chocolat", prix: 2.00 },
     { id: 2, nom: "Farine", prix: 5.00 },
@@ -311,10 +304,8 @@ const catalogueProduits = [
     { id: 25, nom: "Chips", prix: 7.50 }
 ];
 
-// Gestion des données de session (simulation DB)
 let baseCommandes = JSON.parse(localStorage.getItem('grossiste_commandes')) || [];
 
-// --- LOGIQUE DE NAVIGATION ---
 function changerPage(nomPage) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
@@ -327,15 +318,14 @@ function changerPage(nomPage) {
     }
 }
 
-// --- CONSTRUIRE LE CATALOGUE ---
 const tBody = document.getElementById('catalog-table-body');
 catalogueProduits.forEach(p => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-        <td><span class="product-name">${p.nom}</span></td>
-        <td><span class="price-badge">${p.prix.toFixed(2)} €</span></td>
+        <td><span class="product-name">> ${p.nom.toUpperCase()}</span></td>
+        <td><span class="price-badge">${p.prix.toFixed(2)} EUR</span></td>
         <td><input type="number" min="0" value="0" data-id="${p.id}" oninput="mettreAJourTotal()"></td>
-        <td><span id="subtotal-${p.id}" class="subtotal-badge">0.00 €</span></td>
+        <td><span id="subtotal-${p.id}" class="subtotal-badge">0.00 EUR</span></td>
     `;
     tBody.appendChild(tr);
 });
@@ -346,13 +336,12 @@ function mettreAJourTotal() {
         const input = document.querySelector(`input[data-id="${p.id}"]`);
         const qte = parseInt(input.value) || 0;
         const sub = qte * p.prix;
-        document.getElementById(`subtotal-${p.id}`).innerText = sub.toFixed(2) + " €";
+        document.getElementById(`subtotal-${p.id}`).innerText = sub.toFixed(2) + " EUR";
         globalTotal += sub;
     });
     document.getElementById('total-price').innerText = globalTotal.toFixed(2);
 }
 
-// --- LOGIQUE TRANSMISSION COMMANDE ---
 function transmettreCommande() {
     let panier = [];
     let prixTotal = document.getElementById('total-price').innerText;
@@ -360,17 +349,17 @@ function transmettreCommande() {
     catalogueProduits.forEach(p => {
         const qte = parseInt(document.querySelector(`input[data-id="${p.id}"]`).value) || 0;
         if(qte > 0) {
-            panier.push({ nom: p.nom, quantite: qte, prixLigne: (qte * p.prix).toFixed(2) });
+            panier.push({ nom: p.nom.toUpperCase(), quantite: qte, prixLigne: (qte * p.prix).toFixed(2) });
         }
     });
 
     if(panier.length === 0) {
-        alert("Votre bon de commande ne contient aucun article.");
+        alert("COMMANDE REJETÉE : MANIFESTE VIDE.");
         return;
     }
 
     const nouvelleCommande = {
-        idTicket: 'CMD-' + Math.floor(1000 + Math.random() * 9000),
+        idTicket: 'SYS-' + Math.floor(1000 + Math.random() * 9000),
         heure: new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
         marchandises: panier,
         totalFacture: prixTotal
@@ -379,14 +368,12 @@ function transmettreCommande() {
     baseCommandes.push(nouvelleCommande);
     localStorage.setItem('grossiste_commandes', JSON.stringify(baseCommandes));
 
-    alert(`✅ Commande enregistrée ! Envoyée avec succès au tableau des employés.`);
+    alert(`[SUCCESS] MANIFESTE SÉCURISÉ TRANSMIS VERS L'ENTREPÔT.`);
     
-    // Reset du catalogue
     document.querySelectorAll('input[type="number"]').forEach(i => i.value = 0);
     mettreAJourTotal();
 }
 
-// --- AUTHENTIFICATION ---
 function authentifierEmploye() {
     const codeSaisi = document.getElementById('code-secu').value;
     if (codeSaisi === "2009") {
@@ -394,44 +381,42 @@ function authentifierEmploye() {
         document.getElementById('employee-dashboard').style.display = 'block';
         afficherFluxCommandes();
     } else {
-        alert("❌ Code d'accès invalide.");
+        alert("CRITICAL_ERROR : CLÉ D'ACCÈS ERRONÉE.");
     }
 }
 
-// --- AFFICHAGE FLUX EMPLOYÉS ---
 function afficherFluxCommandes() {
     const conteneur = document.getElementById('orders-feed');
     conteneur.innerHTML = "";
 
     if (baseCommandes.length === 0) {
-        conteneur.innerHTML = "<p class='no-order'>Aucun bon de commande en attente dans le flux logistique.</p>";
+        conteneur.innerHTML = "<p class='no-order'>STACK_EMPTY : En attente de transmissions entrantes...</p>";
         return;
     }
 
-    // Du plus récent au plus ancien
     [...baseCommandes].reverse().forEach(cmd => {
         const division = document.createElement('div');
         division.className = 'order-card';
         
         let lignesProduits = "";
         cmd.marchandises.forEach(m => {
-            lignesProduits += `<li><strong>${m.nom}</strong> x${m.quantite} — (${m.prixLigne} €)</li>`;
+            lignesProduits += `<li>FILE_ITEM: ${m.nom} || QTE: ${m.quantite} (Total: ${m.prixLigne} EUR)</li>`;
         });
 
         division.innerHTML = `
             <div class="order-meta">
-                <span>📦 Bon de commande N° ${cmd.idTicket}</span>
-                <span class="time">⏱️ Reçu à : ${cmd.heure}</span>
+                <span>[ TICKET_ID : ${cmd.idTicket} ]</span>
+                <span class="time">// TIMELOG : ${cmd.heure}</span>
             </div>
             <ul>${lignesProduits}</ul>
-            <div class="order-total final-price">Total Facturé : ${cmd.totalFacture} €</div>
+            <div class="order-total final-price">VALEUR MANIFESTE : ${cmd.totalFacture} EUR</div>
         `;
         conteneur.appendChild(division);
     });
 }
 
 function viderToutesLesCommandes() {
-    if(confirm("Confirmez-vous la purge complète de l'historique des commandes en attente ?")) {
+    if(confirm("ÉVACUER TOUTES LES DONNÉES DU FLUX ACTUEL ?")) {
         baseCommandes = [];
         localStorage.removeItem('grossiste_commandes');
         afficherFluxCommandes();
