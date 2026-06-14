@@ -3,123 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grossiste Alimentaire - Espace Professionnel</title>
+    <title>Grossiste Alimentaire - Panel Unique</title>
     <style>
         /* Styles Généraux */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 0; }
-        header { background: #2c3e50; color: white; padding: 40px 20px; text-align: center; }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { margin: 10px 0 0 0; font-size: 1.2em; color: #bdc3c7; }
         
+        /* Barre de Navigation */
+        nav { background: #2c3e50; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav button { background: none; border: none; color: white; margin: 0 15px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+        nav button:hover, nav button.active { color: #3498db; text-decoration: underline; }
+        
+        /* En-tête */
+        header { background: linear-gradient(135deg, #2c3e50, #34495e); color: white; padding: 40px 20px; text-align: center; }
+        header h1 { margin: 0; font-size: 2.3em; }
+        header p { margin: 10px 0 0 0; font-size: 1.1em; color: #bdc3c7; }
+        
+        /* Conteneurs et Pages */
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-        section { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .page { display: none; background: white; padding: 35px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); animation: fadeIn 0.3s ease; }
+        .page.active-page { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         h2 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; margin-top: 0; }
         
-        /* Section Présentation */
-        .presentation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        /* Style Page 1 : Accueil */
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
         .card { background: #f8f9fa; padding: 20px; border-radius: 6px; border-left: 4px solid #3498db; }
-        .card h3 { margin-top: 0; color: #3498db; }
+        .card h3 { margin-top: 0; color: #2c3e50; }
 
-        /* Section Catalogue */
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
-        .product-card { background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 6px; padding: 20px; text-align: center; transition: transform 0.2s; }
-        .product-card:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .product-name { font-weight: bold; font-size: 1.1em; margin-bottom: 10px; color: #2c3e50; }
-        .product-price { color: #27ae60; font-size: 1.2em; font-weight: bold; }
-
-        /* Système de Sécurité */
-        .auth-box { text-align: center; padding: 40px 20px; }
-        .btn-auth { background: #3498db; color: white; border: none; padding: 12px 24px; font-size: 1.1em; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .btn-auth:hover { background: #2980b9; }
-        
-        /* Section Commande (Masquée au départ) */
-        #order-section { display: none; border: 2px solid #27ae60; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; margin-top: 20px; }
+        /* Style Page 2 : Catalogue & Commande */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #f8f9fa; color: #2c3e50; }
-        input[type="number"] { width: 60px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center; }
-        .total-section { text-align: right; font-size: 1.4em; font-weight: bold; margin-top: 20px; padding-top: 20px; border-top: 2px solid #2c3e50; color: #2c3e50; }
-        .btn-order { display: block; width: 100%; background: #27ae60; color: white; border: none; padding: 15px; font-size: 1.1em; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.2s; }
-        .btn-order:hover { background: #219653; }
+        input[type="number"] { width: 60px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 1em; }
+        .total-box { text-align: right; font-size: 1.4em; font-weight: bold; margin-top: 20px; color: #2c3e50; }
+        .btn-send { display: block; width: 100%; background: #27ae60; color: white; border: none; padding: 15px; font-size: 1.1em; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 20px; transition: background 0.2s; }
+        .btn-send:hover { background: #219653; }
         
-        @media (max-width: 768px) { .presentation-grid { grid-template-columns: 1fr; } }
+        /* Style Page 3 : Sécurité & Espace Employé */
+        #lock-screen { text-align: center; padding: 40px 20px; max-width: 400px; margin: 0 auto; }
+        input[type="password"] { padding: 12px; width: 80%; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; text-align: center; font-size: 1.2em; }
+        .btn-auth { background: #2c3e50; color: white; border: none; padding: 12px 20px; font-size: 1em; border-radius: 4px; cursor: pointer; width: 85%; font-weight: bold; }
+        .btn-auth:hover { background: #34495e; }
+        
+        #employee-dashboard { display: none; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; margin-bottom: 20px; }
+        .btn-clear { background: #e74c3c; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-clear:hover { background: #c0392b; }
+        
+        /* Cartes des commandes reçues */
+        .order-card { background: #f8f9fa; padding: 20px; border-radius: 6px; border: 1px solid #e2e8f0; border-top: 4px solid #27ae60; margin-bottom: 20px; }
+        .order-meta { display: flex; justify-content: space-between; font-weight: bold; color: #2c3e50; border-bottom: 1px dashed #ccc; padding-bottom: 8px; margin-bottom: 12px; }
+        .order-total { text-align: right; font-weight: bold; font-size: 1.2em; color: #27ae60; margin-top: 10px; }
+        .no-order { text-align: center; color: #7f8c8d; font-style: italic; padding: 30px 0; }
+        
+        @media (max-width: 768px) { .features { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- En-tête / Accueil -->
+    <nav>
+        <button id="nav-accueil" class="active" onclick="changerPage('accueil')">Accueil</button>
+        <button id="nav-catalogue" onclick="changerPage('catalogue')">Catalogue & Commande</button>
+        <button id="nav-employe" onclick="changerPage('employe')">Espace Employé</button>
+    </nav>
+
     <header>
         <h1>Centrale d'Achat Grossiste</h1>
-        <p>Votre partenaire d'approvisionnement en produits alimentaires de première nécessité</p>
+        <p>Portail d'approvisionnement et de gestion des commandes alimentaires</p>
     </header>
 
     <div class="container">
-        
-        <!-- 1. Présentation de l'entreprise -->
-        <section id="presentation">
-            <h2>Qui sommes-nous ?</h2>
-            <p>Spécialisé dans la distribution de produits de base, notre entrepôt logistique livre quotidiennement les professionnels de la restauration, les boulangeries et les commerces de détail. Nous garantissons une disponibilité constante de nos stocks au meilleur prix du marché.</p>
+
+        <div id="page-accueil" class="page active-page">
+            <h2>Présentation de notre activité</h2>
+            <p>Bienvenue sur notre plateforme logistique. En tant que grossiste alimentaire, nous mettons à votre disposition une sélection de matières premières et de produits de première nécessité indispensables pour votre commerce ou restaurant.</p>
             
-            <div class="presentation-grid">
+            <div class="features">
                 <div class="card">
-                    <h3>⚡ Logistique Rapide</h3>
-                    <p>Commandes traitées et prêtes pour l'enlèvement ou la livraison en moins de 24 heures.</p>
+                    <h3>🛒 Catalogue en Ligne</h3>
+                    <p>Accédez directement à l'onglet catalogue pour initier un bon de commande rapide avec mise à jour en direct de vos coûts.</p>
                 </div>
                 <div class="card">
-                    <h3>🔒 Espace Réservé</h3>
-                    <p>Les prises de commandes directes sur l'interface sont exclusivement réservées à nos équipes et employés autorisés.</p>
+                    <h3>🔑 Réception Employés</h3>
+                    <p>Vos collaborateurs disposent d'un accès sécurisé pour intercepter, valider et préparer les marchandises dès réception.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 2. Le Catalogue Public -->
-        <section id="catalogue">
-            <h2>Notre Catalogue Produits</h2>
-            <p>Consultez ci-dessous nos tarifs professionnels en vigueur :</p>
-            <div class="catalog-grid" id="catalog-display">
-                <!-- Injecté dynamiquement par JS -->
-            </div>
-        </section>
 
-        <!-- 3. Section d'Authentification / Commande -->
-        <section id="auth-section">
-            <h2>Espace Commande Interne</h2>
-            <div class="auth-box" id="lock-box">
-                <p>Cette zone nécessite une habilitation interne pour soumettre une nouvelle commande de réapprovisionnement.</p>
-                <button class="btn-auth" onclick="verifierCode()">Saisir le Code Employé</button>
-            </div>
-        </section>
-
-        <!-- 4. Formulaire de Commande Secrétisé -->
-        <section id="order-section">
-            <h2>🛠️ Bon de Commande Interne (Accès Employé)</h2>
-            <p>Sélectionnez les quantités demandées par le client pour mettre à jour le bon d'enlèvement :</p>
+        <div id="page-catalogue" class="page">
+            <h2>Catalogue des Produits & Tarifs</h2>
+            <p>Ajustez les volumes nécessaires pour soumettre votre commande instantanément :</p>
+            
             <table>
                 <thead>
                     <tr>
                         <th>Produit</th>
-                        <th>Tarif Unitaire</th>
-                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                        <th>Quantité désirée</th>
                         <th>Sous-total</th>
                     </tr>
                 </thead>
-                <tbody id="order-table-body">
-                    <!-- Injecté dynamiquement par JS -->
-                </tbody>
+                <tbody id="catalog-table-body">
+                    </tbody>
             </table>
 
-            <div class="total-section">
-                Total Facturé : <span id="grand-total">0.00</span> €
+            <div class="total-box">
+                Total Facture : <span id="total-price">0.00</span> €
             </div>
-            <br>
-            <button class="btn-order" onclick="finaliserCommande()">Enregistrer la Commande</button>
-        </section>
+
+            <button class="btn-send" onclick="transmettreCommande()">Envoyer la Commande</button>
+        </div>
+
+
+        <div id="page-employe" class="page">
+            
+            <div id="lock-screen">
+                <h2>🔐 Zone d'Administration Réservée</h2>
+                <p>Veuillez introduire le code d'accès employé pour afficher le tableau des commandes en attente :</p>
+                <input type="password" id="code-secu" placeholder="Entrez le code pro">
+                <button class="btn-auth" onclick="authentifierEmploye()">Se connecter</button>
+            </div>
+
+            <div id="employee-dashboard">
+                <div class="dash-header">
+                    <h2>📥 Commandes Reçues à Préparer</h2>
+                    <button class="btn-clear" onclick="viderToutesLesCommandes()">Tout réinitialiser</button>
+                </div>
+                <div id="orders-feed">
+                    </div>
+            </div>
+            
+        </div>
 
     </div>
 
 <script>
-// Base de données unique des 11 produits alimentaires
-const produits = [
+// Base de données unique des produits
+const catalogueProduits = [
     { id: 1, nom: "Chocolat", prix: 2.00 },
     { id: 2, nom: "Farine", prix: 5.00 },
     { id: 3, nom: "Levure", prix: 4.00 },
@@ -133,96 +156,134 @@ const produits = [
     { id: 11, nom: "Moutarde", prix: 5.00 }
 ];
 
-// 1. Génération Automatique du Catalogue Public
-const catalogDisplay = document.getElementById('catalog-display');
-produits.forEach(p => {
-    const div = document.createElement('div');
-    div.className = 'product-card';
-    div.innerHTML = `
-        <div class="product-name">${p.nom}</div>
-        <div class="product-price">${p.prix.toFixed(2)} €</div>
+// Variable globale pour simuler une base de données dans le navigateur
+let baseCommandes = JSON.parse(localStorage.getItem('grossiste_commandes')) || [];
+
+// --- LOGIQUE DE NAVIGATION (MULTI-PAGE DANS UN SEUL CODE) ---
+function changerPage(nomPage) {
+    // Masquer toutes les sections
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    
+    // Afficher la section demandée
+    document.getElementById(`page-${nomPage}`).classList.add('active-page');
+    document.getElementById(`nav-${nomPage}`).classList.add('active');
+
+    // Recharger les commandes si on va sur l'espace employé déverrouillé
+    if(nomPage === 'employe' && document.getElementById('employee-dashboard').style.display === 'block') {
+        afficherFluxCommandes();
+    }
+}
+
+// --- INITIALISATION DU CATALOGUE (PAGE 2) ---
+const tBody = document.getElementById('catalog-table-body');
+catalogueProduits.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><strong>${p.nom}</strong></td>
+        <td>${p.prix.toFixed(2)} €</td>
+        <td><input type="number" min="0" value="0" data-id="${p.id}" oninput="mettreAJourTotal()"></td>
+        <td><span id="subtotal-${p.id}">0.00</span> €</td>
     `;
-    catalogDisplay.appendChild(div);
+    tBody.appendChild(tr);
 });
 
-// 2. Vérification du Code d'Accès Employé (Code: 2009)
-function verifierCode() {
-    const codeSaisi = prompt("Veuillez entrer le code d'accès employé :");
-    
-    if (codeSaisi === "2009") {
-        alert("Accès accordé. Le bon de commande est maintenant disponible au bas de la page.");
-        document.getElementById('lock-box').innerHTML = "<p style='color: #27ae60; font-weight: bold;'>✅ Session Employé Active</p>";
-        document.getElementById('order-section').style.display = 'block';
-        initialiserFormulaireCommande();
-        // Fait défiler la page directement vers le formulaire
-        document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' });
-    } else if (codeSaisi !== null) {
-        alert("Code incorrect. Accès refusé.");
-    }
-}
-
-// 3. Initialisation de la table de commande si code correct
-function initialiserFormulaireCommande() {
-    const orderTbody = document.getElementById('order-table-body');
-    // On vide pour éviter les doublons si réinitialisation
-    orderTbody.innerHTML = ""; 
-    
-    produits.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td><strong>${p.nom}</strong></td>
-            <td>${p.prix.toFixed(2)} €</td>
-            <td><input type="number" min="0" value="0" data-id="${p.id}" oninput="calculerRecapitulatif()"></td>
-            <td><span id="subtotal-${p.id}">0.00</span> €</td>
-        `;
-        orderTbody.appendChild(tr);
+function mettreAJourTotal() {
+    let globalTotal = 0;
+    catalogueProduits.forEach(p => {
+        const input = document.querySelector(`input[data-id="${p.id}"]`);
+        const qte = parseInt(input.value) || 0;
+        const sub = qte * p.prix;
+        document.getElementById(`subtotal-${p.id}`).innerText = sub.toFixed(2);
+        globalTotal += sub;
     });
+    document.getElementById('total-price').innerText = globalTotal.toFixed(2);
 }
 
-// 4. Calcul des montants en direct
-function calculerRecapitulatif() {
-    let totalGeneral = 0;
-    produits.forEach(p => {
-        const inputField = document.querySelector(`input[data-id="${p.id}"]`);
-        if (inputField) {
-            const qte = parseInt(inputField.value) || 0;
-            const sousTotal = qte * p.prix;
-            document.getElementById(`subtotal-${p.id}`).innerText = sousTotal.toFixed(2);
-            totalGeneral += sousTotal;
+// --- SOUVEGARDER ET ENVOYER UNE COMMANDE ---
+function transmettreCommande() {
+    let panier = [];
+    let prixTotal = document.getElementById('total-price').innerText;
+
+    catalogueProduits.forEach(p => {
+        const qte = parseInt(document.querySelector(`input[data-id="${p.id}"]`).value) || 0;
+        if(qte > 0) {
+            panier.push({ nom: p.nom, quantite: qte, prixLigne: (qte * p.prix).toFixed(2) });
         }
     });
-    document.getElementById('grand-total').innerText = totalGeneral.toFixed(2);
-}
 
-// 5. Validation et traitement de la commande
-function finaliserCommande() {
-    let details = "RÉCAPITULATIF DE LA COMMANDE :\n=========================\n";
-    let articlesCommandes = 0;
-    
-    produits.forEach(p => {
-        const inputField = document.querySelector(`input[data-id="${p.id}"]`);
-        if (inputField) {
-            const qte = parseInt(inputField.value) || 0;
-            if (qte > 0) {
-                details += `• ${p.nom} : ${qte} unité(s) — ${(qte * p.prix).toFixed(2)} €\n`;
-                articlesCommandes++;
-            }
-        }
-    });
-    
-    if (articlesCommandes === 0) {
-        alert("Erreur : Le panier est vide. Veuillez indiquer au moins une quantité.");
+    if(panier.length === 0) {
+        alert("Votre bon de commande ne contient aucun article.");
         return;
     }
+
+    const nouvelleCommande = {
+        idTicket: 'CMD-' + Math.floor(1000 + Math.random() * 9000),
+        heure: new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
+        marchandises: panier,
+        totalFacture: prixTotal
+    };
+
+    baseCommandes.push(nouvelleCommande);
+    localStorage.setItem('grossiste_commandes', JSON.stringify(baseCommandes));
+
+    alert(`Commande passée ! Ticket envoyé au bureau des employés.`);
     
-    details += "=========================\n";
-    details += `Montant Global : ${document.getElementById('grand-total').innerText} €`;
-    
-    alert(details + "\n\nCommande validée avec succès par l'employé !");
-    
-    // Réinitialise le formulaire après validation
-    initialiserFormulaireCommande();
-    document.getElementById('grand-total').innerText = "0.00";
+    // Remise à zéro du formulaire
+    document.querySelectorAll('input[type="number"]').forEach(i => i.value = 0);
+    mettreAJourTotal();
+}
+
+// --- AUTHENTIFICATION (PAGE 3) ---
+function authentifierEmploye() {
+    const codeSaisi = document.getElementById('code-secu').value;
+    if (codeSaisi === "2009") {
+        document.getElementById('lock-screen').style.display = 'none';
+        document.getElementById('employee-dashboard').style.display = 'block';
+        afficherFluxCommandes();
+    } else {
+        alert("Code de sécurité invalide. Accès restreint.");
+    }
+}
+
+// --- AFFICHAGE DES COMMANDES RECUES (ESPACE EMPLOYE) ---
+function afficherFluxCommandes() {
+    const conteneur = document.getElementById('orders-feed');
+    conteneur.innerHTML = "";
+
+    if (baseCommandes.length === 0) {
+        conteneur.innerHTML = "<p class='no-order'>Aucun nouveau bon de commande reçu pour l'instant.</p>";
+        return;
+    }
+
+    // Afficher du plus récent au plus ancien
+    [...baseCommandes].reverse().forEach(cmd => {
+        const division = document.createElement('div');
+        division.className = 'order-card';
+        
+        let lignesProduits = "";
+        cmd.marchandises.forEach(m => {
+            lignesProduits += `<li><strong>${m.nom}</strong> x${m.quantite} — (${m.prixLigne} €)</li>`;
+        });
+
+        division.innerHTML = `
+            <div class="order-meta">
+                <span>📦 N° ${cmd.idTicket}</span>
+                <span>⏱️ Reçu à : ${cmd.heure}</span>
+            </div>
+            <ul>${lignesProduits}</ul>
+            <div class="order-total">À percevoir : ${cmd.totalFacture} €</div>
+        `;
+        conteneur.appendChild(division);
+    });
+}
+
+function viderToutesLesCommandes() {
+    if(confirm("Confirmez-vous la purge complète et l'archivage de l'historique des commandes ?")) {
+        baseCommandes = [];
+        localStorage.removeItem('grossiste_commandes');
+        afficherFluxCommandes();
+    }
 }
 </script>
 
