@@ -44,7 +44,7 @@
             max-width: 1100px; margin: 0 auto; padding: 18px 20px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-size: 1.05em; font-weight: 800; letter-spacing: 2px; color: #fff; }
+        .logo { font-size: 1.05em; font-weight: 800; letter-spacing: 2px; color: #fff; cursor: pointer; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 6px; }
         nav button { 
@@ -57,7 +57,7 @@
 
         /* --- GLOBAL LAYOUT --- */
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .page { display: none; opacity: 0; transform: translateY(8px); transition: all 0.4s ease; }
+        .page { display: none; opacity: 0; transform: translateY(8px); transition: all 0.3s ease; }
         .page.active-page { display: block; opacity: 1; transform: translateY(0); }
 
         h2 { font-size: 1.4em; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 25px; color: #fff; }
@@ -154,7 +154,7 @@
             background: var(--bg-input); border: 1px solid var(--border); color: #fff;
             width: 45px; text-align: center; padding: 4px; border-radius: 4px; outline: none;
         }
-        .btn-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; }
+        .btn-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1em; }
         .btn-remove:hover { color: #f87171; }
 
         .cart-footer { margin-top: auto; padding-top: 25px; border-top: 1px solid var(--border); }
@@ -177,7 +177,7 @@
     <!-- Bar de navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">GROSSISTE<span>.PRO</span></div>
+            <div class="logo" onclick="changerPage('accueil')">GROSSISTE<span>.PRO</span></div>
             <div class="nav-links">
                 <button id="nav-accueil" class="active" onclick="changerPage('accueil')">ACCUEIL</button>
                 <button id="nav-catalogue" onclick="changerPage('catalogue')">CATALOGUE</button>
@@ -188,7 +188,7 @@
 
     <div class="container">
 
-        <!-- OBLÉ 1 : INTERFACE D'ACCUEIL -->
+        <!-- PAGE 1 : INTERFACE D'ACCUEIL -->
         <div id="page-accueil" class="page active-page">
             <div class="hero-section">
                 <h1>CENTRALE <b>LOGISTIQUE</b></h1>
@@ -212,7 +212,7 @@
             </div>
         </div>
 
-        <!-- ONGLÉ 2 : CATALOGUE ET CONFIG NOM RP -->
+        <!-- PAGE 2 : CATALOGUE ET CONFIG NOM RP -->
         <div id="page-catalogue" class="page">
             <div class="rp-section">
                 <label for="player-name-rp">Configuration de l'opérateur (Nom RP)</label>
@@ -227,7 +227,7 @@
             </div>
         </div>
 
-        <!-- ONGLÉ 3 : LOGISTIQUE / HISTORIQUE COMMANDE -->
+        <!-- PAGE 3 : LOGISTIQUE / HISTORIQUE COMMANDE -->
         <div id="page-employe" class="page">
             <div id="lock-screen">
                 <h3 style="margin-bottom: 15px; font-weight: 400;">POSTE DE CONTRÔLE</h3>
@@ -271,7 +271,6 @@
     </div>
 
 <script>
-// URL de ton Webhook Discord actuel
 const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1519738501413736578/1YO6Mqm6FKQl66e0CaZoVRwi7E2OBs5gfILGYU6zlnD30dMVZDBVyY-OdQMcAvSU_vKT";
 
 const catalogueProduits = [
@@ -299,15 +298,21 @@ function changerPage(nomPage) {
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     
     const target = document.getElementById(`page-${nomPage}`);
-    target.classList.add('active-page');
-    document.getElementById(`nav-${nomPage}`).classList.add('active');
+    if (target) {
+        target.classList.add('active-page');
+    }
+    
+    const navBtn = document.getElementById(`nav-${nomPage}`);
+    if (navBtn) {
+        navBtn.classList.add('active');
+    }
     
     if(nomPage === 'employe' && document.getElementById('employee-dashboard').style.display === 'block') {
         afficherFluxCommandes();
     }
 }
 
-// Génération dynamique des cartes du catalogue
+// Génération initiale de la grille des produits
 const grid = document.getElementById('catalog-container');
 catalogueProduits.forEach(p => {
     const card = document.createElement('div');
@@ -333,11 +338,15 @@ function ajouterAuPanier(id) {
 }
 
 function changerQuantite(id, qte) {
-    if (qte <= 0) delete panier[id];
-    else panier[id] = qte;
+    if (qte <= 0) {
+        delete panier[id];
+    } else {
+        panier[id] = qte;
+    }
     majAffichagePanier();
 }
 
+// Correction de l'ancienne fonction manquante
 function supprimerDuPanier(id) {
     delete panier[id];
     majAffichagePanier();
@@ -351,24 +360,26 @@ function majAffichagePanier() {
 
     Object.keys(panier).forEach(id => {
         const prod = catalogueProduits.find(p => p.id == id);
-        const qte = panier[id];
-        const sub = prod.prix * qte;
-        total += sub;
-        nbArticles += qte;
+        if (prod) {
+            const qte = panier[id];
+            const sub = prod.prix * qte;
+            total += sub;
+            nbArticles += qte;
 
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `
-            <div class="item-info">
-                <h4>${prod.nom}</h4>
-                <p>${sub.toFixed(2)} €</p>
-            </div>
-            <div class="item-actions">
-                <input type="number" min="1" value="${qte}" onchange="changerQuantite(${id}, parseInt(this.value)||1)">
-                <button class="btn-remove" onclick="supprimerDuPanier(${id})">✕</button>
-            </div>
-        `;
-        container.appendChild(div);
+            const div = document.createElement('div');
+            div.className = 'cart-item';
+            div.innerHTML = `
+                <div class="item-info">
+                    <h4>${prod.nom}</h4>
+                    <p>${sub.toFixed(2)} €</p>
+                </div>
+                <div class="item-actions">
+                    <input type="number" min="1" value="${qte}" onchange="changerQuantite(${id}, parseInt(this.value)||1)">
+                    <button class="btn-remove" onclick="supprimerDuPanier(${id})">✕</button>
+                </div>
+            `;
+            container.appendChild(div);
+        }
     });
 
     document.getElementById('global-cart-count').innerText = nbArticles;
@@ -394,9 +405,11 @@ function transmettreCommande() {
 
     keys.forEach(id => {
         const prod = catalogueProduits.find(p => p.id == id);
-        const qte = panier[id];
-        texteDiscord += `📦 **${prod.nom}** × ${qte}  *( ${(prod.prix * qte).toFixed(2)} € )*\n`;
-        listeLog.push({ nom: prod.nom, quantite: qte, prixLigne: (prod.prix * qte).toFixed(2) });
+        if (prod) {
+            const qte = panier[id];
+            texteDiscord += `📦 **${prod.nom}** × ${qte}  *( ${(prod.prix * qte).toFixed(2)} € )*\n`;
+            listeLog.push({ nom: prod.nom, quantite: qte, prixLigne: (prod.prix * qte).toFixed(2) });
+        }
     });
 
     const ticketID = 'CMD-' + Math.floor(1000 + Math.random() * 9000);
@@ -409,7 +422,7 @@ function transmettreCommande() {
         username: "Centrale Logistique",
         embeds: [{
             title: `📥 Demande d'approvisionnement — ${ticketID}`,
-            color: 38bdf8,
+            color: 3716344, // Correction de la couleur numérique valide
             fields: [
                 { name: "👤 Opérateur (Nom RP)", value: `\`${nomRP}\``, inline: true },
                 { name: "🕒 Réception", value: heure, inline: true },
