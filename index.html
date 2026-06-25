@@ -185,9 +185,6 @@
         .order-card .final-price span { color: var(--accent-green); font-weight: 700; }
         .no-order { text-align: center; font-style: italic; color: var(--text-muted); padding: 40px 0; }
         
-        /* Formulaire invisible de transmission FormSubmit */
-        #formsubmit-hidden { display: none; }
-
         @media (max-width: 768px) { 
             .features { grid-template-columns: 1fr; } 
             .checkout-bar { flex-direction: column; gap: 20px; text-align: center; }
@@ -195,13 +192,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Formulaire fantôme pour l'envoi d'e-mail automatique -->
-    <form id="formsubmit-hidden" action="https://formsubmit.co/yahyaamimi3@gmail.com" method="POST">
-        <input type="hidden" name="_subject" id="email-subject" value="Nouvelle Commande Grossiste">
-        <input type="hidden" name="_captcha" value="false">
-        <textarea name="details_commande" id="email-body"></textarea>
-    </form>
 
     <!-- Barre de Navigation Cyber -->
     <nav>
@@ -243,7 +233,7 @@
 
         <!-- PAGE 2 : CATALOGUE -->
         <div id="page-catalogue" class="page">
-            <h2>NOTRE INVENTAIRE (25 PRODUITS)</h2>
+            <h2>NOTRE INVENTAIRE (28 PRODUITS)</h2>
             <div class="subtitle">Ajustez vos quantités ci-dessous pour créer le bon d'enlèvement.</div>
             
             <div class="table-responsive">
@@ -301,7 +291,9 @@
     </div>
 
 <script>
-// Base de données avec les tarifs mis à jour
+// Webhook Discord configuré directement avec ton lien
+const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1519738501413736578/1YO6Mqm6FKQl66e0CaZoVRwi7E2OBs5gfILGYU6zlnD30dMVZDBVyY-OdQMcAvSU_vKT";
+
 const catalogueProduits = [
     { id: 1, nom: "Chocolat", prix: 2.00 },
     { id: 2, nom: "Farine", prix: 5.00 },
@@ -374,14 +366,14 @@ function mettreAJourTotal() {
 function transmettreCommande() {
     let panier = [];
     let prixTotal = document.getElementById('total-price').innerText;
-    let texteFormatEmail = "";
+    let texteFormatDiscord = "";
 
     catalogueProduits.forEach(p => {
         const qte = parseInt(document.querySelector(`input[data-id="${p.id}"]`).value) || 0;
         if(qte > 0) {
             let ligne = { nom: p.nom, quantite: qte, prixLigne: (qte * p.prix).toFixed(2) };
             panier.push(ligne);
-            texteFormatEmail += `- ${ligne.nom} : x${ligne.quantite} (${ligne.prixLigne} €)\n`;
+            texteFormatDiscord += `📦 **${ligne.nom}** × ${ligne.quantite}  *( ${ligne.prixLigne} € )*\n`;
         }
     });
 
@@ -400,25 +392,38 @@ function transmettreCommande() {
         totalFacture: prixTotal
     };
 
-    // 1. Sauvegarde dans l'historique du site (LocalStorage)
+    // 1. Sauvegarde locale (Dashboard Employé)
     baseCommandes.push(nouvelleCommande);
     localStorage.setItem('grossiste_commandes', JSON.stringify(baseCommandes));
 
-    // 2. Préparation et envoi automatique via l'API FormSubmit par e-mail
-    texteFormatEmail += `\nTOTAL DE LA COMMANDE : ${prixTotal} €`;
-    
-    document.getElementById('email-subject').value = `[${ticketID}] Nouvelle commande reçue à ${heureActuelle}`;
-    document.getElementById('email-body').value = texteFormatEmail;
-    
-    // Soumission automatique asynchrone pour ne pas recharger brutalement la page
-    const form = document.getElementById('formsubmit-hidden');
-    fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-    });
+    // 2. Structure du Embed pour Discord
+    const payloadDiscord = {
+        username: "Centrale de Commande",
+        embeds: [{
+            title: `📥 Nouvelle Commande Enregistrée — ${ticketID}`,
+            color: 3716344, // Couleur cyber-green
+            fields: [
+                { name: "🕒 Heure de réception", value: heureActuelle, inline: true },
+                { name: "🛒 Contenu du Bon de Picking", value: texteFormatDiscord, inline: false },
+                { name: "💰 Total Facturé", value: `**${prixTotal} €**`, inline: false }
+            ],
+            footer: { text: "Système Automatisé Grossiste.Pro" },
+            timestamp: new Date().toISOString()
+        }]
+    };
 
-    alert(`✅ REÇU ! LA COMMANDE A ÉTÉ TRANSMISE ET ENVOYÉE PAR EMAIL À YAHYAAMIMI3@GMAIL.COM`);
+    // Envoi de la requête au Webhook Discord
+    fetch(DISCORD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payloadDiscord)
+    })
+    .then(response => {
+        if(!response.ok) console.error("Erreur d'envoi Discord");
+    })
+    .catch(err => console.error("Erreur Réseau Discord:", err));
+
+    alert(`✅ REÇU ! LA COMMANDE A ÉTÉ TRANSMISE ET ENVOYÉE DANS TON SALON DISCORD.`);
     
     document.querySelectorAll('input[type="number"]').forEach(i => i.value = 0);
     mettreAJourTotal();
@@ -473,6 +478,9 @@ function viderToutesLesCommandes() {
     }
 }
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
