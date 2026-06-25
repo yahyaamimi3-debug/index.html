@@ -5,115 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROSSISTE . PRO</title>
     <style>
-        /* --- DESIGN LUXE MINIMALISTE INTERACTIF --- */
+        /* --- CORE DESIGN SYSTEM : LUXE MINIMALISTE --- */
         :root {
-            --bg-main: #0b0f19;
-            --bg-surface: rgba(22, 28, 45, 0.6);
-            --bg-surface-solid: #161c2d;
-            --bg-input: #121824;
+            --bg-main: #060913;
+            --bg-surface: rgba(15, 22, 42, 0.4);
+            --bg-surface-solid: #0f162a;
+            --bg-input: #090d1a;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
+            --accent-glow: rgba(56, 189, 248, 0.12);
             --text-main: #f8fafc;
             --text-muted: #64748b;
-            --border: rgba(255, 255, 255, 0.05);
-            --border-hover: rgba(56, 189, 248, 0.4);
+            --border: rgba(255, 255, 255, 0.04);
+            --border-hover: rgba(56, 189, 248, 0.3);
             --radius-lg: 16px;
-            --radius-md: 10px;
+            --radius-md: 8px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
         body { 
+            background: radial-gradient(circle at 50% 0%, #111827 0%, var(--bg-main) 70%);
             background-color: var(--bg-main); 
             color: var(--text-main); 
             padding-bottom: 100px;
-            overflow-x: hidden;
+            min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- LOGO & NAV PREMIUM --- */
+        /* --- NAVIGATION PREMIUM --- */
         nav { 
-            background: rgba(11, 15, 25, 0.8); 
+            background: rgba(6, 9, 19, 0.7); 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
         .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 20px;
+            max-width: 1100px; margin: 0 auto; padding: 18px 20px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-size: 1.1em; font-weight: 800; letter-spacing: 2px; color: #fff; }
+        .logo { font-size: 1.05em; font-weight: 800; letter-spacing: 2px; color: #fff; }
         .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 8px; }
+        .nav-links { display: flex; gap: 6px; }
         nav button { 
-            background: transparent; border: none; color: var(--text-muted); 
+            background: transparent; border: 1px solid transparent; color: var(--text-muted); 
             padding: 8px 16px; font-size: 0.85em; font-weight: 600; cursor: pointer; border-radius: var(--radius-md);
             transition: all 0.3s ease;
         }
-        nav button:hover { color: #fff; background: rgba(255,255,255,0.03); }
-        nav button.active { color: #fff; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); }
+        nav button:hover { color: #fff; }
+        nav button.active { color: #fff; background: rgba(255,255,255,0.03); border-color: var(--border); }
 
-        /* --- HEADER ÉPURÉ --- */
-        header { padding: 60px 20px 40px; text-align: center; }
-        header h1 { font-size: 2.2em; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 8px; }
-        header h1 b { font-weight: 800; color: #fff; }
-        header p { font-size: 0.85em; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .page { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+        /* --- GLOBAL LAYOUT --- */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .page { display: none; opacity: 0; transform: translateY(8px); transition: all 0.4s ease; }
         .page.active-page { display: block; opacity: 1; transform: translateY(0); }
 
-        /* --- ZONE CONFIGURATION NOM RP --- */
+        h2 { font-size: 1.4em; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 25px; color: #fff; }
+        h2 b { font-weight: 700; }
+        .subtitle { color: var(--text-muted); font-size: 0.9em; margin-top: -20px; margin-bottom: 30px; }
+
+        /* --- PAGE D'ACCUEIL --- */
+        .hero-section {
+            text-align: center; padding: 60px 20px; background: var(--bg-surface);
+            border: 1px solid var(--border); backdrop-filter: blur(10px); border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+        }
+        .hero-section h1 { font-size: 2.5em; font-weight: 300; letter-spacing: -1px; margin-bottom: 12px; }
+        .hero-section h1 b { font-weight: 800; color: #fff; }
+        .hero-section p { color: var(--text-muted); font-size: 1em; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 40px; }
+        .stat-card { background: rgba(255,255,255,0.01); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius-md); }
+        .stat-card div:first-child { font-size: 1.6em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+        .stat-card div:last-child { font-size: 0.8em; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+
+        /* --- SYSTEME DE FORMULAIRE --- */
         .rp-section {
             background: var(--bg-surface); border: 1px solid var(--border); backdrop-filter: blur(10px);
-            padding: 30px; border-radius: var(--radius-lg); margin-bottom: 40px;
-            display: flex; flex-direction: column; gap: 12px;
+            padding: 24px; border-radius: var(--radius-lg); margin-bottom: 35px;
+            display: flex; flex-direction: column; gap: 10px;
         }
-        .rp-section label { font-size: 0.8em; font-weight: 700; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+        .rp-section label { font-size: 0.75em; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
         .rp-section input {
             background: var(--bg-input); border: 1px solid var(--border); color: #fff;
-            padding: 16px; font-size: 1em; border-radius: var(--radius-md); outline: none;
+            padding: 14px; font-size: 0.95em; border-radius: var(--radius-md); outline: none;
             transition: all 0.3s ease;
         }
-        .rp-section input:focus { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+        .rp-section input:focus { border-color: var(--border-hover); box-shadow: 0 0 15px var(--accent-glow); }
 
-        /* --- GRILLE DU CATALOGUE --- */
-        h2 { font-size: 1.3em; font-weight: 700; margin-bottom: 25px; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
-        h2 span { font-size: 0.65em; background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 4px 10px; border-radius: 20px; font-weight: 500; }
-        
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+        /* --- GRILLE DES ARTICLES --- */
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
         .product-card {
             background: var(--bg-surface); border: 1px solid var(--border); backdrop-filter: blur(10px);
-            border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
-            height: 180px; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+            height: 160px; transition: all 0.3s ease;
         }
         .product-card:hover {
-            transform: translateY(-4px); border-color: var(--border-hover); box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            transform: translateY(-3px); border-color: var(--border-hover); box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-        .product-meta h3 { font-size: 1.1em; font-weight: 600; color: #fff; margin-bottom: 6px; }
-        .product-meta .price { font-size: 1.2em; font-weight: 700; color: var(--accent); }
+        .product-meta h3 { font-size: 1.05em; font-weight: 600; color: #fff; margin-bottom: 4px; }
+        .product-meta .price { font-size: 1.15em; font-weight: 700; color: var(--accent); }
         
-        /* --- ACTION BUTTONS LUXE --- */
+        /* --- ACTION BUTTONS --- */
         .btn {
             background: var(--bg-input); color: #fff; border: 1px solid var(--border);
-            padding: 12px 20px; border-radius: var(--radius-md); font-weight: 600; font-size: 0.85em;
+            padding: 10px 16px; border-radius: var(--radius-md); font-weight: 600; font-size: 0.85em;
             cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            transition: all 0.3s ease; width: 100%;
+            transition: all 0.2s ease; width: 100%;
         }
         .btn:hover { background: #fff; color: var(--bg-main); border-color: #fff; }
+        .btn-primary { background: var(--accent); color: var(--bg-main); border: none; font-weight: 700; }
+        .btn-primary:hover { background: #7dd3fc; color: var(--bg-main); box-shadow: 0 0 20px var(--accent-glow); }
         
-        /* --- CONFIGURATEUR FLOTTANT PANIER --- */
+        /* --- PANIER COMPACT --- */
         .cart-toggle {
             position: fixed; bottom: 30px; right: 30px; background: #fff; color: var(--bg-main);
-            border: none; padding: 16px 28px; font-weight: 700; font-size: 0.9em; border-radius: 40px;
-            cursor: pointer; box-shadow: 0 10px 30px rgba(255,255,255,0.1); display: flex; align-items: center; gap: 12px; z-index: 99;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none; padding: 14px 24px; font-weight: 700; font-size: 0.85em; border-radius: 30px;
+            cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; z-index: 99;
         }
-        .cart-toggle:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(255,255,255,0.15); }
-        .cart-badge { background: var(--bg-main); color: #fff; font-size: 0.75em; padding: 3px 9px; border-radius: 20px; }
+        .cart-badge { background: var(--bg-main); color: #fff; font-size: 0.8em; padding: 2px 7px; border-radius: 10px; }
 
-        /* --- PANIER SLIDEOUT (POPUP) --- */
         .cart-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);
             backdrop-filter: blur(4px); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease;
@@ -121,97 +132,113 @@
         .cart-overlay.open { display: block; opacity: 1; }
         
         .cart-modal {
-            position: fixed; top: 0; right: -460px; width: 460px; height: 100%;
+            position: fixed; top: 0; right: -420px; width: 420px; height: 100%;
             background: var(--bg-surface-solid); border-left: 1px solid var(--border);
-            z-index: 1000; padding: 40px; display: flex; flex-direction: column;
+            z-index: 1000; padding: 35px; display: flex; flex-direction: column;
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .cart-modal.open { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .cart-header h3 { font-size: 1.4em; font-weight: 700; }
-        .cart-close { background: transparent; border: none; color: var(--text-muted); font-size: 1.8em; cursor: pointer; transition: color 0.2s; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .cart-close { background: transparent; border: none; color: var(--text-muted); font-size: 1.6em; cursor: pointer; }
         .cart-close:hover { color: #fff; }
         
-        .cart-items-feed { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; margin-right: -10px; padding-right: 10px; }
+        .cart-items-feed { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
         .cart-item {
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            padding: 16px; border-radius: var(--radius-md);
+            background: rgba(255,255,255,0.01); border: 1px solid var(--border); padding: 14px; border-radius: var(--radius-md);
         }
-        .item-info h4 { font-size: 0.95em; font-weight: 600; margin-bottom: 4px; }
-        .item-info p { font-size: 0.9em; color: var(--accent); font-weight: 700; }
-        .item-actions { display: flex; align-items: center; gap: 12px; }
+        .item-info h4 { font-size: 0.9em; font-weight: 600; }
+        .item-info p { font-size: 0.85em; color: var(--accent); font-weight: 700; margin-top: 2px; }
+        .item-actions { display: flex; align-items: center; gap: 10px; }
         .item-actions input {
             background: var(--bg-input); border: 1px solid var(--border); color: #fff;
-            width: 50px; text-align: center; padding: 6px; border-radius: 6px; outline: none;
+            width: 45px; text-align: center; padding: 4px; border-radius: 4px; outline: none;
         }
-        .btn-remove { background: transparent; border: none; color: var(--text-muted); font-size: 1.1em; cursor: pointer; }
+        .btn-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; }
         .btn-remove:hover { color: #f87171; }
 
-        .cart-footer { margin-top: auto; padding-top: 30px; border-top: 1px solid var(--border); }
-        .cart-total-row { display: flex; justify-content: space-between; font-size: 1.3em; font-weight: 700; margin-bottom: 20px; }
+        .cart-footer { margin-top: auto; padding-top: 25px; border-top: 1px solid var(--border); }
+        .cart-total-row { display: flex; justify-content: space-between; font-size: 1.15em; font-weight: 700; margin-bottom: 20px; }
         .cart-total-row span:last-child { color: var(--accent); }
-        .btn-checkout { background: var(--accent); color: var(--bg-main); font-size: 0.95em; font-weight: 700; padding: 16px; }
-        .btn-checkout:hover { background: #7dd3fc; border-color: #7dd3fc; transform: none; box-shadow: 0 0 25px var(--accent-glow); }
 
-        /* --- ENTREPOT LOGS --- */
-        #lock-screen { text-align: center; padding: 40px; max-width: 400px; margin: 60px auto; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-surface); }
-        #lock-screen input { background: var(--bg-input); border: 1px solid var(--border); color: #fff; padding: 14px; width: 100%; margin-bottom: 20px; text-align: center; border-radius: var(--radius-md); outline: none; font-size: 1.1em; letter-spacing: 2px; }
+        /* --- SECURITY & LOGS --- */
+        #lock-screen { text-align: center; padding: 40px 30px; max-width: 380px; margin: 60px auto; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-surface); }
+        #lock-screen input { background: var(--bg-input); border: 1px solid var(--border); color: #fff; padding: 12px; width: 100%; margin-bottom: 15px; text-align: center; border-radius: var(--radius-md); outline: none; font-size: 1em; letter-spacing: 4px; }
         #employee-dashboard { display: none; }
-        .orders-grid { display: flex; flex-direction: column; gap: 16px; }
-        .order-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 24px; border-radius: var(--radius-lg); }
-        .order-head { display: flex; justify-content: space-between; font-size: 0.85em; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
-        .order-head b { color: #fff; }
-
-        @media (max-width: 500px) { .cart-modal { width: 100%; right: -100%; padding: 24px; } }
+        .orders-grid { display: flex; flex-direction: column; gap: 12px; }
+        .order-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius-lg); }
+        .order-head { display: flex; justify-content: space-between; font-size: 0.8em; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 14px; }
+        
+        @media (max-width: 450px) { .cart-modal { width: 100%; right: -100%; padding: 20px; } .stats-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Bar de navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">GROSSISTE<span>.PRO</span></div>
             <div class="nav-links">
-                <button id="nav-catalogue" class="active" onclick="changerPage('catalogue')">CENTRAL CATALOGUE</button>
-                <button id="nav-employe" onclick="changerPage('employe')">LOGISTIQUE ENTREPÔT</button>
+                <button id="nav-accueil" class="active" onclick="changerPage('accueil')">ACCUEIL</button>
+                <button id="nav-catalogue" onclick="changerPage('catalogue')">CATALOGUE</button>
+                <button id="nav-employe" onclick="changerPage('employe')">LOGISTIQUE</button>
             </div>
         </div>
     </nav>
 
-    <!-- Header Épuré -->
-    <header>
-        <h1>ACCÈS <b>PLATEFORME</b></h1>
-        <p>Ajustement direct de stock & commandes</p>
-    </header>
-
     <div class="container">
 
-        <!-- CONFIGURATION & CATALOGUE -->
-        <div id="page-catalogue" class="page active-page">
-            <div class="rp-section">
-                <label for="player-name-rp">Identité en ville (Nom RP)</label>
-                <input type="text" id="player-name-rp" placeholder="Entrez votre Prénom et Nom...">
-            </div>
-
-            <h2>LIVRET DES STOCKS <span>28 CATEGORIES</span></h2>
-            <div class="catalog-grid" id="catalog-container">
-                <!-- Injection JS -->
+        <!-- OBLÉ 1 : INTERFACE D'ACCUEIL -->
+        <div id="page-accueil" class="page active-page">
+            <div class="hero-section">
+                <h1>CENTRALE <b>LOGISTIQUE</b></h1>
+                <p>Bienvenue sur votre portail d'approvisionnement réservé aux professionnels et entreprises de la ville. Suivez vos stocks et transmettez vos bons de chargement en un clic.</p>
+                <button class="btn btn-primary" style="width: auto; padding: 14px 32px;" onclick="changerPage('catalogue')">Ouvrir le Catalogue des Stocks</button>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div>24/7</div>
+                        <div>Disponibilité</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>28</div>
+                        <div>Produits Actifs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>Direct</div>
+                        <div>Liaison Discord</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- ACCÈS ENTREPÔT -->
+        <!-- ONGLÉ 2 : CATALOGUE ET CONFIG NOM RP -->
+        <div id="page-catalogue" class="page">
+            <div class="rp-section">
+                <label for="player-name-rp">Configuration de l'opérateur (Nom RP)</label>
+                <input type="text" id="player-name-rp" placeholder="Prénom Nom (Ex: Jean Roux)">
+            </div>
+
+            <h2>LIVRET DES <b>STOCKS DISPONIBLES</b></h2>
+            <div class="subtitle">Ajoutez les marchandises à votre panier pour initier le bon de livraison.</div>
+            
+            <div class="catalog-grid" id="catalog-container">
+                <!-- Injection via JavaScript -->
+            </div>
+        </div>
+
+        <!-- ONGLÉ 3 : LOGISTIQUE / HISTORIQUE COMMANDE -->
         <div id="page-employe" class="page">
             <div id="lock-screen">
-                <h2 style="justify-content: center; margin-bottom: 10px;">ACCÈS SÉCURISÉ</h2>
+                <h3 style="margin-bottom: 15px; font-weight: 400;">POSTE DE CONTRÔLE</h3>
                 <input type="password" id="code-secu" placeholder="••••">
-                <button class="btn" onclick="authentifierEmploye()">S'AUTHENTIFIER</button>
+                <button class="btn btn-primary" onclick="authentifierEmploye()">SE CONNECTER</button>
             </div>
 
             <div id="employee-dashboard">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-                    <h2>BONS DE PICKING EN ATTENTE</h2>
-                    <button class="btn" style="width:auto; padding:10px 20px; background:rgba(248,113,113,0.05); color:#f87171; border-color:rgba(248,113,113,0.1);" onclick="viderToutesLesCommandes()">PURGER LA BASE</button>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+                    <h2>BON DE PICKING <b>INTERNE</b></h2>
+                    <button class="btn" style="width:auto; padding:8px 16px; color:#f87171;" onclick="viderToutesLesCommandes()">Purger l'historique</button>
                 </div>
                 <div id="orders-feed" class="orders-grid"></div>
             </div>
@@ -219,31 +246,32 @@
 
     </div>
 
-    <!-- PANIER FLOTTANT -->
+    <!-- BOUTON DU PANIER FLOTTANT -->
     <button class="cart-toggle" onclick="togglePanier(true)">
-        PANIER <span class="cart-badge" id="global-cart-count">0</span>
+        PANIER MATÉRIEL <span class="cart-badge" id="global-cart-count">0</span>
     </button>
 
-    <!-- MODAL PANIER BACKDROP -->
+    <!-- MODAL DU PANIER SÉCURISÉ -->
     <div class="cart-overlay" id="cart-overlay-bg" onclick="togglePanier(false)"></div>
     <div class="cart-modal" id="cart-popup">
         <div class="cart-header">
-            <h3>VOTRE DEMANDE</h3>
+            <h3>VOTRE BON DE COMMANDE</h3>
             <button class="cart-close" onclick="togglePanier(false)">×</button>
         </div>
         <div class="cart-items-feed" id="cart-items-container">
-            <!-- Items JS -->
+            <!-- Items injectés par JS -->
         </div>
         <div class="cart-footer">
             <div class="cart-total-row">
-                <span>Estimation totale :</span>
+                <span>Total estimé :</span>
                 <span id="cart-total-price">0.00 €</span>
             </div>
-            <button class="btn btn-checkout" onclick="transmettreCommande()">TRANSMETTRE LE BON</button>
+            <button class="btn btn-primary" style="padding: 14px;" onclick="transmettreCommande()">VALIDER & ENVOYER SUR DISCORD</button>
         </div>
     </div>
 
 <script>
+// URL de ton Webhook Discord actuel
 const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1519738501413736578/1YO6Mqm6FKQl66e0CaZoVRwi7E2OBs5gfILGYU6zlnD30dMVZDBVyY-OdQMcAvSU_vKT";
 
 const catalogueProduits = [
@@ -279,7 +307,7 @@ function changerPage(nomPage) {
     }
 }
 
-// Initialisation de la grille
+// Génération dynamique des cartes du catalogue
 const grid = document.getElementById('catalog-container');
 catalogueProduits.forEach(p => {
     const card = document.createElement('div');
@@ -289,7 +317,7 @@ catalogueProduits.forEach(p => {
             <h3>${p.nom}</h3>
             <div class="price">${p.prix.toFixed(2)} €</div>
         </div>
-        <button class="btn" onclick="ajouterAuPanier(${p.id})">Ajouter au panier</button>
+        <button class="btn" onclick="ajouterAuPanier(${p.id})">Ajouter</button>
     `;
     grid.appendChild(card);
 });
@@ -350,13 +378,13 @@ function majAffichagePanier() {
 function transmettreCommande() {
     const nomRP = document.getElementById('player-name-rp').value.trim();
     if(!nomRP) {
-        alert("🔒 REQUIS : Veuillez indiquer votre NOM RP avant d'envoyer le bon.");
+        alert("🔒 ACTION REQUISE : Renseignez votre NOM RP dans l'onglet Catalogue avant de soumettre.");
         return;
     }
 
     const keys = Object.keys(panier);
     if(keys.length === 0) {
-        alert("Le panier ne contient aucune marchandise.");
+        alert("Votre panier est actuellement vide.");
         return;
     }
 
@@ -381,14 +409,14 @@ function transmettreCommande() {
         username: "Centrale Logistique",
         embeds: [{
             title: `📥 Demande d'approvisionnement — ${ticketID}`,
-            color: 3716344,
+            color: 38bdf8,
             fields: [
                 { name: "👤 Opérateur (Nom RP)", value: `\`${nomRP}\``, inline: true },
                 { name: "🕒 Réception", value: heure, inline: true },
                 { name: "🛒 Manifeste de chargement", value: texteDiscord, inline: false },
                 { name: "💰 Valeur Marchande", value: `**${prixTotal}**`, inline: false }
             ],
-            footer: { text: "Système automatisé logistique Grossiste.Pro" },
+            footer: { text: "Grossiste Automatisé Pro" },
             timestamp: new Date().toISOString()
         }]
     };
@@ -399,7 +427,7 @@ function transmettreCommande() {
         body: JSON.stringify(payload)
     });
 
-    alert(`✅ Manifeste transmis avec succès dans votre salon Discord.`);
+    alert(`✅ Bon de commande envoyé avec succès sur Discord !`);
     panier = {};
     majAffichagePanier();
     togglePanier(false);
@@ -411,13 +439,13 @@ function authentifierEmploye() {
         document.getElementById('employee-dashboard').style.display = 'block';
         afficherFluxCommandes();
     } else {
-        alert("ACCÈS RÉSERVÉ.");
+        alert("CODE INVALIDE.");
     }
 }
 
 function afficherFluxCommandes() {
     const feed = document.getElementById('orders-feed');
-    feed.innerHTML = baseCommandes.length === 0 ? "<p style='text-align:center; font-style:italic; color:var(--text-muted); padding:40px 0;'>Aucun traitement en cours.</p>" : "";
+    feed.innerHTML = baseCommandes.length === 0 ? "<p style='text-align:center; font-style:italic; color:var(--text-muted); padding:30px 0;'>Aucun traitement logistique en attente.</p>" : "";
 
     [...baseCommandes].reverse().forEach(cmd => {
         const div = document.createElement('div');
@@ -426,14 +454,14 @@ function afficherFluxCommandes() {
         div.innerHTML = `
             <div class="order-head"><span>ID: <b>${cmd.idTicket}</b> | OPÉRATEUR: <b>${cmd.nomRP}</b></span><span>${cmd.heure}</span></div>
             <ul style="padding-left:18px; margin:0; font-size:0.9em; display:flex; flex-direction:column; gap:4px;">${items}</ul>
-            <div style="text-align:right; font-weight:700; margin-top:14px; font-size:1.05em; color:var(--accent)">Total : ${cmd.totalFacture}</div>
+            <div style="text-align:right; font-weight:700; margin-top:14px; color:var(--accent)">Total : ${cmd.totalFacture}</div>
         `;
         feed.appendChild(div);
     });
 }
 
 function viderToutesLesCommandes() {
-    if(confirm("Purger définitivement tous les bons logistiques locaux ?")) { 
+    if(confirm("Confirmer la purge complète de la base de données locale ?")) { 
         baseCommandes = []; 
         localStorage.removeItem('grossiste_commandes'); 
         afficherFluxCommandes(); 
