@@ -174,7 +174,6 @@
 </head>
 <body>
 
-    <!-- Bar de navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo" onclick="changerPage('accueil')">GROSSISTE<span>.PRO</span></div>
@@ -188,7 +187,6 @@
 
     <div class="container">
 
-        <!-- PAGE 1 : INTERFACE D'ACCUEIL -->
         <div id="page-accueil" class="page active-page">
             <div class="hero-section">
                 <h1>CENTRALE <b>LOGISTIQUE</b></h1>
@@ -201,7 +199,7 @@
                         <div>Disponibilité</div>
                     </div>
                     <div class="stat-card">
-                        <div>28</div>
+                        <div>29</div>
                         <div>Produits Actifs</div>
                     </div>
                     <div class="stat-card">
@@ -212,7 +210,6 @@
             </div>
         </div>
 
-        <!-- PAGE 2 : CATALOGUE ET CONFIG NOM RP -->
         <div id="page-catalogue" class="page">
             <div class="rp-section">
                 <label for="player-name-rp">Configuration de l'opérateur (Nom RP)</label>
@@ -223,11 +220,9 @@
             <div class="subtitle">Ajoutez les marchandises à votre panier pour initier le bon de livraison.</div>
             
             <div class="catalog-grid" id="catalog-container">
-                <!-- Injection via JavaScript -->
-            </div>
+                </div>
         </div>
 
-        <!-- PAGE 3 : LOGISTIQUE / HISTORIQUE COMMANDE -->
         <div id="page-employe" class="page">
             <div id="lock-screen">
                 <h3 style="margin-bottom: 15px; font-weight: 400;">POSTE DE CONTRÔLE</h3>
@@ -246,12 +241,10 @@
 
     </div>
 
-    <!-- BOUTON DU PANIER FLOTTANT -->
     <button class="cart-toggle" onclick="togglePanier(true)">
         PANIER MATÉRIEL <span class="cart-badge" id="global-cart-count">0</span>
     </button>
 
-    <!-- MODAL DU PANIER SÉCURISÉ -->
     <div class="cart-overlay" id="cart-overlay-bg" onclick="togglePanier(false)"></div>
     <div class="cart-modal" id="cart-popup">
         <div class="cart-header">
@@ -259,8 +252,7 @@
             <button class="cart-close" onclick="togglePanier(false)">×</button>
         </div>
         <div class="cart-items-feed" id="cart-items-container">
-            <!-- Items injectés par JS -->
-        </div>
+            </div>
         <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total estimé :</span>
@@ -287,7 +279,8 @@ const catalogueProduits = [
     { id: 21, nom: "Poire", prix: 5.00 }, { id: 22, nom: "Pomme", prix: 5.00 },
     { id: 23, nom: "Fromage", prix: 6.00 }, { id: 24, nom: "Eau", prix: 3.00 },
     { id: 25, nom: "Chips", prix: 7.50 }, { id: 26, nom: "COUROIE", prix: 150.00 },
-    { id: 27, nom: "BATTERIE", prix: 250.00 }, { id: 28, nom: "BOUGGIE", prix: 200.00 }
+    { id: 27, nom: "BATTERIE", prix: 250.00 }, { id: 28, nom: "BOUGGIE", prix: 200.00 },
+    { id: 29, nom: "Nuggets", prix: 8.00 }
 ];
 
 let panier = {};
@@ -346,7 +339,6 @@ function changerQuantite(id, qte) {
     majAffichagePanier();
 }
 
-// Correction de l'ancienne fonction manquante
 function supprimerDuPanier(id) {
     delete panier[id];
     majAffichagePanier();
@@ -422,7 +414,7 @@ function transmettreCommande() {
         username: "Centrale Logistique",
         embeds: [{
             title: `📥 Demande d'approvisionnement — ${ticketID}`,
-            color: 3716344, // Correction de la couleur numérique valide
+            color: 3716344,
             fields: [
                 { name: "👤 Opérateur (Nom RP)", value: `\`${nomRP}\``, inline: true },
                 { name: "🕒 Réception", value: heure, inline: true },
