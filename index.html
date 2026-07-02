@@ -174,6 +174,7 @@
 </head>
 <body>
 
+    <!-- Bar de navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo" onclick="changerPage('accueil')">GROSSISTE<span>.PRO</span></div>
@@ -187,6 +188,7 @@
 
     <div class="container">
 
+        <!-- PAGE 1 : INTERFACE D'ACCUEIL -->
         <div id="page-accueil" class="page active-page">
             <div class="hero-section">
                 <h1>CENTRALE <b>LOGISTIQUE</b></h1>
@@ -210,6 +212,7 @@
             </div>
         </div>
 
+        <!-- PAGE 2 : CATALOGUE ET CONFIG NOM RP -->
         <div id="page-catalogue" class="page">
             <div class="rp-section">
                 <label for="player-name-rp">Configuration de l'opérateur (Nom RP)</label>
@@ -220,9 +223,11 @@
             <div class="subtitle">Ajoutez les marchandises à votre panier pour initier le bon de livraison.</div>
             
             <div class="catalog-grid" id="catalog-container">
-                </div>
+                <!-- Injection via JavaScript -->
+            </div>
         </div>
 
+        <!-- PAGE 3 : LOGISTIQUE / HISTORIQUE COMMANDE -->
         <div id="page-employe" class="page">
             <div id="lock-screen">
                 <h3 style="margin-bottom: 15px; font-weight: 400;">POSTE DE CONTRÔLE</h3>
@@ -241,10 +246,12 @@
 
     </div>
 
+    <!-- BOUTON DU PANIER FLOTTANT -->
     <button class="cart-toggle" onclick="togglePanier(true)">
         PANIER MATÉRIEL <span class="cart-badge" id="global-cart-count">0</span>
     </button>
 
+    <!-- MODAL DU PANIER SÉCURISÉ -->
     <div class="cart-overlay" id="cart-overlay-bg" onclick="togglePanier(false)"></div>
     <div class="cart-modal" id="cart-popup">
         <div class="cart-header">
@@ -252,7 +259,8 @@
             <button class="cart-close" onclick="togglePanier(false)">×</button>
         </div>
         <div class="cart-items-feed" id="cart-items-container">
-            </div>
+            <!-- Items injectés par JS -->
+        </div>
         <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total estimé :</span>
@@ -266,20 +274,20 @@
 const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1519738501413736578/1YO6Mqm6FKQl66e0CaZoVRwi7E2OBs5gfILGYU6zlnD30dMVZDBVyY-OdQMcAvSU_vKT";
 
 const catalogueProduits = [
-    { id: 1, nom: "Chocolat", prix: 2.00 }, { id: 2, nom: "Farine", prix: 5.00 },
-    { id: 3, nom: "Levure", prix: 4.00 }, { id: 4, nom: "Lait", prix: 4.00 },
-    { id: 5, nom: "Sucre", prix: 7.50 }, { id: 6, nom: "Sel", prix: 7.50 },
-    { id: 7, nom: "Oeuf", prix: 2.00 }, { id: 8, nom: "Tomate", prix: 3.00 },
-    { id: 9, nom: "Salade", prix: 3.00 }, { id: 10, nom: "Pain Burger", prix: 4.00 },
-    { id: 11, nom: "Moutarde", prix: 5.00 }, { id: 12, nom: "Cornichon", prix: 5.00 },
-    { id: 13, nom: "Beurre", prix: 4.00 }, { id: 14, nom: "Pomme de terre (25kg)", prix: 20.00 },
-    { id: 15, nom: "Huile de friture", prix: 5.00 }, { id: 16, nom: "Chocolat en poudre", prix: 15.00 },
-    { id: 17, nom: "Café", prix: 25.00 }, { id: 18, nom: "Lait en poudre", prix: 5.00 },
-    { id: 19, nom: "Soda", prix: 6.00 }, { id: 20, nom: "Steak", prix: 7.50 },
-    { id: 21, nom: "Poire", prix: 5.00 }, { id: 22, nom: "Pomme", prix: 5.00 },
-    { id: 23, nom: "Fromage", prix: 6.00 }, { id: 24, nom: "Eau", prix: 3.00 },
-    { id: 25, nom: "Chips", prix: 7.50 }, { id: 26, nom: "COUROIE", prix: 150.00 },
-    { id: 27, nom: "BATTERIE", prix: 250.00 }, { id: 28, nom: "BOUGGIE", prix: 200.00 },
+    { id: 1, nom: "Chocolat", prix: 2.00 }, { id: 2, nom: "Farine", prix: 3.00 },
+    { id: 3, nom: "Levure", prix: 2.50 }, { id: 4, nom: "Lait", prix: 3.00 },
+    { id: 5, nom: "Sucre", prix: 4.00 }, { id: 6, nom: "Sel", prix: 4.00 },
+    { id: 7, nom: "Oeuf", prix: 2.00 }, { id: 8, nom: "Tomate", prix: 2.50 },
+    { id: 9, nom: "Salade", prix: 2.50 }, { id: 10, nom: "Pain Burger", prix: 3.00 },
+    { id: 11, nom: "Moutarde", prix: 3.00 }, { id: 12, nom: "Cornichon", prix: 3.00 },
+    { id: 13, nom: "Beurre", prix: 3.00 }, { id: 14, nom: "Pomme de terre (25)", prix: 12.00 },
+    { id: 15, nom: "Huile de friture", prix: 3.50 }, { id: 16, nom: "Chocolat en poudre", prix: 8.00 },
+    { id: 17, nom: "Café", prix: 15.00 }, { id: 18, nom: "Lait en poudre", prix: 3.00 },
+    { id: 19, nom: "Soda", prix: 4.00 }, { id: 20, nom: "Steak", prix: 5.00 },
+    { id: 21, nom: "Poire", prix: 3.00 }, { id: 22, nom: "Pomme", prix: 3.00 },
+    { id: 23, nom: "Fromage", prix: 4.00 }, { id: 24, nom: "Eau", prix: 2.00 },
+    { id: 25, nom: "Chips", prix: 4.00 }, { id: 26, nom: "Courroie", prix: 120.00 },
+    { id: 27, nom: "Batterie", prix: 180.00 }, { id: 28, nom: "Bougie", prix: 100.00 },
     { id: 29, nom: "Nuggets", prix: 8.00 }
 ];
 
