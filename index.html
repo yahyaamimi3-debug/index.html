@@ -313,20 +313,26 @@ function changerPage(nomPage) {
     }
 }
 
-// Génération initiale de la grille des produits
-const grid = document.getElementById('catalog-container');
-catalogueProduits.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
-        <div class="product-meta">
-            <h3>${p.nom}</h3>
-            <div class="price">${p.prix.toFixed(2)} €</div>
-        </div>
-        <button class="btn" onclick="ajouterAuPanier(${p.id})">Ajouter</button>
-    `;
-    grid.appendChild(card);
-});
+// Fonction pour générer visuellement les cartes du catalogue
+function genererCatalogue() {
+    const grid = document.getElementById('catalog-container');
+    grid.innerHTML = ""; // Vider l'ancien affichage pour éviter les doublons
+    catalogueProduits.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-meta">
+                <h3>${p.nom}</h3>
+                <div class="price">${p.prix.toFixed(2)} €</div>
+            </div>
+            <button class="btn" onclick="ajouterAuPanier(${p.id})">Ajouter</button>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// Lancement de la génération des cartes au démarrage
+genererCatalogue();
 
 function togglePanier(ouvrir) {
     document.getElementById('cart-popup').classList.toggle('open', ouvrir);
