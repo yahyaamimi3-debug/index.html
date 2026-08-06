@@ -1,491 +1,342 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROSSISTE . PRO</title>
-    <style>
-        /* --- CORE DESIGN SYSTEM : LUXE MINIMALISTE --- */
-        :root {
-            --bg-main: #060913;
-            --bg-surface: rgba(15, 22, 42, 0.4);
-            --bg-surface-solid: #0f162a;
-            --bg-input: #090d1a;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.12);
-            --text-main: #f8fafc;
-            --text-muted: #64748b;
-            --border: rgba(255, 255, 255, 0.04);
-            --border-hover: rgba(56, 189, 248, 0.3);
-            --radius-lg: 16px;
-            --radius-md: 8px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patate Studio — Marketplace de Plugins</title>
+  <style>
+    :root {
+      --bg-color: #0d0d0e;
+      --card-bg: #16171a;
+      --border-color: #27292d;
+      --accent: #facc15; /* Jaune Patate */
+      --text-main: #ededed;
+      --text-muted: #a1a1aa;
+      --free-badge: #22c55e;
+      --paid-badge: #3b82f6;
+    }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-        body { 
-            background: radial-gradient(circle at 50% 0%, #111827 0%, var(--bg-main) 70%);
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
-            padding-bottom: 100px;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding-bottom: 50px;
+    }
 
-        /* --- NAVIGATION PREMIUM --- */
-        nav { 
-            background: rgba(6, 9, 19, 0.7); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
-        }
-        .nav-container {
-            max-width: 1100px; margin: 0 auto; padding: 18px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { font-size: 1.05em; font-weight: 800; letter-spacing: 2px; color: #fff; cursor: pointer; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 6px; }
-        nav button { 
-            background: transparent; border: 1px solid transparent; color: var(--text-muted); 
-            padding: 8px 16px; font-size: 0.85em; font-weight: 600; cursor: pointer; border-radius: var(--radius-md);
-            transition: all 0.3s ease;
-        }
-        nav button:hover { color: #fff; }
-        nav button.active { color: #fff; background: rgba(255,255,255,0.03); border-color: var(--border); }
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(13, 13, 14, 0.8);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        /* --- GLOBAL LAYOUT --- */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .page { display: none; opacity: 0; transform: translateY(8px); transition: all 0.3s ease; }
-        .page.active-page { display: block; opacity: 1; transform: translateY(0); }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        h2 { font-size: 1.4em; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 25px; color: #fff; }
-        h2 b { font-weight: 700; }
-        .subtitle { color: var(--text-muted); font-size: 0.9em; margin-top: -20px; margin-bottom: 30px; }
+    .logo span {
+      color: var(--accent);
+    }
 
-        /* --- PAGE D'ACCUEIL --- */
-        .hero-section {
-            text-align: center; padding: 60px 20px; background: var(--bg-surface);
-            border: 1px solid var(--border); backdrop-filter: blur(10px); border-radius: var(--radius-lg);
-            margin-bottom: 30px;
-        }
-        .hero-section h1 { font-size: 2.5em; font-weight: 300; letter-spacing: -1px; margin-bottom: 12px; }
-        .hero-section h1 b { font-weight: 800; color: #fff; }
-        .hero-section p { color: var(--text-muted); font-size: 1em; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
-        
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 40px; }
-        .stat-card { background: rgba(255,255,255,0.01); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius-md); }
-        .stat-card div:first-child { font-size: 1.6em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
-        .stat-card div:last-child { font-size: 0.8em; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
-        /* --- SYSTEME DE FORMULAIRE --- */
-        .rp-section {
-            background: var(--bg-surface); border: 1px solid var(--border); backdrop-filter: blur(10px);
-            padding: 24px; border-radius: var(--radius-lg); margin-bottom: 35px;
-            display: flex; flex-direction: column; gap: 10px;
-        }
-        .rp-section label { font-size: 0.75em; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
-        .rp-section input {
-            background: var(--bg-input); border: 1px solid var(--border); color: #fff;
-            padding: 14px; font-size: 0.95em; border-radius: var(--radius-md); outline: none;
-            transition: all 0.3s ease;
-        }
-        .rp-section input:focus { border-color: var(--border-hover); box-shadow: 0 0 15px var(--accent-glow); }
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-        /* --- GRILLE DES ARTICLES --- */
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        .product-card {
-            background: var(--bg-surface); border: 1px solid var(--border); backdrop-filter: blur(10px);
-            border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
-            height: 160px; transition: all 0.3s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-3px); border-color: var(--border-hover); box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .product-meta h3 { font-size: 1.05em; font-weight: 600; color: #fff; margin-bottom: 4px; }
-        .product-meta .price { font-size: 1.15em; font-weight: 700; color: var(--accent); }
-        
-        /* --- ACTION BUTTONS --- */
-        .btn {
-            background: var(--bg-input); color: #fff; border: 1px solid var(--border);
-            padding: 10px 16px; border-radius: var(--radius-md); font-weight: 600; font-size: 0.85em;
-            cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            transition: all 0.2s ease; width: 100%;
-        }
-        .btn:hover { background: #fff; color: var(--bg-main); border-color: #fff; }
-        .btn-primary { background: var(--accent); color: var(--bg-main); border: none; font-weight: 700; }
-        .btn-primary:hover { background: #7dd3fc; color: var(--bg-main); box-shadow: 0 0 20px var(--accent-glow); }
-        
-        /* --- PANIER COMPACT --- */
-        .cart-toggle {
-            position: fixed; bottom: 30px; right: 30px; background: #fff; color: var(--bg-main);
-            border: none; padding: 14px 24px; font-weight: 700; font-size: 0.85em; border-radius: 30px;
-            cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; z-index: 99;
-        }
-        .cart-badge { background: var(--bg-main); color: #fff; font-size: 0.8em; padding: 2px 7px; border-radius: 10px; }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
 
-        .cart-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(4px); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease;
-        }
-        .cart-overlay.open { display: block; opacity: 1; }
-        
-        .cart-modal {
-            position: fixed; top: 0; right: -420px; width: 420px; height: 100%;
-            background: var(--bg-surface-solid); border-left: 1px solid var(--border);
-            z-index: 1000; padding: 35px; display: flex; flex-direction: column;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .cart-modal.open { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .cart-close { background: transparent; border: none; color: var(--text-muted); font-size: 1.6em; cursor: pointer; }
-        .cart-close:hover { color: #fff; }
-        
-        .cart-items-feed { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.01); border: 1px solid var(--border); padding: 14px; border-radius: var(--radius-md);
-        }
-        .item-info h4 { font-size: 0.9em; font-weight: 600; }
-        .item-info p { font-size: 0.85em; color: var(--accent); font-weight: 700; margin-top: 2px; }
-        .item-actions { display: flex; align-items: center; gap: 10px; }
-        .item-actions input {
-            background: var(--bg-input); border: 1px solid var(--border); color: #fff;
-            width: 45px; text-align: center; padding: 4px; border-radius: 4px; outline: none;
-        }
-        .btn-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1em; }
-        .btn-remove:hover { color: #f87171; }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
 
-        .cart-footer { margin-top: auto; padding-top: 25px; border-top: 1px solid var(--border); }
-        .cart-total-row { display: flex; justify-content: space-between; font-size: 1.15em; font-weight: 700; margin-bottom: 20px; }
-        .cart-total-row span:last-child { color: var(--accent); }
+    /* Controls (Search & Filters) */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
 
-        /* --- SECURITY & LOGS --- */
-        #lock-screen { text-align: center; padding: 40px 30px; max-width: 380px; margin: 60px auto; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-surface); }
-        #lock-screen input { background: var(--bg-input); border: 1px solid var(--border); color: #fff; padding: 12px; width: 100%; margin-bottom: 15px; text-align: center; border-radius: var(--radius-md); outline: none; font-size: 1em; letter-spacing: 4px; }
-        #employee-dashboard { display: none; }
-        .orders-grid { display: flex; flex-direction: column; gap: 12px; }
-        .order-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius-lg); }
-        .order-head { display: flex; justify-content: space-between; font-size: 0.8em; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 14px; }
-        
-        @media (max-width: 450px) { .cart-modal { width: 100%; right: -100%; padding: 20px; } .stats-grid { grid-template-columns: 1fr; } }
-    </style>
+    .search-box input {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: #fff;
+      width: 260px;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    /* Grid layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #3f434a;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .badge.free {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--free-badge);
+    }
+
+    .badge.paid {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--paid-badge);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .btn {
+      background: #ffffff;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .btn-buy {
+      background: var(--accent);
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Bar de navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo" onclick="changerPage('accueil')">GROSSISTE<span>.PRO</span></div>
-            <div class="nav-links">
-                <button id="nav-accueil" class="active" onclick="changerPage('accueil')">ACCUEIL</button>
-                <button id="nav-catalogue" onclick="changerPage('catalogue')">CATALOGUE</button>
-                <button id="nav-employe" onclick="changerPage('employe')">LOGISTIQUE</button>
-            </div>
-        </div>
-    </nav>
+  <header>
+    <div class="logo">🥔 Patate <span>Studio</span></div>
+  </header>
 
-    <div class="container">
-
-        <!-- PAGE 1 : INTERFACE D'ACCUEIL -->
-        <div id="page-accueil" class="page active-page">
-            <div class="hero-section">
-                <h1>CENTRALE <b>LOGISTIQUE</b></h1>
-                <p>Bienvenue sur votre portail d'approvisionnement réservé aux professionnels et entreprises de la ville. Suivez vos stocks et transmettez vos bons de chargement en un clic.</p>
-                <button class="btn btn-primary" style="width: auto; padding: 14px 32px;" onclick="changerPage('catalogue')">Ouvrir le Catalogue des Stocks</button>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div>24/7</div>
-                        <div>Disponibilité</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>29</div>
-                        <div>Produits Actifs</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>Direct</div>
-                        <div>Liaison Discord</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE 2 : CATALOGUE ET CONFIG NOM RP -->
-        <div id="page-catalogue" class="page">
-            <div class="rp-section">
-                <label for="player-name-rp">Configuration de l'opérateur (Nom RP)</label>
-                <input type="text" id="player-name-rp" placeholder="Prénom Nom (Ex: Jean Roux)">
-            </div>
-
-            <h2>LIVRET DES <b>STOCKS DISPONIBLES</b></h2>
-            <div class="subtitle">Ajoutez les marchandises à votre panier pour initier le bon de livraison.</div>
-            
-            <div class="catalog-grid" id="catalog-container">
-                <!-- Injection via JavaScript -->
-            </div>
-        </div>
-
-        <!-- PAGE 3 : LOGISTIQUE / HISTORIQUE COMMANDE -->
-        <div id="page-employe" class="page">
-            <div id="lock-screen">
-                <h3 style="margin-bottom: 15px; font-weight: 400;">POSTE DE CONTRÔLE</h3>
-                <input type="password" id="code-secu" placeholder="••••">
-                <button class="btn btn-primary" onclick="authentifierEmploye()">SE CONNECTER</button>
-            </div>
-
-            <div id="employee-dashboard">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
-                    <h2>BON DE PICKING <b>INTERNE</b></h2>
-                    <button class="btn" style="width:auto; padding:8px 16px; color:#f87171;" onclick="viderToutesLesCommandes()">Purger l'historique</button>
-                </div>
-                <div id="orders-feed" class="orders-grid"></div>
-            </div>
-        </div>
-
+  <div class="container">
+    <div class="hero">
+      <h1>Marketplace de Plugins</h1>
+      <p>Découvrez nos extensions exclusives gratuites et payantes.</p>
     </div>
 
-    <!-- BOUTON DU PANIER FLOTTANT -->
-    <button class="cart-toggle" onclick="togglePanier(true)">
-        PANIER MATÉRIEL <span class="cart-badge" id="global-cart-count">0</span>
-    </button>
-
-    <!-- MODAL DU PANIER SÉCURISÉ -->
-    <div class="cart-overlay" id="cart-overlay-bg" onclick="togglePanier(false)"></div>
-    <div class="cart-modal" id="cart-popup">
-        <div class="cart-header">
-            <h3>VOTRE BON DE COMMANDE</h3>
-            <button class="cart-close" onclick="togglePanier(false)">×</button>
-        </div>
-        <div class="cart-items-feed" id="cart-items-container">
-            <!-- Items injectés par JS -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total-row">
-                <span>Total estimé :</span>
-                <span id="cart-total-price">0.00 €</span>
-            </div>
-            <button class="btn btn-primary" style="padding: 14px;" onclick="transmettreCommande()">VALIDER & ENVOYER SUR DISCORD</button>
-        </div>
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Rechercher un plugin..." onkeyup="filterPlugins()">
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" onclick="setCategory('all', this)">Tous</button>
+        <button class="filter-btn" onclick="setCategory('free', this)">Gratuits</button>
+        <button class="filter-btn" onclick="setCategory('paid', this)">Payants</button>
+      </div>
     </div>
 
-<script>
-const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1519738501413736578/1YO6Mqm6FKQl66e0CaZoVRwi7E2OBs5gfILGYU6zlnD30dMVZDBVyY-OdQMcAvSU_vKT";
+    <div class="grid" id="pluginGrid">
+      <!-- Plugin 1 -->
+      <div class="card" data-category="free" data-title="hud custom ui">
+        <div>
+          <div class="card-header">
+            <h3>HUD Custom UI</h3>
+            <span class="badge free">Gratuit</span>
+          </div>
+          <p>Un panneau d'affichage moderne et configurable pour les joueurs.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">0,00 €</span>
+          <button class="btn" onclick="downloadPlugin('HUD Custom UI')">Télécharger</button>
+        </div>
+      </div>
 
-const catalogueProduits = [
-    { id: 1, nom: "Chocolat", prix: 2.00 }, { id: 2, nom: "Farine", prix: 3.00 },
-    { id: 3, nom: "Levure", prix: 2.50 }, { id: 4, nom: "Lait", prix: 3.00 },
-    { id: 5, nom: "Sucre", prix: 4.00 }, { id: 6, nom: "Sel", prix: 4.00 },
-    { id: 7, nom: "Oeuf", prix: 2.00 }, { id: 8, nom: "Tomate", prix: 2.50 },
-    { id: 9, nom: "Salade", prix: 2.50 }, { id: 10, nom: "Pain Burger", prix: 3.00 },
-    { id: 11, nom: "Moutarde", prix: 3.00 }, { id: 12, nom: "Cornichon", prix: 3.00 },
-    { id: 13, nom: "Beurre", prix: 3.00 }, { id: 14, nom: "Pomme de terre (25)", prix: 12.00 },
-    { id: 15, nom: "Huile de friture", prix: 3.50 }, { id: 16, nom: "Chocolat en poudre", prix: 8.00 },
-    { id: 17, nom: "Café", prix: 15.00 }, { id: 18, nom: "Lait en poudre", prix: 3.00 },
-    { id: 19, nom: "Soda", prix: 4.00 }, { id: 20, nom: "Steak", prix: 5.00 },
-    { id: 21, nom: "Poire", prix: 3.00 }, { id: 22, nom: "Pomme", prix: 3.00 },
-    { id: 23, nom: "Fromage", prix: 4.00 }, { id: 24, nom: "Eau", prix: 2.00 },
-    { id: 25, nom: "Chips", prix: 4.00 }, { id: 26, nom: "Courroie", prix: 120.00 },
-    { id: 27, nom: "Batterie", prix: 180.00 }, { id: 28, nom: "Bougie", prix: 100.00 },
-    { id: 29, nom: "Nuggets", prix: 8.00 }
-];
+      <!-- Plugin 2 -->
+      <div class="card" data-category="paid" data-title="horizon atm panel">
+        <div>
+          <div class="card-header">
+            <h3>Horizon ATM Panel</h3>
+            <span class="badge paid">Payant</span>
+          </div>
+          <p>Système bancaire avancé avec interface C# et gestion d'inventaire.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">14,99 €</span>
+          <button class="btn btn-buy" onclick="buyPlugin('Horizon ATM Panel')">Acheter</button>
+        </div>
+      </div>
 
-let panier = {};
-let baseCommandes = JSON.parse(localStorage.getItem('grossiste_commandes')) || [];
+      <!-- Plugin 3 -->
+      <div class="card" data-category="free" data-title="staff rules logger">
+        <div>
+          <div class="card-header">
+            <h3>Staff Rules Logger</h3>
+            <span class="badge free">Gratuit</span>
+          </div>
+          <p>Module de gestion des règles de modération et journal des sanctions.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">0,00 €</span>
+          <button class="btn" onclick="downloadPlugin('Staff Rules Logger')">Télécharger</button>
+        </div>
+      </div>
 
-function changerPage(nomPage) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    
-    const target = document.getElementById(`page-${nomPage}`);
-    if (target) {
-        target.classList.add('active-page');
+      <!-- Plugin 4 -->
+      <div class="card" data-category="paid" data-title="zenith roleplay core">
+        <div>
+          <div class="card-header">
+            <h3>Zenith RP Core</h3>
+            <span class="badge paid">Payant</span>
+          </div>
+          <p>Le noyau complet avec panneaux de connexion interactifs et animations.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">24,99 €</span>
+          <button class="btn btn-buy" onclick="buyPlugin('Zenith RP Core')">Acheter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentCategory = 'all';
+
+    function setCategory(category, element) {
+      currentCategory = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      filterPlugins();
     }
-    
-    const navBtn = document.getElementById(`nav-${nomPage}`);
-    if (navBtn) {
-        navBtn.classList.add('active');
-    }
-    
-    if(nomPage === 'employe' && document.getElementById('employee-dashboard').style.display === 'block') {
-        afficherFluxCommandes();
-    }
-}
 
-// Fonction pour générer visuellement les cartes du catalogue
-function genererCatalogue() {
-    const grid = document.getElementById('catalog-container');
-    grid.innerHTML = ""; // Vider l'ancien affichage pour éviter les doublons
-    catalogueProduits.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <div class="product-meta">
-                <h3>${p.nom}</h3>
-                <div class="price">${p.prix.toFixed(2)} €</div>
-            </div>
-            <button class="btn" onclick="ajouterAuPanier(${p.id})">Ajouter</button>
-        `;
-        grid.appendChild(card);
-    });
-}
+    function filterPlugins() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
 
-// Lancement de la génération des cartes au démarrage
-genererCatalogue();
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title');
+        const category = card.getAttribute('data-category');
 
-function togglePanier(ouvrir) {
-    document.getElementById('cart-popup').classList.toggle('open', ouvrir);
-    document.getElementById('cart-overlay-bg').classList.toggle('open', ouvrir);
-}
+        const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+        const matchesSearch = title.includes(search);
 
-function ajouterAuPanier(id) {
-    panier[id] = (panier[id] || 0) + 1;
-    majAffichagePanier();
-}
-
-function changerQuantite(id, qte) {
-    if (qte <= 0) {
-        delete panier[id];
-    } else {
-        panier[id] = qte;
-    }
-    majAffichagePanier();
-}
-
-function supprimerDuPanier(id) {
-    delete panier[id];
-    majAffichagePanier();
-}
-
-function majAffichagePanier() {
-    const container = document.getElementById('cart-items-container');
-    container.innerHTML = "";
-    let total = 0;
-    let nbArticles = 0;
-
-    Object.keys(panier).forEach(id => {
-        const prod = catalogueProduits.find(p => p.id == id);
-        if (prod) {
-            const qte = panier[id];
-            const sub = prod.prix * qte;
-            total += sub;
-            nbArticles += qte;
-
-            const div = document.createElement('div');
-            div.className = 'cart-item';
-            div.innerHTML = `
-                <div class="item-info">
-                    <h4>${prod.nom}</h4>
-                    <p>${sub.toFixed(2)} €</p>
-                </div>
-                <div class="item-actions">
-                    <input type="number" min="1" value="${qte}" onchange="changerQuantite(${id}, parseInt(this.value)||1)">
-                    <button class="btn-remove" onclick="supprimerDuPanier(${id})">✕</button>
-                </div>
-            `;
-            container.appendChild(div);
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
         }
-    });
-
-    document.getElementById('global-cart-count').innerText = nbArticles;
-    document.getElementById('cart-total-price').innerText = total.toFixed(2) + " €";
-}
-
-function transmettreCommande() {
-    const nomRP = document.getElementById('player-name-rp').value.trim();
-    if(!nomRP) {
-        alert("🔒 ACTION REQUISE : Renseignez votre NOM RP dans l'onglet Catalogue avant de soumettre.");
-        return;
+      });
     }
 
-    const keys = Object.keys(panier);
-    if(keys.length === 0) {
-        alert("Votre panier est actuellement vide.");
-        return;
+    function downloadPlugin(name) {
+      alert(`Téléchargement de : ${name}`);
     }
 
-    let prixTotal = document.getElementById('cart-total-price').innerText;
-    let texteDiscord = "";
-    let listeLog = [];
-
-    keys.forEach(id => {
-        const prod = catalogueProduits.find(p => p.id == id);
-        if (prod) {
-            const qte = panier[id];
-            texteDiscord += `📦 **${prod.nom}** × ${qte}  *( ${(prod.prix * qte).toFixed(2)} € )*\n`;
-            listeLog.push({ nom: prod.nom, quantite: qte, prixLigne: (prod.prix * qte).toFixed(2) });
-        }
-    });
-
-    const ticketID = 'CMD-' + Math.floor(1000 + Math.random() * 9000);
-    const heure = new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
-
-    baseCommandes.push({ idTicket: ticketID, heure: heure, nomRP: nomRP, marchandises: listeLog, totalFacture: prixTotal });
-    localStorage.setItem('grossiste_commandes', JSON.stringify(baseCommandes));
-
-    const payload = {
-        username: "Centrale Logistique",
-        embeds: [{
-            title: `📥 Demande d'approvisionnement — ${ticketID}`,
-            color: 3716344,
-            fields: [
-                { name: "👤 Opérateur (Nom RP)", value: `\`${nomRP}\``, inline: true },
-                { name: "🕒 Réception", value: heure, inline: true },
-                { name: "🛒 Manifeste de chargement", value: texteDiscord, inline: false },
-                { name: "💰 Valeur Marchande", value: `**${prixTotal}**`, inline: false }
-            ],
-            footer: { text: "Grossiste Automatisé Pro" },
-            timestamp: new Date().toISOString()
-        }]
-    };
-
-    fetch(DISCORD_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    });
-
-    alert(`✅ Bon de commande envoyé avec succès sur Discord !`);
-    panier = {};
-    majAffichagePanier();
-    togglePanier(false);
-}
-
-function authentifierEmploye() {
-    if (document.getElementById('code-secu').value === "2009") {
-        document.getElementById('lock-screen').style.display = 'none';
-        document.getElementById('employee-dashboard').style.display = 'block';
-        afficherFluxCommandes();
-    } else {
-        alert("CODE INVALIDE.");
+    function buyPlugin(name) {
+      alert(`Redirection vers le paiement pour : ${name}`);
     }
-}
-
-function afficherFluxCommandes() {
-    const feed = document.getElementById('orders-feed');
-    feed.innerHTML = baseCommandes.length === 0 ? "<p style='text-align:center; font-style:italic; color:var(--text-muted); padding:30px 0;'>Aucun traitement logistique en attente.</p>" : "";
-
-    [...baseCommandes].reverse().forEach(cmd => {
-        const div = document.createElement('div');
-        div.className = 'order-card';
-        let items = cmd.marchandises.map(m => `<li><b>${m.nom}</b> × ${m.quantite} <span style="color:var(--text-muted)">(${m.prixLigne} €)</span></li>`).join('');
-        div.innerHTML = `
-            <div class="order-head"><span>ID: <b>${cmd.idTicket}</b> | OPÉRATEUR: <b>${cmd.nomRP}</b></span><span>${cmd.heure}</span></div>
-            <ul style="padding-left:18px; margin:0; font-size:0.9em; display:flex; flex-direction:column; gap:4px;">${items}</ul>
-            <div style="text-align:right; font-weight:700; margin-top:14px; color:var(--accent)">Total : ${cmd.totalFacture}</div>
-        `;
-        feed.appendChild(div);
-    });
-}
-
-function viderToutesLesCommandes() {
-    if(confirm("Confirmer la purge complète de la base de données locale ?")) { 
-        baseCommandes = []; 
-        localStorage.removeItem('grossiste_commandes'); 
-        afficherFluxCommandes(); 
-    }
-}
-</script>
+  </script>
 </body>
 </html>
